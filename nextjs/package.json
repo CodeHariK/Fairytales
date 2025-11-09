@@ -1,0 +1,53 @@
+{
+	"name": "buf-nextjs",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"generate": "buf generate",
+		"generate:openapi": "bun run scripts/generate-openapi.ts",
+		"start:production": "next start",
+		"lint": "next lint",
+		"biome:check": "biome check .",
+		"biome:lint": "biome lint .",
+		"biome:format": "biome format --write .",
+		"biome:fix": "biome check --write .",
+		"test": "jest",
+		"ci": "npm run generate && npm run build && npm run lint && npm run test"
+	},
+	"dependencies": {
+		"@bufbuild/jest-environment-jsdom": "^0.1.1",
+		"@bufbuild/protobuf": "^2.10.0",
+		"@connectrpc/connect": "^2.1.0",
+		"@connectrpc/connect-next": "^2.1.0",
+		"@connectrpc/connect-node": "^2.1.0",
+		"@connectrpc/connect-query": "^2.2.0",
+		"@connectrpc/connect-web": "^2.1.0",
+		"@connectrpc/validate": "^0.2.0",
+		"@scalar/api-reference-react": "^0.8.5",
+		"@tanstack/react-query": "^5.90.7",
+		"next": "16.0.1",
+		"react": "19.2.0",
+		"react-dom": "19.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.3.4",
+		"@bufbuild/buf": "^1.59.0",
+		"@bufbuild/protoc-gen-es": "^2.10.0",
+		"@connectrpc/protoc-gen-connect-query": "^2.2.0",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.0",
+		"@types/node": "^24.10.0",
+		"@types/react": "19.2.2",
+		"@types/react-dom": "19.2.2",
+		"jest": "^30.2.0",
+		"next-rest-framework": "^6.0.7",
+		"ts-jest": "^29.4.5",
+		"typescript": "^5.9.3"
+	},
+	"overrides": {
+		"@types/react": "19.2.2",
+		"@types/react-dom": "19.2.2"
+	}
+}

@@ -1,0 +1,237 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Fairytales API",
+    "version": "1.0.0",
+    "description": "Auto-generated API documentation for Fairytales Next.js application (includes Next.js API routes and Connect RPC services)"
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "API Server"
+    }
+  ],
+  "paths": {
+    "/connectrpc.eliza.v1.ElizaService/Say": {
+      "post": {
+        "summary": "Say - Unary RPC",
+        "description": "Send a sentence and get a response",
+        "tags": [
+          "ElizaService"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sentence": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sentence": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "SayResponse is a single-sentence response."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connectrpc.eliza.v1.ElizaService/Introduce": {
+      "post": {
+        "summary": "Introduce - Server Streaming RPC",
+        "description": "Get an introduction from Eliza",
+        "tags": [
+          "ElizaService"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sentence": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "IntroduceResponse is one sentence of Eliza's introductory monologue."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connectrpc.eliza.v1.ElizaService/Converse": {
+      "post": {
+        "summary": "Converse - Bidirectional Streaming RPC",
+        "description": "Have a bidirectional conversation with Eliza",
+        "tags": [
+          "ElizaService"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sentence": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sentence": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "ConverseResponse is a single sentence response sent in answer to a\nConverseRequest."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hello": {
+      "get": {
+        "summary": "hello endpoint",
+        "description": "Auto-generated endpoint for hello",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "users/{id} endpoint",
+        "description": "Auto-generated endpoint for users/{id}",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "protobufAny": {
+        "type": "object",
+        "properties": {
+          "@type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": {}
+      },
+      "rpcStatus": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/definitions/protobufAny"
+            }
+          }
+        }
+      },
+      "v1ConverseResponse": {
+        "type": "object",
+        "properties": {
+          "sentence": {
+            "type": "string"
+          }
+        },
+        "description": "ConverseResponse is a single sentence response sent in answer to a\nConverseRequest."
+      },
+      "v1IntroduceResponse": {
+        "type": "object",
+        "properties": {
+          "sentence": {
+            "type": "string"
+          }
+        },
+        "description": "IntroduceResponse is one sentence of Eliza's introductory monologue."
+      },
+      "v1SayResponse": {
+        "type": "object",
+        "properties": {
+          "sentence": {
+            "type": "string"
+          }
+        },
+        "description": "SayResponse is a single-sentence response."
+      }
+    }
+  }
+}

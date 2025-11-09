@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = "github.com/connectrpc/payload;payload";
+
+message Payload {
+    string str = 1;
+    double double = 2;
+    bytes bytes = 3;
+    // 64-bit integers use BigInt in ECMAScript.
+    // Set the field option `[jstype = JS_STRING]` to use String instead.
+    uint64 large_number = 4;
+}
