@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+package courses.v1;
+
+import "buf/validate/validate.proto";
+
+option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
+
+// CourseService provides methods to manage user courses.
+service CourseService {
+	// GetUserCourses returns all courses for the current user.
+	rpc GetUserCourses(GetUserCoursesRequest) returns (GetUserCoursesResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetCoursesPaginated returns paginated courses for the current user.
+	rpc GetCoursesPaginated(GetCoursesPaginatedRequest) returns (GetCoursesPaginatedResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// CreateCourse creates a new course.
+	rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse);
+	
+	// UpdateCourse updates an existing course.
+	rpc UpdateCourse(UpdateCourseRequest) returns (UpdateCourseResponse);
+	
+	// DeleteCourse deletes a course.
+	rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
+}
+
+// GetUserCoursesRequest is the request to get user courses.
+message GetUserCoursesRequest {
+	// Optional filter by status (all, active, draft, archived)
+	// If not provided, returns all courses.
+	optional string status_filter = 1;
+}
+
+// GetUserCoursesResponse contains the list of user courses.
+message GetUserCoursesResponse {
+	repeated Course courses = 1;
+	int32 total = 2;
+}
+
+// Course represents a course entity.
+message Course {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	string title = 2;
+	string category = 3;
+	CourseLevel level = 4;
+	int32 lessons = 5;
+	int32 hours = 6;
+	int32 students = 7;
+	int32 price = 8;
+	string image = 9;
+	CourseStatus status = 10;
+}
+
+// GetCoursesPaginatedRequest is the request for paginated courses.
+message GetCoursesPaginatedRequest {
+	optional string status_filter = 1;
+	int32 page = 2;
+	int32 page_size = 3;
+}
+
+// GetCoursesPaginatedResponse contains paginated courses.
+message GetCoursesPaginatedResponse {
+	repeated Course courses = 1;
+	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
+}
+
+// CreateCourseRequest is the request to create a new course.
+message CreateCourseRequest {
+	string title = 1;
+	string category = 2;
+	CourseLevel level = 3;
+	int32 lessons = 4;
+	int32 hours = 5;
+	int32 price = 6;
+	string image = 7;
+	CourseStatus status = 8;
+}
+
+// CreateCourseResponse contains the created course.
+message CreateCourseResponse {
+	Course course = 1;
+}
+
+// UpdateCourseRequest is the request to update a course.
+message UpdateCourseRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	optional string title = 2;
+	optional string category = 3;
+	optional CourseLevel level = 4;
+	optional int32 lessons = 5;
+	optional int32 hours = 6;
+	optional int32 price = 7;
+	optional string image = 8;
+	optional CourseStatus status = 9;
+}
+
+// UpdateCourseResponse contains the updated course.
+message UpdateCourseResponse {
+	Course course = 1;
+}
+
+// DeleteCourseRequest is the request to delete a course.
+message DeleteCourseRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+}
+
+// DeleteCourseResponse confirms the deletion.
+message DeleteCourseResponse {
+	bool success = 1;
+}
+
+// CourseLevel represents the difficulty level of a course.
+enum CourseLevel {
+	COURSE_LEVEL_UNSPECIFIED = 0;
+	COURSE_LEVEL_BEGINNER = 1;
+	COURSE_LEVEL_INTERMEDIATE = 2;
+	COURSE_LEVEL_ADVANCED = 3;
+}
+
+// CourseStatus represents the status of a course.
+enum CourseStatus {
+	COURSE_STATUS_UNSPECIFIED = 0;
+	COURSE_STATUS_ACTIVE = 1;
+	COURSE_STATUS_DRAFT = 2;
+	COURSE_STATUS_ARCHIVED = 3;
+}

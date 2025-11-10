@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package courses.v1;
+
+import "buf/validate/validate.proto";
+
+import "courses/v1/courses.proto";
+
+option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
+
+// CategoryService provides methods to manage course categories.
+service CategoryService {
+	// CreateCategory creates a new course category.
+	rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse);
+	
+	// UpdateCategory updates an existing course category.
+	rpc UpdateCategory(UpdateCategoryRequest) returns (UpdateCategoryResponse);
+	
+	// DeleteCategory deletes a course category.
+	rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse);
+	
+	// GetCategory returns a category by ID.
+	rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// ListCategories returns all categories.
+	rpc ListCategories(ListCategoriesRequest) returns (ListCategoriesResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetCoursesByCategory returns all courses in a specific category.
+	rpc GetCoursesByCategory(GetCoursesByCategoryRequest) returns (GetCoursesByCategoryResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+}
+
+// Category represents a course category entity.
+message Category {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	string name = 2;
+	string description = 3;
+}
+
+// CreateCategoryRequest is the request to create a new category.
+message CreateCategoryRequest {
+	string name = 1;
+	optional string description = 2;
+}
+
+// CreateCategoryResponse contains the created category.
+message CreateCategoryResponse {
+	Category category = 1;
+}
+
+// UpdateCategoryRequest is the request to update a category.
+message UpdateCategoryRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	optional string name = 2;
+	optional string description = 3;
+}
+
+// UpdateCategoryResponse contains the updated category.
+message UpdateCategoryResponse {
+	Category category = 1;
+}
+
+// DeleteCategoryRequest is the request to delete a category.
+message DeleteCategoryRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+}
+
+// DeleteCategoryResponse confirms the deletion.
+message DeleteCategoryResponse {
+	bool success = 1;
+}
+
+// GetCategoryRequest is the request to get a category by ID.
+message GetCategoryRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+}
+
+// GetCategoryResponse contains the category.
+message GetCategoryResponse {
+	Category category = 1;
+}
+
+// ListCategoriesRequest is the request to list all categories.
+message ListCategoriesRequest {
+	// Optional search query to filter categories by name.
+	optional string search = 1;
+}
+
+// ListCategoriesResponse contains the list of categories.
+message ListCategoriesResponse {
+	repeated Category categories = 1;
+	int32 total = 2;
+}
+
+// GetCoursesByCategoryRequest is the request to get courses by category.
+message GetCoursesByCategoryRequest {
+	bytes category_id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	optional string status_filter = 2;
+}
+
+// GetCoursesByCategoryResponse contains courses in the category.
+message GetCoursesByCategoryResponse {
+	repeated Course courses = 1;
+	int32 total = 2;
+}
+

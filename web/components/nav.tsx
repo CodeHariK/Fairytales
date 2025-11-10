@@ -1,0 +1,191 @@
+"use client";
+
+import {
+	PlusCircle, Mail, MoreVertical,
+	Folder,
+	Share2,
+	Trash2, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+import {
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarGroupLabel,
+	SidebarMenuAction,
+	useSidebar,
+} from "@/components/ui/sidebar";
+
+
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+
+export function NavMain({
+	items,
+}: {
+	items: {
+		title: string;
+		url: string;
+		icon?: LucideIcon;
+	}[];
+}) {
+	const pathname = usePathname();
+
+	return (
+		<SidebarGroup>
+			<SidebarGroupContent className="flex flex-col gap-2">
+				<SidebarMenu>
+					<SidebarMenuItem className="flex items-center gap-2">
+
+						<SidebarMenuButton
+							tooltip="Quick Create"
+							className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+						>
+							<PlusCircle />
+							<span>Quick Create</span>
+						</SidebarMenuButton>
+
+						<Button
+							size="icon"
+							className="size-8 group-data-[collapsible=icon]:opacity-0"
+							variant="outline"
+						>
+							<Mail />
+							<span className="sr-only">Inbox</span>
+						</Button>
+					</SidebarMenuItem>
+				</SidebarMenu>
+				<SidebarMenu>
+					{items.map((item) => {
+						const isActive = !!pathname && (pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)));
+						return (
+							<SidebarMenuItem key={item.title}>
+								<SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
+									<Link href={item.url}>
+										{item.icon && <item.icon />}
+										<span>{item.title}</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+						);
+					})}
+				</SidebarMenu>
+			</SidebarGroupContent>
+		</SidebarGroup>
+	);
+}
+
+export function NavDocuments({
+	items,
+}: {
+	items: {
+		name: string;
+		url: string;
+		icon: LucideIcon;
+	}[];
+}) {
+	const { isMobile } = useSidebar();
+	const pathname = usePathname();
+
+	return (
+		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
+			<SidebarGroupLabel>Documents</SidebarGroupLabel>
+			<SidebarMenu>
+				{items.map((item) => {
+					const isActive = !!pathname && (pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)));
+					return (
+						<SidebarMenuItem key={item.name}>
+							<SidebarMenuButton asChild isActive={isActive}>
+								<Link href={item.url}>
+									<item.icon />
+									<span>{item.name}</span>
+								</Link>
+							</SidebarMenuButton>
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<SidebarMenuAction
+										showOnHover
+										className="data-[state=open]:bg-accent rounded-sm"
+									>
+										<MoreVertical />
+										<span className="sr-only">More</span>
+									</SidebarMenuAction>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									className="w-24 rounded-lg"
+									side={isMobile ? "bottom" : "right"}
+									align={isMobile ? "end" : "start"}
+								>
+									<DropdownMenuItem>
+										<Folder />
+										<span>Open</span>
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										<Share2 />
+										<span>Share</span>
+									</DropdownMenuItem>
+									<DropdownMenuSeparator />
+									<DropdownMenuItem variant="destructive">
+										<Trash2 />
+										<span>Delete</span>
+									</DropdownMenuItem>
+								</DropdownMenuContent>
+							</DropdownMenu>
+						</SidebarMenuItem>
+					);
+				})}
+				<SidebarMenuItem>
+					<SidebarMenuButton className="text-sidebar-foreground/70">
+						<MoreVertical className="text-sidebar-foreground/70" />
+						<span>More</span>
+					</SidebarMenuButton>
+				</SidebarMenuItem>
+			</SidebarMenu>
+		</SidebarGroup>
+	);
+}
+
+export function NavSecondary({
+	items,
+	...props
+}: {
+	items: {
+		title: string;
+		url: string;
+		icon: LucideIcon;
+	}[];
+} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+	const pathname = usePathname();
+
+	return (
+		<SidebarGroup {...props}>
+			<SidebarGroupContent>
+				<SidebarMenu>
+					{items.map((item) => {
+						const isActive = !!pathname && (pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)));
+						return (
+							<SidebarMenuItem key={item.title}>
+								<SidebarMenuButton asChild isActive={isActive}>
+									<Link href={item.url}>
+										<item.icon />
+										<span>{item.title}</span>
+									</Link>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+						);
+					})}
+				</SidebarMenu>
+			</SidebarGroupContent>
+		</SidebarGroup>
+	);
+}

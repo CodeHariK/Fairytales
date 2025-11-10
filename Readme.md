@@ -6,20 +6,6 @@ Great—building an LMS (Learning Management System) web app using Next.js is a 
 
 ---
 
-## Suggested Name
-
-Let’s pick a name that’s memorable, communicates learning/training and is available (domain-wise). Here are a few:
-
-* **LearnHub**
-* **EduWave**
-* **SkillShift LMS**
-* **CourseFlow**
-* **TeachTrack**
-
-For this outline I’ll assume **“CourseFlow”** (you can change it easily).
-
----
-
 ## Pages / Routes (Frontend)
 
 Using Next.js we’ll have pages mapping to user-flows. If using the App Router (Next.js 13+), you may organize via folders under `/app`. Here are typical ones:
