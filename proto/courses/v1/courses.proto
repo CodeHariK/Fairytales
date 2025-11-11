@@ -43,7 +43,7 @@ message GetUserCoursesResponse {
 
 // Course represents a course entity.
 message Course {
-	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	string title = 2;
 	string category = 3;
 	CourseLevel level = 4;
@@ -90,7 +90,7 @@ message CreateCourseResponse {
 
 // UpdateCourseRequest is the request to update a course.
 message UpdateCourseRequest {
-	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	optional string title = 2;
 	optional string category = 3;
 	optional CourseLevel level = 4;
@@ -108,7 +108,7 @@ message UpdateCourseResponse {
 
 // DeleteCourseRequest is the request to delete a course.
 message DeleteCourseRequest {
-	bytes id = 1 [(buf.validate.field).bytes.len = 16]; // UUID v7 (128-bit, 16 bytes)
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 }
 
 // DeleteCourseResponse confirms the deletion.

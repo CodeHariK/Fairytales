@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Pagination } from "@/components/pagination";
 import { CourseCard, type Course, type CourseLevelDisplay } from "@/components/course-card";
-import { uuidToHexString } from "@/lib/uuid";
+import { uuidToHexString } from "@/utils/uuid";
 
 type CourseStatusDisplay = "active" | "draft" | "archived";
 

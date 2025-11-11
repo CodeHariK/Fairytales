@@ -13,6 +13,7 @@
 		"**/.turbo": true,
 		"**/.vercel": true,
 		"**/.gitignore": true,
+		"**/.gitattributes": true,
 		"**/.eslintrc.json": true,
 		"**/tsconfig.json": true,
 		"**/next.config.*": true,
@@ -25,7 +26,11 @@
 		"**/package-lock.json": true,
 		"**/bun.lock": true,
 		"**/yarn.lock": true,
-		"**/pnpm-lock.yaml": true
+		"**/pnpm-lock.yaml": true,
+		"**/components.json": true,
+		"**/next-env.d.ts": true,
+		"**/postcss.config.mjs": true,
+		"**/.tool-versions": true
 	},
 	"search.exclude": {
 		"**/node_modules": true,

@@ -10,7 +10,7 @@ import type {
 	GetUserCoursesResponse,
 } from "@/gen/courses/v1/courses_pb"
 import { CourseLevel, CourseStatus } from "@/gen/courses/v1/courses_pb"
-import { createUuidV7 } from "@/lib/uuid"
+import { createUuidV7 } from "@/utils/uuid"
 
 export default (router: ConnectRouter) => {
 	router.service(CourseService, {
