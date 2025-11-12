@@ -2,8 +2,16 @@
 // @generated from file courses/v1/course_category.proto (package courses.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type {
+	GenFile,
+	GenMessage,
+	GenService,
+} from "@bufbuild/protobuf/codegenv2";
+import {
+	fileDesc,
+	messageDesc,
+	serviceDesc,
+} from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Course } from "./courses_pb";
 import { file_courses_v1_courses } from "./courses_pb";
@@ -12,8 +20,12 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file courses/v1/course_category.proto.
  */
-export const file_courses_v1_course_category: GenFile = /*@__PURE__*/
-  fileDesc("CiBjb3Vyc2VzL3YxL2NvdXJzZV9jYXRlZ29yeS5wcm90bxIKY291cnNlcy52MSJCCghDYXRlZ29yeRITCgJpZBgBIAEoDEIHukgEegJoEBIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJIk8KFUNyZWF0ZUNhdGVnb3J5UmVxdWVzdBIMCgRuYW1lGAEgASgJEhgKC2Rlc2NyaXB0aW9uGAIgASgJSACIAQFCDgoMX2Rlc2NyaXB0aW9uIkAKFkNyZWF0ZUNhdGVnb3J5UmVzcG9uc2USJgoIY2F0ZWdvcnkYASABKAsyFC5jb3Vyc2VzLnYxLkNhdGVnb3J5InIKFVVwZGF0ZUNhdGVnb3J5UmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoEBIRCgRuYW1lGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBAUIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb24iQAoWVXBkYXRlQ2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiLAoVRGVsZXRlQ2F0ZWdvcnlSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQIikKFkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCIpChJHZXRDYXRlZ29yeVJlcXVlc3QSEwoCaWQYASABKAxCB7pIBHoCaBAiPQoTR2V0Q2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiNwoVTGlzdENhdGVnb3JpZXNSZXF1ZXN0EhMKBnNlYXJjaBgBIAEoCUgAiAEBQgkKB19zZWFyY2giUQoWTGlzdENhdGVnb3JpZXNSZXNwb25zZRIoCgpjYXRlZ29yaWVzGAEgAygLMhQuY291cnNlcy52MS5DYXRlZ29yeRINCgV0b3RhbBgCIAEoBSJpChtHZXRDb3Vyc2VzQnlDYXRlZ29yeVJlcXVlc3QSHAoLY2F0ZWdvcnlfaWQYASABKAxCB7pIBHoCaBASGgoNc3RhdHVzX2ZpbHRlchgCIAEoCUgAiAEBQhAKDl9zdGF0dXNfZmlsdGVyIlIKHEdldENvdXJzZXNCeUNhdGVnb3J5UmVzcG9uc2USIwoHY291cnNlcxgBIAMoCzISLmNvdXJzZXMudjEuQ291cnNlEg0KBXRvdGFsGAIgASgFMr8ECg9DYXRlZ29yeVNlcnZpY2USVwoOQ3JlYXRlQ2F0ZWdvcnkSIS5jb3Vyc2VzLnYxLkNyZWF0ZUNhdGVnb3J5UmVxdWVzdBoiLmNvdXJzZXMudjEuQ3JlYXRlQ2F0ZWdvcnlSZXNwb25zZRJXCg5VcGRhdGVDYXRlZ29yeRIhLmNvdXJzZXMudjEuVXBkYXRlQ2F0ZWdvcnlSZXF1ZXN0GiIuY291cnNlcy52MS5VcGRhdGVDYXRlZ29yeVJlc3BvbnNlElcKDkRlbGV0ZUNhdGVnb3J5EiEuY291cnNlcy52MS5EZWxldGVDYXRlZ29yeVJlcXVlc3QaIi5jb3Vyc2VzLnYxLkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USUwoLR2V0Q2F0ZWdvcnkSHi5jb3Vyc2VzLnYxLkdldENhdGVnb3J5UmVxdWVzdBofLmNvdXJzZXMudjEuR2V0Q2F0ZWdvcnlSZXNwb25zZSIDkAIBElwKDkxpc3RDYXRlZ29yaWVzEiEuY291cnNlcy52MS5MaXN0Q2F0ZWdvcmllc1JlcXVlc3QaIi5jb3Vyc2VzLnYxLkxpc3RDYXRlZ29yaWVzUmVzcG9uc2UiA5ACARJuChRHZXRDb3Vyc2VzQnlDYXRlZ29yeRInLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q2F0ZWdvcnlSZXF1ZXN0GiguY291cnNlcy52MS5HZXRDb3Vyc2VzQnlDYXRlZ29yeVJlc3BvbnNlIgOQAgFCNlo0Z2l0aHViLmNvbS9jb2RlaGFyaWsvZmFpcnl0YWxlcy9jb3Vyc2VzL3YxO2NvdXJzZXN2MWIGcHJvdG8z", [file_buf_validate_validate, file_courses_v1_courses]);
+export const file_courses_v1_course_category: GenFile =
+	/*@__PURE__*/
+	fileDesc(
+		"CiBjb3Vyc2VzL3YxL2NvdXJzZV9jYXRlZ29yeS5wcm90bxIKY291cnNlcy52MSJCCghDYXRlZ29yeRITCgJpZBgBIAEoDEIHukgEegJoEBIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJIk8KFUNyZWF0ZUNhdGVnb3J5UmVxdWVzdBIMCgRuYW1lGAEgASgJEhgKC2Rlc2NyaXB0aW9uGAIgASgJSACIAQFCDgoMX2Rlc2NyaXB0aW9uIkAKFkNyZWF0ZUNhdGVnb3J5UmVzcG9uc2USJgoIY2F0ZWdvcnkYASABKAsyFC5jb3Vyc2VzLnYxLkNhdGVnb3J5InIKFVVwZGF0ZUNhdGVnb3J5UmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoEBIRCgRuYW1lGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBAUIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb24iQAoWVXBkYXRlQ2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiLAoVRGVsZXRlQ2F0ZWdvcnlSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQIikKFkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCIpChJHZXRDYXRlZ29yeVJlcXVlc3QSEwoCaWQYASABKAxCB7pIBHoCaBAiPQoTR2V0Q2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiNwoVTGlzdENhdGVnb3JpZXNSZXF1ZXN0EhMKBnNlYXJjaBgBIAEoCUgAiAEBQgkKB19zZWFyY2giUQoWTGlzdENhdGVnb3JpZXNSZXNwb25zZRIoCgpjYXRlZ29yaWVzGAEgAygLMhQuY291cnNlcy52MS5DYXRlZ29yeRINCgV0b3RhbBgCIAEoBSJpChtHZXRDb3Vyc2VzQnlDYXRlZ29yeVJlcXVlc3QSHAoLY2F0ZWdvcnlfaWQYASABKAxCB7pIBHoCaBASGgoNc3RhdHVzX2ZpbHRlchgCIAEoCUgAiAEBQhAKDl9zdGF0dXNfZmlsdGVyIlIKHEdldENvdXJzZXNCeUNhdGVnb3J5UmVzcG9uc2USIwoHY291cnNlcxgBIAMoCzISLmNvdXJzZXMudjEuQ291cnNlEg0KBXRvdGFsGAIgASgFMr8ECg9DYXRlZ29yeVNlcnZpY2USVwoOQ3JlYXRlQ2F0ZWdvcnkSIS5jb3Vyc2VzLnYxLkNyZWF0ZUNhdGVnb3J5UmVxdWVzdBoiLmNvdXJzZXMudjEuQ3JlYXRlQ2F0ZWdvcnlSZXNwb25zZRJXCg5VcGRhdGVDYXRlZ29yeRIhLmNvdXJzZXMudjEuVXBkYXRlQ2F0ZWdvcnlSZXF1ZXN0GiIuY291cnNlcy52MS5VcGRhdGVDYXRlZ29yeVJlc3BvbnNlElcKDkRlbGV0ZUNhdGVnb3J5EiEuY291cnNlcy52MS5EZWxldGVDYXRlZ29yeVJlcXVlc3QaIi5jb3Vyc2VzLnYxLkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USUwoLR2V0Q2F0ZWdvcnkSHi5jb3Vyc2VzLnYxLkdldENhdGVnb3J5UmVxdWVzdBofLmNvdXJzZXMudjEuR2V0Q2F0ZWdvcnlSZXNwb25zZSIDkAIBElwKDkxpc3RDYXRlZ29yaWVzEiEuY291cnNlcy52MS5MaXN0Q2F0ZWdvcmllc1JlcXVlc3QaIi5jb3Vyc2VzLnYxLkxpc3RDYXRlZ29yaWVzUmVzcG9uc2UiA5ACARJuChRHZXRDb3Vyc2VzQnlDYXRlZ29yeRInLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q2F0ZWdvcnlSZXF1ZXN0GiguY291cnNlcy52MS5HZXRDb3Vyc2VzQnlDYXRlZ29yeVJlc3BvbnNlIgOQAgFCNlo0Z2l0aHViLmNvbS9jb2RlaGFyaWsvZmFpcnl0YWxlcy9jb3Vyc2VzL3YxO2NvdXJzZXN2MWIGcHJvdG8z",
+		[file_buf_validate_validate, file_courses_v1_courses],
+	);
 
 /**
  * Category represents a course category entity.
@@ -21,163 +33,170 @@ export const file_courses_v1_course_category: GenFile = /*@__PURE__*/
  * @generated from message courses.v1.Category
  */
 export type Category = Message<"courses.v1.Category"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
+	/**
+	 * @generated from field: bytes id = 1;
+	 */
+	id: Uint8Array;
 
-  /**
-   * @generated from field: string name = 2;
-   */
-  name: string;
+	/**
+	 * @generated from field: string name = 2;
+	 */
+	name: string;
 
-  /**
-   * @generated from field: string description = 3;
-   */
-  description: string;
+	/**
+	 * @generated from field: string description = 3;
+	 */
+	description: string;
 };
 
 /**
  * Describes the message courses.v1.Category.
  * Use `create(CategorySchema)` to create a new message.
  */
-export const CategorySchema: GenMessage<Category> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 0);
+export const CategorySchema: GenMessage<Category> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 0);
 
 /**
  * CreateCategoryRequest is the request to create a new category.
  *
  * @generated from message courses.v1.CreateCategoryRequest
  */
-export type CreateCategoryRequest = Message<"courses.v1.CreateCategoryRequest"> & {
-  /**
-   * @generated from field: string name = 1;
-   */
-  name: string;
+export type CreateCategoryRequest =
+	Message<"courses.v1.CreateCategoryRequest"> & {
+		/**
+		 * @generated from field: string name = 1;
+		 */
+		name: string;
 
-  /**
-   * @generated from field: optional string description = 2;
-   */
-  description?: string;
-};
+		/**
+		 * @generated from field: optional string description = 2;
+		 */
+		description?: string;
+	};
 
 /**
  * Describes the message courses.v1.CreateCategoryRequest.
  * Use `create(CreateCategoryRequestSchema)` to create a new message.
  */
-export const CreateCategoryRequestSchema: GenMessage<CreateCategoryRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 1);
+export const CreateCategoryRequestSchema: GenMessage<CreateCategoryRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 1);
 
 /**
  * CreateCategoryResponse contains the created category.
  *
  * @generated from message courses.v1.CreateCategoryResponse
  */
-export type CreateCategoryResponse = Message<"courses.v1.CreateCategoryResponse"> & {
-  /**
-   * @generated from field: courses.v1.Category category = 1;
-   */
-  category?: Category;
-};
+export type CreateCategoryResponse =
+	Message<"courses.v1.CreateCategoryResponse"> & {
+		/**
+		 * @generated from field: courses.v1.Category category = 1;
+		 */
+		category?: Category;
+	};
 
 /**
  * Describes the message courses.v1.CreateCategoryResponse.
  * Use `create(CreateCategoryResponseSchema)` to create a new message.
  */
-export const CreateCategoryResponseSchema: GenMessage<CreateCategoryResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 2);
+export const CreateCategoryResponseSchema: GenMessage<CreateCategoryResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 2);
 
 /**
  * UpdateCategoryRequest is the request to update a category.
  *
  * @generated from message courses.v1.UpdateCategoryRequest
  */
-export type UpdateCategoryRequest = Message<"courses.v1.UpdateCategoryRequest"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
+export type UpdateCategoryRequest =
+	Message<"courses.v1.UpdateCategoryRequest"> & {
+		/**
+		 * @generated from field: bytes id = 1;
+		 */
+		id: Uint8Array;
 
-  /**
-   * @generated from field: optional string name = 2;
-   */
-  name?: string;
+		/**
+		 * @generated from field: optional string name = 2;
+		 */
+		name?: string;
 
-  /**
-   * @generated from field: optional string description = 3;
-   */
-  description?: string;
-};
+		/**
+		 * @generated from field: optional string description = 3;
+		 */
+		description?: string;
+	};
 
 /**
  * Describes the message courses.v1.UpdateCategoryRequest.
  * Use `create(UpdateCategoryRequestSchema)` to create a new message.
  */
-export const UpdateCategoryRequestSchema: GenMessage<UpdateCategoryRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 3);
+export const UpdateCategoryRequestSchema: GenMessage<UpdateCategoryRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 3);
 
 /**
  * UpdateCategoryResponse contains the updated category.
  *
  * @generated from message courses.v1.UpdateCategoryResponse
  */
-export type UpdateCategoryResponse = Message<"courses.v1.UpdateCategoryResponse"> & {
-  /**
-   * @generated from field: courses.v1.Category category = 1;
-   */
-  category?: Category;
-};
+export type UpdateCategoryResponse =
+	Message<"courses.v1.UpdateCategoryResponse"> & {
+		/**
+		 * @generated from field: courses.v1.Category category = 1;
+		 */
+		category?: Category;
+	};
 
 /**
  * Describes the message courses.v1.UpdateCategoryResponse.
  * Use `create(UpdateCategoryResponseSchema)` to create a new message.
  */
-export const UpdateCategoryResponseSchema: GenMessage<UpdateCategoryResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 4);
+export const UpdateCategoryResponseSchema: GenMessage<UpdateCategoryResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 4);
 
 /**
  * DeleteCategoryRequest is the request to delete a category.
  *
  * @generated from message courses.v1.DeleteCategoryRequest
  */
-export type DeleteCategoryRequest = Message<"courses.v1.DeleteCategoryRequest"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
-};
+export type DeleteCategoryRequest =
+	Message<"courses.v1.DeleteCategoryRequest"> & {
+		/**
+		 * @generated from field: bytes id = 1;
+		 */
+		id: Uint8Array;
+	};
 
 /**
  * Describes the message courses.v1.DeleteCategoryRequest.
  * Use `create(DeleteCategoryRequestSchema)` to create a new message.
  */
-export const DeleteCategoryRequestSchema: GenMessage<DeleteCategoryRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 5);
+export const DeleteCategoryRequestSchema: GenMessage<DeleteCategoryRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 5);
 
 /**
  * DeleteCategoryResponse confirms the deletion.
  *
  * @generated from message courses.v1.DeleteCategoryResponse
  */
-export type DeleteCategoryResponse = Message<"courses.v1.DeleteCategoryResponse"> & {
-  /**
-   * @generated from field: bool success = 1;
-   */
-  success: boolean;
-};
+export type DeleteCategoryResponse =
+	Message<"courses.v1.DeleteCategoryResponse"> & {
+		/**
+		 * @generated from field: bool success = 1;
+		 */
+		success: boolean;
+	};
 
 /**
  * Describes the message courses.v1.DeleteCategoryResponse.
  * Use `create(DeleteCategoryResponseSchema)` to create a new message.
  */
-export const DeleteCategoryResponseSchema: GenMessage<DeleteCategoryResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 6);
+export const DeleteCategoryResponseSchema: GenMessage<DeleteCategoryResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 6);
 
 /**
  * GetCategoryRequest is the request to get a category by ID.
@@ -185,20 +204,19 @@ export const DeleteCategoryResponseSchema: GenMessage<DeleteCategoryResponse> = 
  * @generated from message courses.v1.GetCategoryRequest
  */
 export type GetCategoryRequest = Message<"courses.v1.GetCategoryRequest"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
+	/**
+	 * @generated from field: bytes id = 1;
+	 */
+	id: Uint8Array;
 };
 
 /**
  * Describes the message courses.v1.GetCategoryRequest.
  * Use `create(GetCategoryRequestSchema)` to create a new message.
  */
-export const GetCategoryRequestSchema: GenMessage<GetCategoryRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 7);
+export const GetCategoryRequestSchema: GenMessage<GetCategoryRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 7);
 
 /**
  * GetCategoryResponse contains the category.
@@ -206,113 +224,120 @@ export const GetCategoryRequestSchema: GenMessage<GetCategoryRequest> = /*@__PUR
  * @generated from message courses.v1.GetCategoryResponse
  */
 export type GetCategoryResponse = Message<"courses.v1.GetCategoryResponse"> & {
-  /**
-   * @generated from field: courses.v1.Category category = 1;
-   */
-  category?: Category;
+	/**
+	 * @generated from field: courses.v1.Category category = 1;
+	 */
+	category?: Category;
 };
 
 /**
  * Describes the message courses.v1.GetCategoryResponse.
  * Use `create(GetCategoryResponseSchema)` to create a new message.
  */
-export const GetCategoryResponseSchema: GenMessage<GetCategoryResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 8);
+export const GetCategoryResponseSchema: GenMessage<GetCategoryResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 8);
 
 /**
  * ListCategoriesRequest is the request to list all categories.
  *
  * @generated from message courses.v1.ListCategoriesRequest
  */
-export type ListCategoriesRequest = Message<"courses.v1.ListCategoriesRequest"> & {
-  /**
-   * Optional search query to filter categories by name.
-   *
-   * @generated from field: optional string search = 1;
-   */
-  search?: string;
-};
+export type ListCategoriesRequest =
+	Message<"courses.v1.ListCategoriesRequest"> & {
+		/**
+		 * Optional search query to filter categories by name.
+		 *
+		 * @generated from field: optional string search = 1;
+		 */
+		search?: string;
+	};
 
 /**
  * Describes the message courses.v1.ListCategoriesRequest.
  * Use `create(ListCategoriesRequestSchema)` to create a new message.
  */
-export const ListCategoriesRequestSchema: GenMessage<ListCategoriesRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 9);
+export const ListCategoriesRequestSchema: GenMessage<ListCategoriesRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 9);
 
 /**
  * ListCategoriesResponse contains the list of categories.
  *
  * @generated from message courses.v1.ListCategoriesResponse
  */
-export type ListCategoriesResponse = Message<"courses.v1.ListCategoriesResponse"> & {
-  /**
-   * @generated from field: repeated courses.v1.Category categories = 1;
-   */
-  categories: Category[];
+export type ListCategoriesResponse =
+	Message<"courses.v1.ListCategoriesResponse"> & {
+		/**
+		 * @generated from field: repeated courses.v1.Category categories = 1;
+		 */
+		categories: Category[];
 
-  /**
-   * @generated from field: int32 total = 2;
-   */
-  total: number;
-};
+		/**
+		 * @generated from field: int32 total = 2;
+		 */
+		total: number;
+	};
 
 /**
  * Describes the message courses.v1.ListCategoriesResponse.
  * Use `create(ListCategoriesResponseSchema)` to create a new message.
  */
-export const ListCategoriesResponseSchema: GenMessage<ListCategoriesResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 10);
+export const ListCategoriesResponseSchema: GenMessage<ListCategoriesResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 10);
 
 /**
  * GetCoursesByCategoryRequest is the request to get courses by category.
  *
  * @generated from message courses.v1.GetCoursesByCategoryRequest
  */
-export type GetCoursesByCategoryRequest = Message<"courses.v1.GetCoursesByCategoryRequest"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes category_id = 1;
-   */
-  categoryId: Uint8Array;
+export type GetCoursesByCategoryRequest =
+	Message<"courses.v1.GetCoursesByCategoryRequest"> & {
+		/**
+		 * @generated from field: bytes category_id = 1;
+		 */
+		categoryId: Uint8Array;
 
-  /**
-   * @generated from field: optional string status_filter = 2;
-   */
-  statusFilter?: string;
-};
+		/**
+		 * @generated from field: optional string status_filter = 2;
+		 */
+		statusFilter?: string;
+	};
 
 /**
  * Describes the message courses.v1.GetCoursesByCategoryRequest.
  * Use `create(GetCoursesByCategoryRequestSchema)` to create a new message.
  */
-export const GetCoursesByCategoryRequestSchema: GenMessage<GetCoursesByCategoryRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 11);
+export const GetCoursesByCategoryRequestSchema: GenMessage<GetCoursesByCategoryRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 11);
 
 /**
  * GetCoursesByCategoryResponse contains courses in the category.
  *
  * @generated from message courses.v1.GetCoursesByCategoryResponse
  */
-export type GetCoursesByCategoryResponse = Message<"courses.v1.GetCoursesByCategoryResponse"> & {
-  /**
-   * @generated from field: repeated courses.v1.Course courses = 1;
-   */
-  courses: Course[];
+export type GetCoursesByCategoryResponse =
+	Message<"courses.v1.GetCoursesByCategoryResponse"> & {
+		/**
+		 * @generated from field: repeated courses.v1.Course courses = 1;
+		 */
+		courses: Course[];
 
-  /**
-   * @generated from field: int32 total = 2;
-   */
-  total: number;
-};
+		/**
+		 * @generated from field: int32 total = 2;
+		 */
+		total: number;
+	};
 
 /**
  * Describes the message courses.v1.GetCoursesByCategoryResponse.
  * Use `create(GetCoursesByCategoryResponseSchema)` to create a new message.
  */
-export const GetCoursesByCategoryResponseSchema: GenMessage<GetCoursesByCategoryResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_course_category, 12);
+export const GetCoursesByCategoryResponseSchema: GenMessage<GetCoursesByCategoryResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_course_category, 12);
 
 /**
  * CategoryService provides methods to manage course categories.
@@ -320,66 +345,64 @@ export const GetCoursesByCategoryResponseSchema: GenMessage<GetCoursesByCategory
  * @generated from service courses.v1.CategoryService
  */
 export const CategoryService: GenService<{
-  /**
-   * CreateCategory creates a new course category.
-   *
-   * @generated from rpc courses.v1.CategoryService.CreateCategory
-   */
-  createCategory: {
-    methodKind: "unary";
-    input: typeof CreateCategoryRequestSchema;
-    output: typeof CreateCategoryResponseSchema;
-  },
-  /**
-   * UpdateCategory updates an existing course category.
-   *
-   * @generated from rpc courses.v1.CategoryService.UpdateCategory
-   */
-  updateCategory: {
-    methodKind: "unary";
-    input: typeof UpdateCategoryRequestSchema;
-    output: typeof UpdateCategoryResponseSchema;
-  },
-  /**
-   * DeleteCategory deletes a course category.
-   *
-   * @generated from rpc courses.v1.CategoryService.DeleteCategory
-   */
-  deleteCategory: {
-    methodKind: "unary";
-    input: typeof DeleteCategoryRequestSchema;
-    output: typeof DeleteCategoryResponseSchema;
-  },
-  /**
-   * GetCategory returns a category by ID.
-   *
-   * @generated from rpc courses.v1.CategoryService.GetCategory
-   */
-  getCategory: {
-    methodKind: "unary";
-    input: typeof GetCategoryRequestSchema;
-    output: typeof GetCategoryResponseSchema;
-  },
-  /**
-   * ListCategories returns all categories.
-   *
-   * @generated from rpc courses.v1.CategoryService.ListCategories
-   */
-  listCategories: {
-    methodKind: "unary";
-    input: typeof ListCategoriesRequestSchema;
-    output: typeof ListCategoriesResponseSchema;
-  },
-  /**
-   * GetCoursesByCategory returns all courses in a specific category.
-   *
-   * @generated from rpc courses.v1.CategoryService.GetCoursesByCategory
-   */
-  getCoursesByCategory: {
-    methodKind: "unary";
-    input: typeof GetCoursesByCategoryRequestSchema;
-    output: typeof GetCoursesByCategoryResponseSchema;
-  },
-}> = /*@__PURE__*/
-  serviceDesc(file_courses_v1_course_category, 0);
-
+	/**
+	 * CreateCategory creates a new course category.
+	 *
+	 * @generated from rpc courses.v1.CategoryService.CreateCategory
+	 */
+	createCategory: {
+		methodKind: "unary";
+		input: typeof CreateCategoryRequestSchema;
+		output: typeof CreateCategoryResponseSchema;
+	};
+	/**
+	 * UpdateCategory updates an existing course category.
+	 *
+	 * @generated from rpc courses.v1.CategoryService.UpdateCategory
+	 */
+	updateCategory: {
+		methodKind: "unary";
+		input: typeof UpdateCategoryRequestSchema;
+		output: typeof UpdateCategoryResponseSchema;
+	};
+	/**
+	 * DeleteCategory deletes a course category.
+	 *
+	 * @generated from rpc courses.v1.CategoryService.DeleteCategory
+	 */
+	deleteCategory: {
+		methodKind: "unary";
+		input: typeof DeleteCategoryRequestSchema;
+		output: typeof DeleteCategoryResponseSchema;
+	};
+	/**
+	 * GetCategory returns a category by ID.
+	 *
+	 * @generated from rpc courses.v1.CategoryService.GetCategory
+	 */
+	getCategory: {
+		methodKind: "unary";
+		input: typeof GetCategoryRequestSchema;
+		output: typeof GetCategoryResponseSchema;
+	};
+	/**
+	 * ListCategories returns all categories.
+	 *
+	 * @generated from rpc courses.v1.CategoryService.ListCategories
+	 */
+	listCategories: {
+		methodKind: "unary";
+		input: typeof ListCategoriesRequestSchema;
+		output: typeof ListCategoriesResponseSchema;
+	};
+	/**
+	 * GetCoursesByCategory returns all courses in a specific category.
+	 *
+	 * @generated from rpc courses.v1.CategoryService.GetCoursesByCategory
+	 */
+	getCoursesByCategory: {
+		methodKind: "unary";
+		input: typeof GetCoursesByCategoryRequestSchema;
+		output: typeof GetCoursesByCategoryResponseSchema;
+	};
+}> = /*@__PURE__*/ serviceDesc(file_courses_v1_course_category, 0);

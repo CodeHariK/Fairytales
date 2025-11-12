@@ -1,19 +1,16 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
-import {
-	Card,
-	CardContent,
-} from "@/components/ui/card";
+import * as React from "react"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
+import { Card, CardContent } from "@/components/ui/card"
 import {
 	ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Star } from "lucide-react";
-import { CardHeaderWithSelect } from "@/components/card-header-with-select";
+} from "@/components/ui/chart"
+import { Star } from "lucide-react"
+import { CardHeaderWithSelect } from "@/components/card-header-with-select"
 
 // Example data: rating per year per category
 const chartData = [
@@ -21,7 +18,7 @@ const chartData = [
 	{ year: "2022", Design: 2, Marketing: 2, "Web Dev": 5, Business: 2 },
 	{ year: "2023", Design: 1, Marketing: 3, "Web Dev": 4, Business: 1 },
 	{ year: "2024", Design: 4, Marketing: 3, "Web Dev": 2, Business: 1 },
-];
+]
 
 const chartConfig = {
 	Design: {
@@ -40,61 +37,45 @@ const chartConfig = {
 		label: "Business",
 		color: "var(--chart-4)",
 	},
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 export function CourseRating() {
 	return (
 		<Card>
-			<CardHeaderWithSelect
-				title="Course Rating"
-				description="Average ratings by category"
-			/>
+			<CardHeaderWithSelect title="Course Rating" description="Average ratings by category" />
 			<CardContent>
 				<ChartContainer config={chartConfig} className="h-[200px] w-full">
 					<BarChart data={chartData}>
-						<XAxis
-							dataKey="year"
-							tickLine={false}
-							axisLine={false}
-							tickMargin={8}
-						/>
-						<YAxis
-							domain={[0, 5]}
-							tickLine={false}
-							axisLine={false}
-							tickMargin={8}
-						/>
-						<ChartTooltip
-							cursor={false}
-							content={<ChartTooltipContent />}
-						/>
+						<XAxis dataKey="year" tickLine={false} axisLine={false} tickMargin={8} />
+						<YAxis domain={[0, 5]} tickLine={false} axisLine={false} tickMargin={8} />
+						<ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 						{/* Stacked bars - use same stackId to stack them */}
 						<Bar
 							dataKey="Design"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig.Design.color} rx={4} ry={4} />;
+								return <rect {...props} fill={chartConfig.Design.color} rx={4} ry={4} />
 							}}
 						/>
 						<Bar
 							dataKey="Marketing"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig.Marketing.color} rx={4} ry={4} />;
+								return <rect {...props} fill={chartConfig.Marketing.color} rx={4} ry={4} />
 							}}
 						/>
 						<Bar
 							dataKey="Web Dev"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig["Web Dev"].color} rx={4} ry={4} />;
+								return <rect {...props} fill={chartConfig["Web Dev"].color} rx={4} ry={4} />
 							}}
 						/>
 						<Bar
 							dataKey="Business"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig.Business.color} rx={4} ry={4} />;
+								return <rect {...props} fill={chartConfig.Business.color} rx={4} ry={4} />
 							}}
 						/>
 					</BarChart>
@@ -109,5 +90,5 @@ export function CourseRating() {
 				</div>
 			</CardContent>
 		</Card>
-	);
+	)
 }

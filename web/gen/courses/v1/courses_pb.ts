@@ -2,62 +2,80 @@
 // @generated from file courses/v1/courses.proto (package courses.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type {
+	GenEnum,
+	GenFile,
+	GenMessage,
+	GenService,
+} from "@bufbuild/protobuf/codegenv2";
+import {
+	enumDesc,
+	fileDesc,
+	messageDesc,
+	serviceDesc,
+} from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file courses/v1/courses.proto.
  */
-export const file_courses_v1_courses: GenFile = /*@__PURE__*/
-  fileDesc("Chhjb3Vyc2VzL3YxL2NvdXJzZXMucHJvdG8SCmNvdXJzZXMudjEiRQoVR2V0VXNlckNvdXJzZXNSZXF1ZXN0EhoKDXN0YXR1c19maWx0ZXIYASABKAlIAIgBAUIQCg5fc3RhdHVzX2ZpbHRlciJMChZHZXRVc2VyQ291cnNlc1Jlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBSLgAQoGQ291cnNlEhMKAmlkGAEgASgMQge6SAR6AmgQEg0KBXRpdGxlGAIgASgJEhAKCGNhdGVnb3J5GAMgASgJEiYKBWxldmVsGAQgASgOMhcuY291cnNlcy52MS5Db3Vyc2VMZXZlbBIPCgdsZXNzb25zGAUgASgFEg0KBWhvdXJzGAYgASgFEhAKCHN0dWRlbnRzGAcgASgFEg0KBXByaWNlGAggASgFEg0KBWltYWdlGAkgASgJEigKBnN0YXR1cxgKIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzImsKGkdldENvdXJzZXNQYWdpbmF0ZWRSZXF1ZXN0EhoKDXN0YXR1c19maWx0ZXIYASABKAlIAIgBARIMCgRwYWdlGAIgASgFEhEKCXBhZ2Vfc2l6ZRgDIAEoBUIQCg5fc3RhdHVzX2ZpbHRlciKHAQobR2V0Q291cnNlc1BhZ2luYXRlZFJlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBRIMCgRwYWdlGAMgASgFEhEKCXBhZ2Vfc2l6ZRgEIAEoBRITCgt0b3RhbF9wYWdlcxgFIAEoBSLGAQoTQ3JlYXRlQ291cnNlUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIQCghjYXRlZ29yeRgCIAEoCRImCgVsZXZlbBgDIAEoDjIXLmNvdXJzZXMudjEuQ291cnNlTGV2ZWwSDwoHbGVzc29ucxgEIAEoBRINCgVob3VycxgFIAEoBRINCgVwcmljZRgGIAEoBRINCgVpbWFnZRgHIAEoCRIoCgZzdGF0dXMYCCABKA4yGC5jb3Vyc2VzLnYxLkNvdXJzZVN0YXR1cyI6ChRDcmVhdGVDb3Vyc2VSZXNwb25zZRIiCgZjb3Vyc2UYASABKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZSLZAgoTVXBkYXRlQ291cnNlUmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoEBISCgV0aXRsZRgCIAEoCUgAiAEBEhUKCGNhdGVnb3J5GAMgASgJSAGIAQESKwoFbGV2ZWwYBCABKA4yFy5jb3Vyc2VzLnYxLkNvdXJzZUxldmVsSAKIAQESFAoHbGVzc29ucxgFIAEoBUgDiAEBEhIKBWhvdXJzGAYgASgFSASIAQESEgoFcHJpY2UYByABKAVIBYgBARISCgVpbWFnZRgIIAEoCUgGiAEBEi0KBnN0YXR1cxgJIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzSAeIAQFCCAoGX3RpdGxlQgsKCV9jYXRlZ29yeUIICgZfbGV2ZWxCCgoIX2xlc3NvbnNCCAoGX2hvdXJzQggKBl9wcmljZUIICgZfaW1hZ2VCCQoHX3N0YXR1cyI6ChRVcGRhdGVDb3Vyc2VSZXNwb25zZRIiCgZjb3Vyc2UYASABKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZSIqChNEZWxldGVDb3Vyc2VSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQIicKFERlbGV0ZUNvdXJzZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgqgAEKC0NvdXJzZUxldmVsEhwKGENPVVJTRV9MRVZFTF9VTlNQRUNJRklFRBAAEhkKFUNPVVJTRV9MRVZFTF9CRUdJTk5FUhABEh0KGUNPVVJTRV9MRVZFTF9JTlRFUk1FRElBVEUQAhIZChVDT1VSU0VfTEVWRUxfQURWQU5DRUQQAyp8CgxDb3Vyc2VTdGF0dXMSHQoZQ09VUlNFX1NUQVRVU19VTlNQRUNJRklFRBAAEhgKFENPVVJTRV9TVEFUVVNfQUNUSVZFEAESFwoTQ09VUlNFX1NUQVRVU19EUkFGVBACEhoKFkNPVVJTRV9TVEFUVVNfQVJDSElWRUQQAzLTAwoNQ291cnNlU2VydmljZRJcCg5HZXRVc2VyQ291cnNlcxIhLmNvdXJzZXMudjEuR2V0VXNlckNvdXJzZXNSZXF1ZXN0GiIuY291cnNlcy52MS5HZXRVc2VyQ291cnNlc1Jlc3BvbnNlIgOQAgESawoTR2V0Q291cnNlc1BhZ2luYXRlZBImLmNvdXJzZXMudjEuR2V0Q291cnNlc1BhZ2luYXRlZFJlcXVlc3QaJy5jb3Vyc2VzLnYxLkdldENvdXJzZXNQYWdpbmF0ZWRSZXNwb25zZSIDkAIBElEKDENyZWF0ZUNvdXJzZRIfLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVxdWVzdBogLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVzcG9uc2USUQoMVXBkYXRlQ291cnNlEh8uY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXF1ZXN0GiAuY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXNwb25zZRJRCgxEZWxldGVDb3Vyc2USHy5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlcXVlc3QaIC5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlc3BvbnNlQjZaNGdpdGh1Yi5jb20vY29kZWhhcmlrL2ZhaXJ5dGFsZXMvY291cnNlcy92MTtjb3Vyc2VzdjFiBnByb3RvMw", [file_buf_validate_validate]);
+export const file_courses_v1_courses: GenFile =
+	/*@__PURE__*/
+	fileDesc(
+		"Chhjb3Vyc2VzL3YxL2NvdXJzZXMucHJvdG8SCmNvdXJzZXMudjEiRQoVR2V0VXNlckNvdXJzZXNSZXF1ZXN0EhoKDXN0YXR1c19maWx0ZXIYASABKAlIAIgBAUIQCg5fc3RhdHVzX2ZpbHRlciJMChZHZXRVc2VyQ291cnNlc1Jlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBSLgAQoGQ291cnNlEhMKAmlkGAEgASgMQge6SAR6AmgQEg0KBXRpdGxlGAIgASgJEhAKCGNhdGVnb3J5GAMgASgJEiYKBWxldmVsGAQgASgOMhcuY291cnNlcy52MS5Db3Vyc2VMZXZlbBIPCgdsZXNzb25zGAUgASgFEg0KBWhvdXJzGAYgASgFEhAKCHN0dWRlbnRzGAcgASgFEg0KBXByaWNlGAggASgFEg0KBWltYWdlGAkgASgJEigKBnN0YXR1cxgKIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzImsKGkdldENvdXJzZXNQYWdpbmF0ZWRSZXF1ZXN0EhoKDXN0YXR1c19maWx0ZXIYASABKAlIAIgBARIMCgRwYWdlGAIgASgFEhEKCXBhZ2Vfc2l6ZRgDIAEoBUIQCg5fc3RhdHVzX2ZpbHRlciKHAQobR2V0Q291cnNlc1BhZ2luYXRlZFJlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBRIMCgRwYWdlGAMgASgFEhEKCXBhZ2Vfc2l6ZRgEIAEoBRITCgt0b3RhbF9wYWdlcxgFIAEoBSLGAQoTQ3JlYXRlQ291cnNlUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIQCghjYXRlZ29yeRgCIAEoCRImCgVsZXZlbBgDIAEoDjIXLmNvdXJzZXMudjEuQ291cnNlTGV2ZWwSDwoHbGVzc29ucxgEIAEoBRINCgVob3VycxgFIAEoBRINCgVwcmljZRgGIAEoBRINCgVpbWFnZRgHIAEoCRIoCgZzdGF0dXMYCCABKA4yGC5jb3Vyc2VzLnYxLkNvdXJzZVN0YXR1cyI6ChRDcmVhdGVDb3Vyc2VSZXNwb25zZRIiCgZjb3Vyc2UYASABKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZSLZAgoTVXBkYXRlQ291cnNlUmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoEBISCgV0aXRsZRgCIAEoCUgAiAEBEhUKCGNhdGVnb3J5GAMgASgJSAGIAQESKwoFbGV2ZWwYBCABKA4yFy5jb3Vyc2VzLnYxLkNvdXJzZUxldmVsSAKIAQESFAoHbGVzc29ucxgFIAEoBUgDiAEBEhIKBWhvdXJzGAYgASgFSASIAQESEgoFcHJpY2UYByABKAVIBYgBARISCgVpbWFnZRgIIAEoCUgGiAEBEi0KBnN0YXR1cxgJIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzSAeIAQFCCAoGX3RpdGxlQgsKCV9jYXRlZ29yeUIICgZfbGV2ZWxCCgoIX2xlc3NvbnNCCAoGX2hvdXJzQggKBl9wcmljZUIICgZfaW1hZ2VCCQoHX3N0YXR1cyI6ChRVcGRhdGVDb3Vyc2VSZXNwb25zZRIiCgZjb3Vyc2UYASABKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZSIqChNEZWxldGVDb3Vyc2VSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQIicKFERlbGV0ZUNvdXJzZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgqgAEKC0NvdXJzZUxldmVsEhwKGENPVVJTRV9MRVZFTF9VTlNQRUNJRklFRBAAEhkKFUNPVVJTRV9MRVZFTF9CRUdJTk5FUhABEh0KGUNPVVJTRV9MRVZFTF9JTlRFUk1FRElBVEUQAhIZChVDT1VSU0VfTEVWRUxfQURWQU5DRUQQAyp8CgxDb3Vyc2VTdGF0dXMSHQoZQ09VUlNFX1NUQVRVU19VTlNQRUNJRklFRBAAEhgKFENPVVJTRV9TVEFUVVNfQUNUSVZFEAESFwoTQ09VUlNFX1NUQVRVU19EUkFGVBACEhoKFkNPVVJTRV9TVEFUVVNfQVJDSElWRUQQAzLTAwoNQ291cnNlU2VydmljZRJcCg5HZXRVc2VyQ291cnNlcxIhLmNvdXJzZXMudjEuR2V0VXNlckNvdXJzZXNSZXF1ZXN0GiIuY291cnNlcy52MS5HZXRVc2VyQ291cnNlc1Jlc3BvbnNlIgOQAgESawoTR2V0Q291cnNlc1BhZ2luYXRlZBImLmNvdXJzZXMudjEuR2V0Q291cnNlc1BhZ2luYXRlZFJlcXVlc3QaJy5jb3Vyc2VzLnYxLkdldENvdXJzZXNQYWdpbmF0ZWRSZXNwb25zZSIDkAIBElEKDENyZWF0ZUNvdXJzZRIfLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVxdWVzdBogLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVzcG9uc2USUQoMVXBkYXRlQ291cnNlEh8uY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXF1ZXN0GiAuY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXNwb25zZRJRCgxEZWxldGVDb3Vyc2USHy5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlcXVlc3QaIC5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlc3BvbnNlQjZaNGdpdGh1Yi5jb20vY29kZWhhcmlrL2ZhaXJ5dGFsZXMvY291cnNlcy92MTtjb3Vyc2VzdjFiBnByb3RvMw",
+		[file_buf_validate_validate],
+	);
 
 /**
  * GetUserCoursesRequest is the request to get user courses.
  *
  * @generated from message courses.v1.GetUserCoursesRequest
  */
-export type GetUserCoursesRequest = Message<"courses.v1.GetUserCoursesRequest"> & {
-  /**
-   * Optional filter by status (all, active, draft, archived)
-   * If not provided, returns all courses.
-   *
-   * @generated from field: optional string status_filter = 1;
-   */
-  statusFilter?: string;
-};
+export type GetUserCoursesRequest =
+	Message<"courses.v1.GetUserCoursesRequest"> & {
+		/**
+		 * Optional filter by status (all, active, draft, archived)
+		 * If not provided, returns all courses.
+		 *
+		 * @generated from field: optional string status_filter = 1;
+		 */
+		statusFilter?: string;
+	};
 
 /**
  * Describes the message courses.v1.GetUserCoursesRequest.
  * Use `create(GetUserCoursesRequestSchema)` to create a new message.
  */
-export const GetUserCoursesRequestSchema: GenMessage<GetUserCoursesRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 0);
+export const GetUserCoursesRequestSchema: GenMessage<GetUserCoursesRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 0);
 
 /**
  * GetUserCoursesResponse contains the list of user courses.
  *
  * @generated from message courses.v1.GetUserCoursesResponse
  */
-export type GetUserCoursesResponse = Message<"courses.v1.GetUserCoursesResponse"> & {
-  /**
-   * @generated from field: repeated courses.v1.Course courses = 1;
-   */
-  courses: Course[];
+export type GetUserCoursesResponse =
+	Message<"courses.v1.GetUserCoursesResponse"> & {
+		/**
+		 * @generated from field: repeated courses.v1.Course courses = 1;
+		 */
+		courses: Course[];
 
-  /**
-   * @generated from field: int32 total = 2;
-   */
-  total: number;
-};
+		/**
+		 * @generated from field: int32 total = 2;
+		 */
+		total: number;
+	};
 
 /**
  * Describes the message courses.v1.GetUserCoursesResponse.
  * Use `create(GetUserCoursesResponseSchema)` to create a new message.
  */
-export const GetUserCoursesResponseSchema: GenMessage<GetUserCoursesResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 1);
+export const GetUserCoursesResponseSchema: GenMessage<GetUserCoursesResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 1);
 
 /**
  * Course represents a course entity.
@@ -65,133 +83,136 @@ export const GetUserCoursesResponseSchema: GenMessage<GetUserCoursesResponse> = 
  * @generated from message courses.v1.Course
  */
 export type Course = Message<"courses.v1.Course"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
+	/**
+	 * @generated from field: bytes id = 1;
+	 */
+	id: Uint8Array;
 
-  /**
-   * @generated from field: string title = 2;
-   */
-  title: string;
+	/**
+	 * @generated from field: string title = 2;
+	 */
+	title: string;
 
-  /**
-   * @generated from field: string category = 3;
-   */
-  category: string;
+	/**
+	 * @generated from field: string category = 3;
+	 */
+	category: string;
 
-  /**
-   * @generated from field: courses.v1.CourseLevel level = 4;
-   */
-  level: CourseLevel;
+	/**
+	 * @generated from field: courses.v1.CourseLevel level = 4;
+	 */
+	level: CourseLevel;
 
-  /**
-   * @generated from field: int32 lessons = 5;
-   */
-  lessons: number;
+	/**
+	 * @generated from field: int32 lessons = 5;
+	 */
+	lessons: number;
 
-  /**
-   * @generated from field: int32 hours = 6;
-   */
-  hours: number;
+	/**
+	 * @generated from field: int32 hours = 6;
+	 */
+	hours: number;
 
-  /**
-   * @generated from field: int32 students = 7;
-   */
-  students: number;
+	/**
+	 * @generated from field: int32 students = 7;
+	 */
+	students: number;
 
-  /**
-   * @generated from field: int32 price = 8;
-   */
-  price: number;
+	/**
+	 * @generated from field: int32 price = 8;
+	 */
+	price: number;
 
-  /**
-   * @generated from field: string image = 9;
-   */
-  image: string;
+	/**
+	 * @generated from field: string image = 9;
+	 */
+	image: string;
 
-  /**
-   * @generated from field: courses.v1.CourseStatus status = 10;
-   */
-  status: CourseStatus;
+	/**
+	 * @generated from field: courses.v1.CourseStatus status = 10;
+	 */
+	status: CourseStatus;
 };
 
 /**
  * Describes the message courses.v1.Course.
  * Use `create(CourseSchema)` to create a new message.
  */
-export const CourseSchema: GenMessage<Course> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 2);
+export const CourseSchema: GenMessage<Course> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 2);
 
 /**
  * GetCoursesPaginatedRequest is the request for paginated courses.
  *
  * @generated from message courses.v1.GetCoursesPaginatedRequest
  */
-export type GetCoursesPaginatedRequest = Message<"courses.v1.GetCoursesPaginatedRequest"> & {
-  /**
-   * @generated from field: optional string status_filter = 1;
-   */
-  statusFilter?: string;
+export type GetCoursesPaginatedRequest =
+	Message<"courses.v1.GetCoursesPaginatedRequest"> & {
+		/**
+		 * @generated from field: optional string status_filter = 1;
+		 */
+		statusFilter?: string;
 
-  /**
-   * @generated from field: int32 page = 2;
-   */
-  page: number;
+		/**
+		 * @generated from field: int32 page = 2;
+		 */
+		page: number;
 
-  /**
-   * @generated from field: int32 page_size = 3;
-   */
-  pageSize: number;
-};
+		/**
+		 * @generated from field: int32 page_size = 3;
+		 */
+		pageSize: number;
+	};
 
 /**
  * Describes the message courses.v1.GetCoursesPaginatedRequest.
  * Use `create(GetCoursesPaginatedRequestSchema)` to create a new message.
  */
-export const GetCoursesPaginatedRequestSchema: GenMessage<GetCoursesPaginatedRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 3);
+export const GetCoursesPaginatedRequestSchema: GenMessage<GetCoursesPaginatedRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 3);
 
 /**
  * GetCoursesPaginatedResponse contains paginated courses.
  *
  * @generated from message courses.v1.GetCoursesPaginatedResponse
  */
-export type GetCoursesPaginatedResponse = Message<"courses.v1.GetCoursesPaginatedResponse"> & {
-  /**
-   * @generated from field: repeated courses.v1.Course courses = 1;
-   */
-  courses: Course[];
+export type GetCoursesPaginatedResponse =
+	Message<"courses.v1.GetCoursesPaginatedResponse"> & {
+		/**
+		 * @generated from field: repeated courses.v1.Course courses = 1;
+		 */
+		courses: Course[];
 
-  /**
-   * @generated from field: int32 total = 2;
-   */
-  total: number;
+		/**
+		 * @generated from field: int32 total = 2;
+		 */
+		total: number;
 
-  /**
-   * @generated from field: int32 page = 3;
-   */
-  page: number;
+		/**
+		 * @generated from field: int32 page = 3;
+		 */
+		page: number;
 
-  /**
-   * @generated from field: int32 page_size = 4;
-   */
-  pageSize: number;
+		/**
+		 * @generated from field: int32 page_size = 4;
+		 */
+		pageSize: number;
 
-  /**
-   * @generated from field: int32 total_pages = 5;
-   */
-  totalPages: number;
-};
+		/**
+		 * @generated from field: int32 total_pages = 5;
+		 */
+		totalPages: number;
+	};
 
 /**
  * Describes the message courses.v1.GetCoursesPaginatedResponse.
  * Use `create(GetCoursesPaginatedResponseSchema)` to create a new message.
  */
-export const GetCoursesPaginatedResponseSchema: GenMessage<GetCoursesPaginatedResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 4);
+export const GetCoursesPaginatedResponseSchema: GenMessage<GetCoursesPaginatedResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 4);
 
 /**
  * CreateCourseRequest is the request to create a new course.
@@ -199,72 +220,75 @@ export const GetCoursesPaginatedResponseSchema: GenMessage<GetCoursesPaginatedRe
  * @generated from message courses.v1.CreateCourseRequest
  */
 export type CreateCourseRequest = Message<"courses.v1.CreateCourseRequest"> & {
-  /**
-   * @generated from field: string title = 1;
-   */
-  title: string;
+	/**
+	 * @generated from field: string title = 1;
+	 */
+	title: string;
 
-  /**
-   * @generated from field: string category = 2;
-   */
-  category: string;
+	/**
+	 * @generated from field: string category = 2;
+	 */
+	category: string;
 
-  /**
-   * @generated from field: courses.v1.CourseLevel level = 3;
-   */
-  level: CourseLevel;
+	/**
+	 * @generated from field: courses.v1.CourseLevel level = 3;
+	 */
+	level: CourseLevel;
 
-  /**
-   * @generated from field: int32 lessons = 4;
-   */
-  lessons: number;
+	/**
+	 * @generated from field: int32 lessons = 4;
+	 */
+	lessons: number;
 
-  /**
-   * @generated from field: int32 hours = 5;
-   */
-  hours: number;
+	/**
+	 * @generated from field: int32 hours = 5;
+	 */
+	hours: number;
 
-  /**
-   * @generated from field: int32 price = 6;
-   */
-  price: number;
+	/**
+	 * @generated from field: int32 price = 6;
+	 */
+	price: number;
 
-  /**
-   * @generated from field: string image = 7;
-   */
-  image: string;
+	/**
+	 * @generated from field: string image = 7;
+	 */
+	image: string;
 
-  /**
-   * @generated from field: courses.v1.CourseStatus status = 8;
-   */
-  status: CourseStatus;
+	/**
+	 * @generated from field: courses.v1.CourseStatus status = 8;
+	 */
+	status: CourseStatus;
 };
 
 /**
  * Describes the message courses.v1.CreateCourseRequest.
  * Use `create(CreateCourseRequestSchema)` to create a new message.
  */
-export const CreateCourseRequestSchema: GenMessage<CreateCourseRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 5);
+export const CreateCourseRequestSchema: GenMessage<CreateCourseRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 5);
 
 /**
  * CreateCourseResponse contains the created course.
  *
  * @generated from message courses.v1.CreateCourseResponse
  */
-export type CreateCourseResponse = Message<"courses.v1.CreateCourseResponse"> & {
-  /**
-   * @generated from field: courses.v1.Course course = 1;
-   */
-  course?: Course;
-};
+export type CreateCourseResponse =
+	Message<"courses.v1.CreateCourseResponse"> & {
+		/**
+		 * @generated from field: courses.v1.Course course = 1;
+		 */
+		course?: Course;
+	};
 
 /**
  * Describes the message courses.v1.CreateCourseResponse.
  * Use `create(CreateCourseResponseSchema)` to create a new message.
  */
-export const CreateCourseResponseSchema: GenMessage<CreateCourseResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 6);
+export const CreateCourseResponseSchema: GenMessage<CreateCourseResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 6);
 
 /**
  * UpdateCourseRequest is the request to update a course.
@@ -272,79 +296,80 @@ export const CreateCourseResponseSchema: GenMessage<CreateCourseResponse> = /*@_
  * @generated from message courses.v1.UpdateCourseRequest
  */
 export type UpdateCourseRequest = Message<"courses.v1.UpdateCourseRequest"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
+	/**
+	 * @generated from field: bytes id = 1;
+	 */
+	id: Uint8Array;
 
-  /**
-   * @generated from field: optional string title = 2;
-   */
-  title?: string;
+	/**
+	 * @generated from field: optional string title = 2;
+	 */
+	title?: string;
 
-  /**
-   * @generated from field: optional string category = 3;
-   */
-  category?: string;
+	/**
+	 * @generated from field: optional string category = 3;
+	 */
+	category?: string;
 
-  /**
-   * @generated from field: optional courses.v1.CourseLevel level = 4;
-   */
-  level?: CourseLevel;
+	/**
+	 * @generated from field: optional courses.v1.CourseLevel level = 4;
+	 */
+	level?: CourseLevel;
 
-  /**
-   * @generated from field: optional int32 lessons = 5;
-   */
-  lessons?: number;
+	/**
+	 * @generated from field: optional int32 lessons = 5;
+	 */
+	lessons?: number;
 
-  /**
-   * @generated from field: optional int32 hours = 6;
-   */
-  hours?: number;
+	/**
+	 * @generated from field: optional int32 hours = 6;
+	 */
+	hours?: number;
 
-  /**
-   * @generated from field: optional int32 price = 7;
-   */
-  price?: number;
+	/**
+	 * @generated from field: optional int32 price = 7;
+	 */
+	price?: number;
 
-  /**
-   * @generated from field: optional string image = 8;
-   */
-  image?: string;
+	/**
+	 * @generated from field: optional string image = 8;
+	 */
+	image?: string;
 
-  /**
-   * @generated from field: optional courses.v1.CourseStatus status = 9;
-   */
-  status?: CourseStatus;
+	/**
+	 * @generated from field: optional courses.v1.CourseStatus status = 9;
+	 */
+	status?: CourseStatus;
 };
 
 /**
  * Describes the message courses.v1.UpdateCourseRequest.
  * Use `create(UpdateCourseRequestSchema)` to create a new message.
  */
-export const UpdateCourseRequestSchema: GenMessage<UpdateCourseRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 7);
+export const UpdateCourseRequestSchema: GenMessage<UpdateCourseRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 7);
 
 /**
  * UpdateCourseResponse contains the updated course.
  *
  * @generated from message courses.v1.UpdateCourseResponse
  */
-export type UpdateCourseResponse = Message<"courses.v1.UpdateCourseResponse"> & {
-  /**
-   * @generated from field: courses.v1.Course course = 1;
-   */
-  course?: Course;
-};
+export type UpdateCourseResponse =
+	Message<"courses.v1.UpdateCourseResponse"> & {
+		/**
+		 * @generated from field: courses.v1.Course course = 1;
+		 */
+		course?: Course;
+	};
 
 /**
  * Describes the message courses.v1.UpdateCourseResponse.
  * Use `create(UpdateCourseResponseSchema)` to create a new message.
  */
-export const UpdateCourseResponseSchema: GenMessage<UpdateCourseResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 8);
+export const UpdateCourseResponseSchema: GenMessage<UpdateCourseResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 8);
 
 /**
  * DeleteCourseRequest is the request to delete a course.
@@ -352,39 +377,40 @@ export const UpdateCourseResponseSchema: GenMessage<UpdateCourseResponse> = /*@_
  * @generated from message courses.v1.DeleteCourseRequest
  */
 export type DeleteCourseRequest = Message<"courses.v1.DeleteCourseRequest"> & {
-  /**
-   * UUID v7 (128-bit, 16 bytes)
-   *
-   * @generated from field: bytes id = 1;
-   */
-  id: Uint8Array;
+	/**
+	 * @generated from field: bytes id = 1;
+	 */
+	id: Uint8Array;
 };
 
 /**
  * Describes the message courses.v1.DeleteCourseRequest.
  * Use `create(DeleteCourseRequestSchema)` to create a new message.
  */
-export const DeleteCourseRequestSchema: GenMessage<DeleteCourseRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 9);
+export const DeleteCourseRequestSchema: GenMessage<DeleteCourseRequest> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 9);
 
 /**
  * DeleteCourseResponse confirms the deletion.
  *
  * @generated from message courses.v1.DeleteCourseResponse
  */
-export type DeleteCourseResponse = Message<"courses.v1.DeleteCourseResponse"> & {
-  /**
-   * @generated from field: bool success = 1;
-   */
-  success: boolean;
-};
+export type DeleteCourseResponse =
+	Message<"courses.v1.DeleteCourseResponse"> & {
+		/**
+		 * @generated from field: bool success = 1;
+		 */
+		success: boolean;
+	};
 
 /**
  * Describes the message courses.v1.DeleteCourseResponse.
  * Use `create(DeleteCourseResponseSchema)` to create a new message.
  */
-export const DeleteCourseResponseSchema: GenMessage<DeleteCourseResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 10);
+export const DeleteCourseResponseSchema: GenMessage<DeleteCourseResponse> =
+	/*@__PURE__*/
+	messageDesc(file_courses_v1_courses, 10);
 
 /**
  * CourseLevel represents the difficulty level of a course.
@@ -392,32 +418,33 @@ export const DeleteCourseResponseSchema: GenMessage<DeleteCourseResponse> = /*@_
  * @generated from enum courses.v1.CourseLevel
  */
 export enum CourseLevel {
-  /**
-   * @generated from enum value: COURSE_LEVEL_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
+	/**
+	 * @generated from enum value: COURSE_LEVEL_UNSPECIFIED = 0;
+	 */
+	UNSPECIFIED = 0,
 
-  /**
-   * @generated from enum value: COURSE_LEVEL_BEGINNER = 1;
-   */
-  BEGINNER = 1,
+	/**
+	 * @generated from enum value: COURSE_LEVEL_BEGINNER = 1;
+	 */
+	BEGINNER = 1,
 
-  /**
-   * @generated from enum value: COURSE_LEVEL_INTERMEDIATE = 2;
-   */
-  INTERMEDIATE = 2,
+	/**
+	 * @generated from enum value: COURSE_LEVEL_INTERMEDIATE = 2;
+	 */
+	INTERMEDIATE = 2,
 
-  /**
-   * @generated from enum value: COURSE_LEVEL_ADVANCED = 3;
-   */
-  ADVANCED = 3,
+	/**
+	 * @generated from enum value: COURSE_LEVEL_ADVANCED = 3;
+	 */
+	ADVANCED = 3,
 }
 
 /**
  * Describes the enum courses.v1.CourseLevel.
  */
-export const CourseLevelSchema: GenEnum<CourseLevel> = /*@__PURE__*/
-  enumDesc(file_courses_v1_courses, 0);
+export const CourseLevelSchema: GenEnum<CourseLevel> =
+	/*@__PURE__*/
+	enumDesc(file_courses_v1_courses, 0);
 
 /**
  * CourseStatus represents the status of a course.
@@ -425,32 +452,33 @@ export const CourseLevelSchema: GenEnum<CourseLevel> = /*@__PURE__*/
  * @generated from enum courses.v1.CourseStatus
  */
 export enum CourseStatus {
-  /**
-   * @generated from enum value: COURSE_STATUS_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
+	/**
+	 * @generated from enum value: COURSE_STATUS_UNSPECIFIED = 0;
+	 */
+	UNSPECIFIED = 0,
 
-  /**
-   * @generated from enum value: COURSE_STATUS_ACTIVE = 1;
-   */
-  ACTIVE = 1,
+	/**
+	 * @generated from enum value: COURSE_STATUS_ACTIVE = 1;
+	 */
+	ACTIVE = 1,
 
-  /**
-   * @generated from enum value: COURSE_STATUS_DRAFT = 2;
-   */
-  DRAFT = 2,
+	/**
+	 * @generated from enum value: COURSE_STATUS_DRAFT = 2;
+	 */
+	DRAFT = 2,
 
-  /**
-   * @generated from enum value: COURSE_STATUS_ARCHIVED = 3;
-   */
-  ARCHIVED = 3,
+	/**
+	 * @generated from enum value: COURSE_STATUS_ARCHIVED = 3;
+	 */
+	ARCHIVED = 3,
 }
 
 /**
  * Describes the enum courses.v1.CourseStatus.
  */
-export const CourseStatusSchema: GenEnum<CourseStatus> = /*@__PURE__*/
-  enumDesc(file_courses_v1_courses, 1);
+export const CourseStatusSchema: GenEnum<CourseStatus> =
+	/*@__PURE__*/
+	enumDesc(file_courses_v1_courses, 1);
 
 /**
  * CourseService provides methods to manage user courses.
@@ -458,56 +486,54 @@ export const CourseStatusSchema: GenEnum<CourseStatus> = /*@__PURE__*/
  * @generated from service courses.v1.CourseService
  */
 export const CourseService: GenService<{
-  /**
-   * GetUserCourses returns all courses for the current user.
-   *
-   * @generated from rpc courses.v1.CourseService.GetUserCourses
-   */
-  getUserCourses: {
-    methodKind: "unary";
-    input: typeof GetUserCoursesRequestSchema;
-    output: typeof GetUserCoursesResponseSchema;
-  },
-  /**
-   * GetCoursesPaginated returns paginated courses for the current user.
-   *
-   * @generated from rpc courses.v1.CourseService.GetCoursesPaginated
-   */
-  getCoursesPaginated: {
-    methodKind: "unary";
-    input: typeof GetCoursesPaginatedRequestSchema;
-    output: typeof GetCoursesPaginatedResponseSchema;
-  },
-  /**
-   * CreateCourse creates a new course.
-   *
-   * @generated from rpc courses.v1.CourseService.CreateCourse
-   */
-  createCourse: {
-    methodKind: "unary";
-    input: typeof CreateCourseRequestSchema;
-    output: typeof CreateCourseResponseSchema;
-  },
-  /**
-   * UpdateCourse updates an existing course.
-   *
-   * @generated from rpc courses.v1.CourseService.UpdateCourse
-   */
-  updateCourse: {
-    methodKind: "unary";
-    input: typeof UpdateCourseRequestSchema;
-    output: typeof UpdateCourseResponseSchema;
-  },
-  /**
-   * DeleteCourse deletes a course.
-   *
-   * @generated from rpc courses.v1.CourseService.DeleteCourse
-   */
-  deleteCourse: {
-    methodKind: "unary";
-    input: typeof DeleteCourseRequestSchema;
-    output: typeof DeleteCourseResponseSchema;
-  },
-}> = /*@__PURE__*/
-  serviceDesc(file_courses_v1_courses, 0);
-
+	/**
+	 * GetUserCourses returns all courses for the current user.
+	 *
+	 * @generated from rpc courses.v1.CourseService.GetUserCourses
+	 */
+	getUserCourses: {
+		methodKind: "unary";
+		input: typeof GetUserCoursesRequestSchema;
+		output: typeof GetUserCoursesResponseSchema;
+	};
+	/**
+	 * GetCoursesPaginated returns paginated courses for the current user.
+	 *
+	 * @generated from rpc courses.v1.CourseService.GetCoursesPaginated
+	 */
+	getCoursesPaginated: {
+		methodKind: "unary";
+		input: typeof GetCoursesPaginatedRequestSchema;
+		output: typeof GetCoursesPaginatedResponseSchema;
+	};
+	/**
+	 * CreateCourse creates a new course.
+	 *
+	 * @generated from rpc courses.v1.CourseService.CreateCourse
+	 */
+	createCourse: {
+		methodKind: "unary";
+		input: typeof CreateCourseRequestSchema;
+		output: typeof CreateCourseResponseSchema;
+	};
+	/**
+	 * UpdateCourse updates an existing course.
+	 *
+	 * @generated from rpc courses.v1.CourseService.UpdateCourse
+	 */
+	updateCourse: {
+		methodKind: "unary";
+		input: typeof UpdateCourseRequestSchema;
+		output: typeof UpdateCourseResponseSchema;
+	};
+	/**
+	 * DeleteCourse deletes a course.
+	 *
+	 * @generated from rpc courses.v1.CourseService.DeleteCourse
+	 */
+	deleteCourse: {
+		methodKind: "unary";
+		input: typeof DeleteCourseRequestSchema;
+		output: typeof DeleteCourseResponseSchema;
+	};
+}> = /*@__PURE__*/ serviceDesc(file_courses_v1_courses, 0);

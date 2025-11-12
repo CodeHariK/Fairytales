@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import Link from "next/link";
+import * as React from "react"
+import Link from "next/link"
 import {
 	Camera,
 	BarChart3,
@@ -18,10 +18,10 @@ import {
 	Search,
 	Settings,
 	Users,
-} from "lucide-react";
+} from "lucide-react"
 
-import { NavDocuments, NavMain, NavSecondary } from "@/components/nav";
-import { UpgradePro } from "@/components/upgrade-pro";
+import { NavDocuments, NavMain, NavSecondary } from "@/components/nav"
+import { UpgradePro } from "@/components/upgrade-pro"
 
 import {
 	Sidebar,
@@ -31,7 +31,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from "@/components/ui/sidebar"
 
 const data = {
 	user: {
@@ -168,16 +168,17 @@ const data = {
 			icon: FileWord,
 		},
 	],
-};
+}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	return (
-		<Sidebar collapsible="offcanvas" {...props}>
+		<Sidebar collapsible="icon" {...props}>
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton
 							asChild
+							tooltip="Coursify"
 							className="data-[slot=sidebar-menu-button]:!p-1.5"
 						>
 							<Link href="/">
@@ -192,14 +193,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
-			
+
 			<SidebarContent>
 				<NavMain items={data.navMain} />
 				<NavDocuments items={data.documents} />
 				<NavSecondary items={data.navSecondary} className="mt-auto" />
-				<UpgradePro />
+				<div className="group-data-[collapsible=icon]:hidden">
+					<UpgradePro />
+				</div>
 			</SidebarContent>
-
 		</Sidebar>
-	);
+	)
 }

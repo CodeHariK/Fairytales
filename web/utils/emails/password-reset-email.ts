@@ -1,16 +1,16 @@
 import { sendEmail } from "./send-email"
 
 export function sendPasswordResetEmail({
-  user,
-  url,
+	user,
+	url,
 }: {
-  user: { email: string; name: string }
-  url: string
+	user: { email: string; name: string }
+	url: string
 }) {
-  return sendEmail({
-    to: user.email,
-    subject: "Reset your password",
-    html: `
+	return sendEmail({
+		to: user.email,
+		subject: "Reset your password",
+		html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333;">Reset Your Password</h2>
         <p>Hello ${user.name},</p>
@@ -21,6 +21,6 @@ export function sendPasswordResetEmail({
         <p>Best regards,<br>Your App Team</p>
       </div>
     `,
-    text: `Hello ${user.name},\n\nYou requested to reset your password. Click this link to reset it: ${url}\n\nIf you didn't request this, please ignore this email.\n\nThis link will expire in 24 hours.\n\nBest regards,\nYour App Team`,
-  })
+		text: `Hello ${user.name},\n\nYou requested to reset your password. Click this link to reset it: ${url}\n\nIf you didn't request this, please ignore this email.\n\nThis link will expire in 24 hours.\n\nBest regards,\nYour App Team`,
+	})
 }

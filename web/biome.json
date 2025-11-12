@@ -1,0 +1,76 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"**",
+			"!**/node_modules",
+			"!**/.next",
+			"!**/out",
+			"!**/build",
+			"!**/dist",
+			"!**/coverage",
+			"!**/*.min.js",
+			"!**/gen"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineEnding": "lf",
+		"lineWidth": 100,
+		"formatWithErrors": false
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"noUnusedVariables": "error"
+			},
+			"style": {
+				"useImportType": "error"
+			},
+			"suspicious": {
+				"noExplicitAny": "warn"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"jsxQuoteStyle": "double",
+			"trailingCommas": "es5",
+			"semicolons": "asNeeded",
+			"arrowParentheses": "always"
+		}
+	},
+	"json": {
+		"formatter": {
+			"enabled": true,
+			"indentWidth": 1,
+			"indentStyle": "tab"
+		}
+	},
+	"css": {
+		"formatter": {
+			"enabled": false
+		},
+		"parser": {
+			"tailwindDirectives": true
+		}
+	}
+}

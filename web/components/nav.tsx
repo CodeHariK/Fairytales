@@ -1,14 +1,18 @@
-"use client";
+"use client"
 
 import {
-	PlusCircle, Mail, MoreVertical,
+	PlusCircle,
+	Mail,
+	MoreVertical,
 	Folder,
 	Share2,
-	Trash2, type LucideIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+	Trash2,
+	type LucideIcon,
+} from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
 	SidebarGroup,
 	SidebarGroupContent,
@@ -18,8 +22,7 @@ import {
 	SidebarGroupLabel,
 	SidebarMenuAction,
 	useSidebar,
-} from "@/components/ui/sidebar";
-
+} from "@/components/ui/sidebar"
 
 import {
 	DropdownMenu,
@@ -27,26 +30,24 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
+} from "@/components/ui/dropdown-menu"
 
 export function NavMain({
 	items,
 }: {
 	items: {
-		title: string;
-		url: string;
-		icon?: LucideIcon;
-	}[];
+		title: string
+		url: string
+		icon?: LucideIcon
+	}[]
 }) {
-	const pathname = usePathname();
+	const pathname = usePathname()
 
 	return (
 		<SidebarGroup>
 			<SidebarGroupContent className="flex flex-col gap-2">
 				<SidebarMenu>
 					<SidebarMenuItem className="flex items-center gap-2">
-
 						<SidebarMenuButton
 							tooltip="Quick Create"
 							className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
@@ -67,7 +68,9 @@ export function NavMain({
 				</SidebarMenu>
 				<SidebarMenu>
 					{items.map((item) => {
-						const isActive = !!pathname && (pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)));
+						const isActive =
+							!!pathname &&
+							(pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)))
 						return (
 							<SidebarMenuItem key={item.title}>
 								<SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
@@ -77,35 +80,37 @@ export function NavMain({
 									</Link>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
-						);
+						)
 					})}
 				</SidebarMenu>
 			</SidebarGroupContent>
 		</SidebarGroup>
-	);
+	)
 }
 
 export function NavDocuments({
 	items,
 }: {
 	items: {
-		name: string;
-		url: string;
-		icon: LucideIcon;
-	}[];
+		name: string
+		url: string
+		icon: LucideIcon
+	}[]
 }) {
-	const { isMobile } = useSidebar();
-	const pathname = usePathname();
+	const { isMobile } = useSidebar()
+	const pathname = usePathname()
 
 	return (
-		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
+		<SidebarGroup>
 			<SidebarGroupLabel>Documents</SidebarGroupLabel>
 			<SidebarMenu>
 				{items.map((item) => {
-					const isActive = !!pathname && (pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)));
+					const isActive =
+						!!pathname &&
+						(pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)))
 					return (
 						<SidebarMenuItem key={item.name}>
-							<SidebarMenuButton asChild isActive={isActive}>
+							<SidebarMenuButton asChild tooltip={item.name} isActive={isActive}>
 								<Link href={item.url}>
 									<item.icon />
 									<span>{item.name}</span>
@@ -113,10 +118,7 @@ export function NavDocuments({
 							</SidebarMenuButton>
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>
-									<SidebarMenuAction
-										showOnHover
-										className="data-[state=open]:bg-accent rounded-sm"
-									>
+									<SidebarMenuAction showOnHover className="data-[state=open]:bg-accent rounded-sm">
 										<MoreVertical />
 										<span className="sr-only">More</span>
 									</SidebarMenuAction>
@@ -142,7 +144,7 @@ export function NavDocuments({
 								</DropdownMenuContent>
 							</DropdownMenu>
 						</SidebarMenuItem>
-					);
+					)
 				})}
 				<SidebarMenuItem>
 					<SidebarMenuButton className="text-sidebar-foreground/70">
@@ -152,7 +154,7 @@ export function NavDocuments({
 				</SidebarMenuItem>
 			</SidebarMenu>
 		</SidebarGroup>
-	);
+	)
 }
 
 export function NavSecondary({
@@ -160,32 +162,34 @@ export function NavSecondary({
 	...props
 }: {
 	items: {
-		title: string;
-		url: string;
-		icon: LucideIcon;
-	}[];
+		title: string
+		url: string
+		icon: LucideIcon
+	}[]
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
-	const pathname = usePathname();
+	const pathname = usePathname()
 
 	return (
 		<SidebarGroup {...props}>
 			<SidebarGroupContent>
 				<SidebarMenu>
 					{items.map((item) => {
-						const isActive = !!pathname && (pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)));
+						const isActive =
+							!!pathname &&
+							(pathname === item.url || (item.url !== "/" && pathname.startsWith(item.url)))
 						return (
 							<SidebarMenuItem key={item.title}>
-								<SidebarMenuButton asChild isActive={isActive}>
+								<SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
 									<Link href={item.url}>
 										<item.icon />
 										<span>{item.title}</span>
 									</Link>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
-						);
+						)
 					})}
 				</SidebarMenu>
 			</SidebarGroupContent>
 		</SidebarGroup>
-	);
+	)
 }

@@ -1,6 +1,7 @@
 import { readdir, readFile, access } from "fs/promises"
-import { join } from "path"
+import { join, dirname } from "path"
 import { writeFile } from "fs/promises"
+import { fileURLToPath } from "url"
 
 interface SwaggerSpec {
 	swagger: string
@@ -29,11 +30,13 @@ async function pathExists(path: string): Promise<boolean> {
 
 async function scanApiRoutes(projectDir: string): Promise<string[]> {
 	const routes: string[] = []
-	
+
 	// Check for Pages Router API routes
 	const pagesApiDir = join(projectDir, "pages", "api")
 	if (await pathExists(pagesApiDir)) {
-		const files = await readdir(pagesApiDir, { recursive: true })
+		const files = await readdir(pagesApiDir, {
+			recursive: true,
+		})
 		for (const file of files) {
 			if (file.endsWith(".ts") || file.endsWith(".tsx")) {
 				// Skip catch-all routes and openapi.json
@@ -68,7 +71,7 @@ async function scanApiRoutes(projectDir: string): Promise<string[]> {
 					.replace(/\[(\w+)\]/g, "{$1}")
 					.replace(/\/route$/, "")
 					.replace(/\/index$/, "")
-				
+
 				// Avoid duplicates if both pages/api and app/api exist
 				if (!routes.includes(routePath)) {
 					routes.push(routePath)
@@ -84,7 +87,7 @@ async function loadApidocsSwagger(projectDir: string): Promise<Partial<SwaggerSp
 	try {
 		// Generated files are in projectDir/gen (e.g., web/gen) per buf.gen.yaml
 		const swaggerPath = join(projectDir, "gen", "apidocs.swagger.json")
-		
+
 		if (!(await pathExists(swaggerPath))) {
 			console.warn(`⚠️  apidocs.swagger.json not found at ${swaggerPath}`)
 			return {}
@@ -181,9 +184,14 @@ async function generateOpenAPISpec(projectDir: string): Promise<void> {
 
 // Main execution
 async function main() {
-	// If no argument provided, use current working directory (when run from within project)
+	// Get the directory where this script is located (web/scripts/)
+	const scriptDir = dirname(fileURLToPath(import.meta.url))
+	// Go up one level to get the web project directory
+	const defaultProjectDir = dirname(scriptDir)
+
+	// If no argument provided, use the web directory (where the script is located)
 	// Otherwise, use the provided argument (when run from outside)
-	const projectDir = process.argv[2] || process.cwd()
+	const projectDir = process.argv[2] || defaultProjectDir
 
 	await generateOpenAPISpec(projectDir)
 }

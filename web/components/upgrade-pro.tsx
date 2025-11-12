@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { Rocket } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Rocket } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
 export function UpgradePro() {
 	return (
@@ -20,14 +20,11 @@ export function UpgradePro() {
 							</p>
 						</div>
 					</div>
-					<Button
-						size="sm"
-						className="w-full bg-yellow-500 hover:bg-yellow-600 text-white"
-					>
+					<Button size="sm" className="w-full bg-yellow-500 hover:bg-yellow-600 text-white">
 						Upgrade Now
 					</Button>
 				</div>
 			</CardContent>
 		</Card>
-	);
+	)
 }

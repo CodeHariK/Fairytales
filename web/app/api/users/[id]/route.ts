@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
+import { withAuth } from "@/utils/api-middleware"
 
 type Data = {
 	id: string
@@ -6,16 +7,12 @@ type Data = {
 	email: string
 }
 
-export async function GET(
-	request: Request,
-	{ params }: { params: Promise<{ id: string }> }
-) {
-	const { id } = await params
+export const GET = withAuth(async (request, session, { params }) => {
+	const { id } = await params!
 
 	return NextResponse.json({
 		id: id,
-		name: "Ciirella",
-		email: "ciirella@twitch.com",
+		name: session?.user.name ?? "Debug User",
+		email: session?.user.email ?? "debug@example.com",
 	})
-}
-
+})

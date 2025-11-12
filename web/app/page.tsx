@@ -1,10 +1,10 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { CoursesByCategory } from "@/components/courses-by-category";
-import { CourseRating } from "@/components/course-rating";
-import { WebDevDetails } from "@/components/web-dev-details";
-import { CourseGrid } from "@/components/course-grid";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar"
+import { CoursesByCategory } from "@/components/courses-by-category"
+import { CourseRating } from "@/components/course-rating"
+import { WebDevDetails } from "@/components/web-dev-details"
+import { CourseGrid } from "@/components/course-grid"
+import { SiteHeader } from "@/components/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 export default function Home() {
 	return (
@@ -33,5 +33,5 @@ export default function Home() {
 				</div>
 			</SidebarInset>
 		</SidebarProvider>
-	);
+	)
 }

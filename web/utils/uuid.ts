@@ -1,4 +1,4 @@
-import { parse, stringify, v7 as uuidv7 } from "uuid";
+import { parse, stringify, v7 as uuidv7 } from "uuid"
 
 /**
  * Converts a UUID Uint8Array (16 bytes) to a UUID string representation.
@@ -6,7 +6,7 @@ import { parse, stringify, v7 as uuidv7 } from "uuid";
  * @returns A UUID string representation (e.g., "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b")
  */
 export function uuidToHexString(uuid: Uint8Array): string {
-	return stringify(uuid);
+	return stringify(uuid)
 }
 
 /**
@@ -16,7 +16,7 @@ export function uuidToHexString(uuid: Uint8Array): string {
  * @throws Error if the UUID string is invalid
  */
 export function hexStringToUuid(uuidString: string): Uint8Array {
-	return parse(uuidString);
+	return parse(uuidString)
 }
 
 /**
@@ -25,7 +25,7 @@ export function hexStringToUuid(uuidString: string): Uint8Array {
  * @returns The UUID as a Uint8Array (16 bytes)
  */
 export function createUuidFromString(uuidString: string): Uint8Array {
-	return parse(uuidString);
+	return parse(uuidString)
 }
 
 /**
@@ -34,7 +34,6 @@ export function createUuidFromString(uuidString: string): Uint8Array {
  * @returns The UUID as a Uint8Array (16 bytes)
  */
 export function createUuidV7(): Uint8Array {
-	const uuidString = uuidv7();
-	return parse(uuidString);
+	const uuidString = uuidv7()
+	return parse(uuidString)
 }
-

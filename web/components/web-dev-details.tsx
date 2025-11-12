@@ -1,11 +1,9 @@
-"use client";
+"use client"
 
-import { Star } from "lucide-react";
-import {
-	Card,
-	CardContent,
-} from "@/components/ui/card";
-import { CardHeaderWithSelect } from "@/components/card-header-with-select";
+import { Star } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { CardHeaderWithSelect } from "@/components/card-header-with-select"
 
 const courses = [
 	{
@@ -32,7 +30,7 @@ const courses = [
 		reviews: 820,
 		progress: 30,
 	},
-];
+]
 
 export function WebDevDetails() {
 	return (
@@ -59,20 +57,16 @@ export function WebDevDetails() {
 								</div>
 							</div>
 							<div className="space-y-1">
-								<div className="h-2 w-full bg-secondary-foreground rounded-full overflow-hidden">
-									<div
-										className="h-full rounded-full transition-all"
-										style={{
-											width: `${course.progress}%`,
-											backgroundColor: "var(--secondary)",
-										}}
-									/>
-								</div>
+								<Progress
+									value={course.progress}
+									className="h-2"
+									indicatorClassName="bg-[var(--secondary)]"
+								/>
 							</div>
 						</div>
 					))}
 				</div>
 			</CardContent>
 		</Card>
-	);
+	)
 }

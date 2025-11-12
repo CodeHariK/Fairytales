@@ -1,1009 +1,969 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "buf/validate/validate.proto",
-    "version": "version not set"
-  },
-  "tags": [
-    {
-      "name": "CourseService"
-    },
-    {
-      "name": "CategoryService"
-    },
-    {
-      "name": "ElizaService"
-    }
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/courses.v1.CategoryService/CreateCategory": {
-      "post": {
-        "summary": "CreateCategory creates a new course category.",
-        "operationId": "CategoryService_CreateCategory",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateCategoryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "CreateCategoryRequest is the request to create a new category.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateCategoryRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CategoryService"
-        ]
-      }
-    },
-    "/courses.v1.CategoryService/DeleteCategory": {
-      "post": {
-        "summary": "DeleteCategory deletes a course category.",
-        "operationId": "CategoryService_DeleteCategory",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1DeleteCategoryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "DeleteCategoryRequest is the request to delete a category.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1DeleteCategoryRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CategoryService"
-        ]
-      }
-    },
-    "/courses.v1.CategoryService/GetCategory": {
-      "post": {
-        "summary": "GetCategory returns a category by ID.",
-        "operationId": "CategoryService_GetCategory",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetCategoryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "GetCategoryRequest is the request to get a category by ID.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetCategoryRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CategoryService"
-        ]
-      }
-    },
-    "/courses.v1.CategoryService/GetCoursesByCategory": {
-      "post": {
-        "summary": "GetCoursesByCategory returns all courses in a specific category.",
-        "operationId": "CategoryService_GetCoursesByCategory",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetCoursesByCategoryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "GetCoursesByCategoryRequest is the request to get courses by category.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetCoursesByCategoryRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CategoryService"
-        ]
-      }
-    },
-    "/courses.v1.CategoryService/ListCategories": {
-      "post": {
-        "summary": "ListCategories returns all categories.",
-        "operationId": "CategoryService_ListCategories",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1ListCategoriesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "ListCategoriesRequest is the request to list all categories.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ListCategoriesRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CategoryService"
-        ]
-      }
-    },
-    "/courses.v1.CategoryService/UpdateCategory": {
-      "post": {
-        "summary": "UpdateCategory updates an existing course category.",
-        "operationId": "CategoryService_UpdateCategory",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateCategoryResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "UpdateCategoryRequest is the request to update a category.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateCategoryRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CategoryService"
-        ]
-      }
-    },
-    "/courses.v1.CourseService/CreateCourse": {
-      "post": {
-        "summary": "CreateCourse creates a new course.",
-        "operationId": "CourseService_CreateCourse",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateCourseResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "CreateCourseRequest is the request to create a new course.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateCourseRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CourseService"
-        ]
-      }
-    },
-    "/courses.v1.CourseService/DeleteCourse": {
-      "post": {
-        "summary": "DeleteCourse deletes a course.",
-        "operationId": "CourseService_DeleteCourse",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1DeleteCourseResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "DeleteCourseRequest is the request to delete a course.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1DeleteCourseRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CourseService"
-        ]
-      }
-    },
-    "/courses.v1.CourseService/GetCoursesPaginated": {
-      "post": {
-        "summary": "GetCoursesPaginated returns paginated courses for the current user.",
-        "operationId": "CourseService_GetCoursesPaginated",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetCoursesPaginatedResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "GetCoursesPaginatedRequest is the request for paginated courses.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetCoursesPaginatedRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CourseService"
-        ]
-      }
-    },
-    "/courses.v1.CourseService/GetUserCourses": {
-      "post": {
-        "summary": "GetUserCourses returns all courses for the current user.",
-        "operationId": "CourseService_GetUserCourses",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetUserCoursesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "GetUserCoursesRequest is the request to get user courses.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1GetUserCoursesRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CourseService"
-        ]
-      }
-    },
-    "/courses.v1.CourseService/UpdateCourse": {
-      "post": {
-        "summary": "UpdateCourse updates an existing course.",
-        "operationId": "CourseService_UpdateCourse",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateCourseResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "UpdateCourseRequest is the request to update a course.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateCourseRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CourseService"
-        ]
-      }
-    },
-    "/eliza.v1.ElizaService/Converse": {
-      "post": {
-        "operationId": "ElizaService_Converse",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/v1ConverseResponse"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of v1ConverseResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "ConverseRequest is a single sentence request sent as part of a\nback-and-forth conversation. (streaming inputs)",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ConverseRequest"
-            }
-          }
-        ],
-        "tags": [
-          "ElizaService"
-        ]
-      }
-    },
-    "/eliza.v1.ElizaService/Introduce": {
-      "post": {
-        "operationId": "ElizaService_Introduce",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/v1IntroduceResponse"
-                },
-                "error": {
-                  "$ref": "#/definitions/rpcStatus"
-                }
-              },
-              "title": "Stream result of v1IntroduceResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "IntroduceRequest asks Eliza to introduce itself to the named user.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1IntroduceRequest"
-            }
-          }
-        ],
-        "tags": [
-          "ElizaService"
-        ]
-      }
-    },
-    "/eliza.v1.ElizaService/Say": {
-      "post": {
-        "operationId": "ElizaService_Say",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1SayResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "SayRequest is a single-sentence request.",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1SayRequest"
-            }
-          }
-        ],
-        "tags": [
-          "ElizaService"
-        ]
-      }
-    }
-  },
-  "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
-    },
-    "v1Category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      },
-      "description": "Category represents a course category entity."
-    },
-    "v1ConverseRequest": {
-      "type": "object",
-      "properties": {
-        "sentence": {
-          "type": "string"
-        }
-      },
-      "description": "ConverseRequest is a single sentence request sent as part of a\nback-and-forth conversation."
-    },
-    "v1ConverseResponse": {
-      "type": "object",
-      "properties": {
-        "sentence": {
-          "type": "string"
-        }
-      },
-      "description": "ConverseResponse is a single sentence response sent in answer to a\nConverseRequest."
-    },
-    "v1Course": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        },
-        "title": {
-          "type": "string"
-        },
-        "category": {
-          "type": "string"
-        },
-        "level": {
-          "$ref": "#/definitions/v1CourseLevel"
-        },
-        "lessons": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "hours": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "students": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "price": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "image": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/v1CourseStatus"
-        }
-      },
-      "description": "Course represents a course entity."
-    },
-    "v1CourseLevel": {
-      "type": "string",
-      "enum": [
-        "COURSE_LEVEL_UNSPECIFIED",
-        "COURSE_LEVEL_BEGINNER",
-        "COURSE_LEVEL_INTERMEDIATE",
-        "COURSE_LEVEL_ADVANCED"
-      ],
-      "default": "COURSE_LEVEL_UNSPECIFIED",
-      "description": "CourseLevel represents the difficulty level of a course."
-    },
-    "v1CourseStatus": {
-      "type": "string",
-      "enum": [
-        "COURSE_STATUS_UNSPECIFIED",
-        "COURSE_STATUS_ACTIVE",
-        "COURSE_STATUS_DRAFT",
-        "COURSE_STATUS_ARCHIVED"
-      ],
-      "default": "COURSE_STATUS_UNSPECIFIED",
-      "description": "CourseStatus represents the status of a course."
-    },
-    "v1CreateCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      },
-      "description": "CreateCategoryRequest is the request to create a new category."
-    },
-    "v1CreateCategoryResponse": {
-      "type": "object",
-      "properties": {
-        "category": {
-          "$ref": "#/definitions/v1Category"
-        }
-      },
-      "description": "CreateCategoryResponse contains the created category."
-    },
-    "v1CreateCourseRequest": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string"
-        },
-        "category": {
-          "type": "string"
-        },
-        "level": {
-          "$ref": "#/definitions/v1CourseLevel"
-        },
-        "lessons": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "hours": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "price": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "image": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/v1CourseStatus"
-        }
-      },
-      "description": "CreateCourseRequest is the request to create a new course."
-    },
-    "v1CreateCourseResponse": {
-      "type": "object",
-      "properties": {
-        "course": {
-          "$ref": "#/definitions/v1Course"
-        }
-      },
-      "description": "CreateCourseResponse contains the created course."
-    },
-    "v1DeleteCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        }
-      },
-      "description": "DeleteCategoryRequest is the request to delete a category."
-    },
-    "v1DeleteCategoryResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean"
-        }
-      },
-      "description": "DeleteCategoryResponse confirms the deletion."
-    },
-    "v1DeleteCourseRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        }
-      },
-      "description": "DeleteCourseRequest is the request to delete a course."
-    },
-    "v1DeleteCourseResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean"
-        }
-      },
-      "description": "DeleteCourseResponse confirms the deletion."
-    },
-    "v1GetCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        }
-      },
-      "description": "GetCategoryRequest is the request to get a category by ID."
-    },
-    "v1GetCategoryResponse": {
-      "type": "object",
-      "properties": {
-        "category": {
-          "$ref": "#/definitions/v1Category"
-        }
-      },
-      "description": "GetCategoryResponse contains the category."
-    },
-    "v1GetCoursesByCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "categoryId": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        },
-        "statusFilter": {
-          "type": "string"
-        }
-      },
-      "description": "GetCoursesByCategoryRequest is the request to get courses by category."
-    },
-    "v1GetCoursesByCategoryResponse": {
-      "type": "object",
-      "properties": {
-        "courses": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Course"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "description": "GetCoursesByCategoryResponse contains courses in the category."
-    },
-    "v1GetCoursesPaginatedRequest": {
-      "type": "object",
-      "properties": {
-        "statusFilter": {
-          "type": "string"
-        },
-        "page": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pageSize": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "description": "GetCoursesPaginatedRequest is the request for paginated courses."
-    },
-    "v1GetCoursesPaginatedResponse": {
-      "type": "object",
-      "properties": {
-        "courses": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Course"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "page": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pageSize": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "totalPages": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "description": "GetCoursesPaginatedResponse contains paginated courses."
-    },
-    "v1GetUserCoursesRequest": {
-      "type": "object",
-      "properties": {
-        "statusFilter": {
-          "type": "string",
-          "description": "Optional filter by status (all, active, draft, archived)\nIf not provided, returns all courses."
-        }
-      },
-      "description": "GetUserCoursesRequest is the request to get user courses."
-    },
-    "v1GetUserCoursesResponse": {
-      "type": "object",
-      "properties": {
-        "courses": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Course"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "description": "GetUserCoursesResponse contains the list of user courses."
-    },
-    "v1IntroduceRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      },
-      "description": "IntroduceRequest asks Eliza to introduce itself to the named user."
-    },
-    "v1IntroduceResponse": {
-      "type": "object",
-      "properties": {
-        "sentence": {
-          "type": "string"
-        }
-      },
-      "description": "IntroduceResponse is one sentence of Eliza's introductory monologue."
-    },
-    "v1ListCategoriesRequest": {
-      "type": "object",
-      "properties": {
-        "search": {
-          "type": "string",
-          "description": "Optional search query to filter categories by name."
-        }
-      },
-      "description": "ListCategoriesRequest is the request to list all categories."
-    },
-    "v1ListCategoriesResponse": {
-      "type": "object",
-      "properties": {
-        "categories": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/v1Category"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "description": "ListCategoriesResponse contains the list of categories."
-    },
-    "v1SayRequest": {
-      "type": "object",
-      "properties": {
-        "sentence": {
-          "type": "string"
-        }
-      },
-      "description": "SayRequest is a single-sentence request."
-    },
-    "v1SayResponse": {
-      "type": "object",
-      "properties": {
-        "sentence": {
-          "type": "string"
-        }
-      },
-      "description": "SayResponse is a single-sentence response."
-    },
-    "v1UpdateCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        }
-      },
-      "description": "UpdateCategoryRequest is the request to update a category."
-    },
-    "v1UpdateCategoryResponse": {
-      "type": "object",
-      "properties": {
-        "category": {
-          "$ref": "#/definitions/v1Category"
-        }
-      },
-      "description": "UpdateCategoryResponse contains the updated category."
-    },
-    "v1UpdateCourseRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "byte",
-          "title": "UUID v7 (128-bit, 16 bytes)"
-        },
-        "title": {
-          "type": "string"
-        },
-        "category": {
-          "type": "string"
-        },
-        "level": {
-          "$ref": "#/definitions/v1CourseLevel"
-        },
-        "lessons": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "hours": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "price": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "image": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/v1CourseStatus"
-        }
-      },
-      "description": "UpdateCourseRequest is the request to update a course."
-    },
-    "v1UpdateCourseResponse": {
-      "type": "object",
-      "properties": {
-        "course": {
-          "$ref": "#/definitions/v1Course"
-        }
-      },
-      "description": "UpdateCourseResponse contains the updated course."
-    }
-  }
+	"swagger": "2.0",
+	"info": {
+		"title": "buf/validate/validate.proto",
+		"version": "version not set"
+	},
+	"tags": [
+		{
+			"name": "CourseService"
+		},
+		{
+			"name": "CategoryService"
+		},
+		{
+			"name": "ElizaService"
+		}
+	],
+	"consumes": ["application/json"],
+	"produces": ["application/json"],
+	"paths": {
+		"/courses.v1.CategoryService/CreateCategory": {
+			"post": {
+				"summary": "CreateCategory creates a new course category.",
+				"operationId": "CategoryService_CreateCategory",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1CreateCategoryResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "CreateCategoryRequest is the request to create a new category.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1CreateCategoryRequest"
+						}
+					}
+				],
+				"tags": ["CategoryService"]
+			}
+		},
+		"/courses.v1.CategoryService/DeleteCategory": {
+			"post": {
+				"summary": "DeleteCategory deletes a course category.",
+				"operationId": "CategoryService_DeleteCategory",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1DeleteCategoryResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "DeleteCategoryRequest is the request to delete a category.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1DeleteCategoryRequest"
+						}
+					}
+				],
+				"tags": ["CategoryService"]
+			}
+		},
+		"/courses.v1.CategoryService/GetCategory": {
+			"post": {
+				"summary": "GetCategory returns a category by ID.",
+				"operationId": "CategoryService_GetCategory",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1GetCategoryResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "GetCategoryRequest is the request to get a category by ID.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1GetCategoryRequest"
+						}
+					}
+				],
+				"tags": ["CategoryService"]
+			}
+		},
+		"/courses.v1.CategoryService/GetCoursesByCategory": {
+			"post": {
+				"summary": "GetCoursesByCategory returns all courses in a specific category.",
+				"operationId": "CategoryService_GetCoursesByCategory",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1GetCoursesByCategoryResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "GetCoursesByCategoryRequest is the request to get courses by category.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1GetCoursesByCategoryRequest"
+						}
+					}
+				],
+				"tags": ["CategoryService"]
+			}
+		},
+		"/courses.v1.CategoryService/ListCategories": {
+			"post": {
+				"summary": "ListCategories returns all categories.",
+				"operationId": "CategoryService_ListCategories",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1ListCategoriesResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "ListCategoriesRequest is the request to list all categories.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1ListCategoriesRequest"
+						}
+					}
+				],
+				"tags": ["CategoryService"]
+			}
+		},
+		"/courses.v1.CategoryService/UpdateCategory": {
+			"post": {
+				"summary": "UpdateCategory updates an existing course category.",
+				"operationId": "CategoryService_UpdateCategory",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1UpdateCategoryResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "UpdateCategoryRequest is the request to update a category.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1UpdateCategoryRequest"
+						}
+					}
+				],
+				"tags": ["CategoryService"]
+			}
+		},
+		"/courses.v1.CourseService/CreateCourse": {
+			"post": {
+				"summary": "CreateCourse creates a new course.",
+				"operationId": "CourseService_CreateCourse",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1CreateCourseResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "CreateCourseRequest is the request to create a new course.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1CreateCourseRequest"
+						}
+					}
+				],
+				"tags": ["CourseService"]
+			}
+		},
+		"/courses.v1.CourseService/DeleteCourse": {
+			"post": {
+				"summary": "DeleteCourse deletes a course.",
+				"operationId": "CourseService_DeleteCourse",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1DeleteCourseResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "DeleteCourseRequest is the request to delete a course.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1DeleteCourseRequest"
+						}
+					}
+				],
+				"tags": ["CourseService"]
+			}
+		},
+		"/courses.v1.CourseService/GetCoursesPaginated": {
+			"post": {
+				"summary": "GetCoursesPaginated returns paginated courses for the current user.",
+				"operationId": "CourseService_GetCoursesPaginated",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1GetCoursesPaginatedResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "GetCoursesPaginatedRequest is the request for paginated courses.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1GetCoursesPaginatedRequest"
+						}
+					}
+				],
+				"tags": ["CourseService"]
+			}
+		},
+		"/courses.v1.CourseService/GetUserCourses": {
+			"post": {
+				"summary": "GetUserCourses returns all courses for the current user.",
+				"operationId": "CourseService_GetUserCourses",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1GetUserCoursesResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "GetUserCoursesRequest is the request to get user courses.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1GetUserCoursesRequest"
+						}
+					}
+				],
+				"tags": ["CourseService"]
+			}
+		},
+		"/courses.v1.CourseService/UpdateCourse": {
+			"post": {
+				"summary": "UpdateCourse updates an existing course.",
+				"operationId": "CourseService_UpdateCourse",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1UpdateCourseResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "UpdateCourseRequest is the request to update a course.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1UpdateCourseRequest"
+						}
+					}
+				],
+				"tags": ["CourseService"]
+			}
+		},
+		"/eliza.v1.ElizaService/Converse": {
+			"post": {
+				"operationId": "ElizaService_Converse",
+				"responses": {
+					"200": {
+						"description": "A successful response.(streaming responses)",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"result": {
+									"$ref": "#/definitions/v1ConverseResponse"
+								},
+								"error": {
+									"$ref": "#/definitions/rpcStatus"
+								}
+							},
+							"title": "Stream result of v1ConverseResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "ConverseRequest is a single sentence request sent as part of a\nback-and-forth conversation. (streaming inputs)",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1ConverseRequest"
+						}
+					}
+				],
+				"tags": ["ElizaService"]
+			}
+		},
+		"/eliza.v1.ElizaService/Introduce": {
+			"post": {
+				"operationId": "ElizaService_Introduce",
+				"responses": {
+					"200": {
+						"description": "A successful response.(streaming responses)",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"result": {
+									"$ref": "#/definitions/v1IntroduceResponse"
+								},
+								"error": {
+									"$ref": "#/definitions/rpcStatus"
+								}
+							},
+							"title": "Stream result of v1IntroduceResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "IntroduceRequest asks Eliza to introduce itself to the named user.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1IntroduceRequest"
+						}
+					}
+				],
+				"tags": ["ElizaService"]
+			}
+		},
+		"/eliza.v1.ElizaService/Say": {
+			"post": {
+				"operationId": "ElizaService_Say",
+				"responses": {
+					"200": {
+						"description": "A successful response.",
+						"schema": {
+							"$ref": "#/definitions/v1SayResponse"
+						}
+					},
+					"default": {
+						"description": "An unexpected error response.",
+						"schema": {
+							"$ref": "#/definitions/rpcStatus"
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "body",
+						"description": "SayRequest is a single-sentence request.",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/v1SayRequest"
+						}
+					}
+				],
+				"tags": ["ElizaService"]
+			}
+		}
+	},
+	"definitions": {
+		"protobufAny": {
+			"type": "object",
+			"properties": {
+				"@type": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": {}
+		},
+		"rpcStatus": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"message": {
+					"type": "string"
+				},
+				"details": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/protobufAny"
+					}
+				}
+			}
+		},
+		"v1Category": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"description": "Category represents a course category entity."
+		},
+		"v1ConverseRequest": {
+			"type": "object",
+			"properties": {
+				"sentence": {
+					"type": "string"
+				}
+			},
+			"description": "ConverseRequest is a single sentence request sent as part of a\nback-and-forth conversation."
+		},
+		"v1ConverseResponse": {
+			"type": "object",
+			"properties": {
+				"sentence": {
+					"type": "string"
+				}
+			},
+			"description": "ConverseResponse is a single sentence response sent in answer to a\nConverseRequest."
+		},
+		"v1Course": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				},
+				"title": {
+					"type": "string"
+				},
+				"category": {
+					"type": "string"
+				},
+				"level": {
+					"$ref": "#/definitions/v1CourseLevel"
+				},
+				"lessons": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"hours": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"students": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"price": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"image": {
+					"type": "string"
+				},
+				"status": {
+					"$ref": "#/definitions/v1CourseStatus"
+				}
+			},
+			"description": "Course represents a course entity."
+		},
+		"v1CourseLevel": {
+			"type": "string",
+			"enum": [
+				"COURSE_LEVEL_UNSPECIFIED",
+				"COURSE_LEVEL_BEGINNER",
+				"COURSE_LEVEL_INTERMEDIATE",
+				"COURSE_LEVEL_ADVANCED"
+			],
+			"default": "COURSE_LEVEL_UNSPECIFIED",
+			"description": "CourseLevel represents the difficulty level of a course."
+		},
+		"v1CourseStatus": {
+			"type": "string",
+			"enum": [
+				"COURSE_STATUS_UNSPECIFIED",
+				"COURSE_STATUS_ACTIVE",
+				"COURSE_STATUS_DRAFT",
+				"COURSE_STATUS_ARCHIVED"
+			],
+			"default": "COURSE_STATUS_UNSPECIFIED",
+			"description": "CourseStatus represents the status of a course."
+		},
+		"v1CreateCategoryRequest": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"description": "CreateCategoryRequest is the request to create a new category."
+		},
+		"v1CreateCategoryResponse": {
+			"type": "object",
+			"properties": {
+				"category": {
+					"$ref": "#/definitions/v1Category"
+				}
+			},
+			"description": "CreateCategoryResponse contains the created category."
+		},
+		"v1CreateCourseRequest": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"category": {
+					"type": "string"
+				},
+				"level": {
+					"$ref": "#/definitions/v1CourseLevel"
+				},
+				"lessons": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"hours": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"price": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"image": {
+					"type": "string"
+				},
+				"status": {
+					"$ref": "#/definitions/v1CourseStatus"
+				}
+			},
+			"description": "CreateCourseRequest is the request to create a new course."
+		},
+		"v1CreateCourseResponse": {
+			"type": "object",
+			"properties": {
+				"course": {
+					"$ref": "#/definitions/v1Course"
+				}
+			},
+			"description": "CreateCourseResponse contains the created course."
+		},
+		"v1DeleteCategoryRequest": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				}
+			},
+			"description": "DeleteCategoryRequest is the request to delete a category."
+		},
+		"v1DeleteCategoryResponse": {
+			"type": "object",
+			"properties": {
+				"success": {
+					"type": "boolean"
+				}
+			},
+			"description": "DeleteCategoryResponse confirms the deletion."
+		},
+		"v1DeleteCourseRequest": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				}
+			},
+			"description": "DeleteCourseRequest is the request to delete a course."
+		},
+		"v1DeleteCourseResponse": {
+			"type": "object",
+			"properties": {
+				"success": {
+					"type": "boolean"
+				}
+			},
+			"description": "DeleteCourseResponse confirms the deletion."
+		},
+		"v1GetCategoryRequest": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				}
+			},
+			"description": "GetCategoryRequest is the request to get a category by ID."
+		},
+		"v1GetCategoryResponse": {
+			"type": "object",
+			"properties": {
+				"category": {
+					"$ref": "#/definitions/v1Category"
+				}
+			},
+			"description": "GetCategoryResponse contains the category."
+		},
+		"v1GetCoursesByCategoryRequest": {
+			"type": "object",
+			"properties": {
+				"categoryId": {
+					"type": "string",
+					"format": "byte"
+				},
+				"statusFilter": {
+					"type": "string"
+				}
+			},
+			"description": "GetCoursesByCategoryRequest is the request to get courses by category."
+		},
+		"v1GetCoursesByCategoryResponse": {
+			"type": "object",
+			"properties": {
+				"courses": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/v1Course"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"description": "GetCoursesByCategoryResponse contains courses in the category."
+		},
+		"v1GetCoursesPaginatedRequest": {
+			"type": "object",
+			"properties": {
+				"statusFilter": {
+					"type": "string"
+				},
+				"page": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"pageSize": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"description": "GetCoursesPaginatedRequest is the request for paginated courses."
+		},
+		"v1GetCoursesPaginatedResponse": {
+			"type": "object",
+			"properties": {
+				"courses": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/v1Course"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"page": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"pageSize": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"totalPages": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"description": "GetCoursesPaginatedResponse contains paginated courses."
+		},
+		"v1GetUserCoursesRequest": {
+			"type": "object",
+			"properties": {
+				"statusFilter": {
+					"type": "string",
+					"description": "Optional filter by status (all, active, draft, archived)\nIf not provided, returns all courses."
+				}
+			},
+			"description": "GetUserCoursesRequest is the request to get user courses."
+		},
+		"v1GetUserCoursesResponse": {
+			"type": "object",
+			"properties": {
+				"courses": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/v1Course"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"description": "GetUserCoursesResponse contains the list of user courses."
+		},
+		"v1IntroduceRequest": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"description": "IntroduceRequest asks Eliza to introduce itself to the named user."
+		},
+		"v1IntroduceResponse": {
+			"type": "object",
+			"properties": {
+				"sentence": {
+					"type": "string"
+				}
+			},
+			"description": "IntroduceResponse is one sentence of Eliza's introductory monologue."
+		},
+		"v1ListCategoriesRequest": {
+			"type": "object",
+			"properties": {
+				"search": {
+					"type": "string",
+					"description": "Optional search query to filter categories by name."
+				}
+			},
+			"description": "ListCategoriesRequest is the request to list all categories."
+		},
+		"v1ListCategoriesResponse": {
+			"type": "object",
+			"properties": {
+				"categories": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"$ref": "#/definitions/v1Category"
+					}
+				},
+				"total": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"description": "ListCategoriesResponse contains the list of categories."
+		},
+		"v1SayRequest": {
+			"type": "object",
+			"properties": {
+				"sentence": {
+					"type": "string"
+				}
+			},
+			"description": "SayRequest is a single-sentence request."
+		},
+		"v1SayResponse": {
+			"type": "object",
+			"properties": {
+				"sentence": {
+					"type": "string"
+				}
+			},
+			"description": "SayResponse is a single-sentence response."
+		},
+		"v1UpdateCategoryRequest": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"description": "UpdateCategoryRequest is the request to update a category."
+		},
+		"v1UpdateCategoryResponse": {
+			"type": "object",
+			"properties": {
+				"category": {
+					"$ref": "#/definitions/v1Category"
+				}
+			},
+			"description": "UpdateCategoryResponse contains the updated category."
+		},
+		"v1UpdateCourseRequest": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "byte"
+				},
+				"title": {
+					"type": "string"
+				},
+				"category": {
+					"type": "string"
+				},
+				"level": {
+					"$ref": "#/definitions/v1CourseLevel"
+				},
+				"lessons": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"hours": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"price": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"image": {
+					"type": "string"
+				},
+				"status": {
+					"$ref": "#/definitions/v1CourseStatus"
+				}
+			},
+			"description": "UpdateCourseRequest is the request to update a course."
+		},
+		"v1UpdateCourseResponse": {
+			"type": "object",
+			"properties": {
+				"course": {
+					"$ref": "#/definitions/v1Course"
+				}
+			},
+			"description": "UpdateCourseResponse contains the updated course."
+		}
+	}
 }

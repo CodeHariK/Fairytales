@@ -1,6 +1,6 @@
-import { LucideIcon, TrendingDown, TrendingUp } from "lucide-react";
+import { LucideIcon, TrendingDown, TrendingUp } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge"
 import {
 	Card,
 	CardAction,
@@ -8,23 +8,23 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card"
 
 interface StatCardProps {
-	description: string;
-	value: string;
+	description: string
+	value: string
 	trend: {
-		icon: LucideIcon;
-		value: string;
-	};
+		icon: LucideIcon
+		value: string
+	}
 	footer: {
-		title: string;
-		description: string;
-	};
+		title: string
+		description: string
+	}
 }
 
 function StatCard({ description, value, trend, footer }: StatCardProps) {
-	const TrendIcon = trend.icon;
+	const TrendIcon = trend.icon
 	return (
 		<Card className="@container/card">
 			<CardHeader>
@@ -46,7 +46,7 @@ function StatCard({ description, value, trend, footer }: StatCardProps) {
 				<div className="text-muted-foreground">{footer.description}</div>
 			</CardFooter>
 		</Card>
-	);
+	)
 }
 
 export function SectionCards() {
@@ -99,7 +99,7 @@ export function SectionCards() {
 				description: "Meets growth projections",
 			},
 		},
-	];
+	]
 
 	return (
 		<div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
@@ -107,5 +107,5 @@ export function SectionCards() {
 				<StatCard key={card.description} {...card} />
 			))}
 		</div>
-	);
+	)
 }
