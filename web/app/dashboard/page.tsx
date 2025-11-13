@@ -7,10 +7,10 @@ import { toast } from "sonner"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { DataTable } from "@/components/data-table"
+import { DataTable } from "@/components/new/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { SidebarInset, SidebarProvider } from "@/components/modified/sidebar"
 import { AcademyHeader } from "@/components/dashboard/academy-header"
 import { Leaderboard } from "@/components/dashboard/leaderboard"
 import { SuccessRate } from "@/components/dashboard/success-rate"
@@ -23,7 +23,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/modified/input"
 import { Label } from "@/components/ui/label"
 import {
 	Select,

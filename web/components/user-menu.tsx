@@ -1,8 +1,19 @@
 "use client"
 
-import { CreditCard, LogOut, Bell, UserCircle } from "lucide-react"
+import {
+	CreditCard,
+	LogOut,
+	Bell,
+	UserCircle,
+	MessageCircle,
+	Settings,
+	Moon,
+	Sun,
+} from "lucide-react"
+import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -26,11 +37,20 @@ export function UserMenu({
 	avatar = "/avatars/phillip.jpg",
 	role = "Admin",
 }: UserMenuProps) {
+	const { theme, setTheme, resolvedTheme } = useTheme()
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
 	const initials = name
 		.split(" ")
 		.map((n) => n[0])
 		.join("")
 		.toUpperCase()
+
+	const isDark = mounted && (resolvedTheme === "dark" || theme === "dark")
 
 	return (
 		<DropdownMenu>
@@ -40,7 +60,7 @@ export function UserMenu({
 						<AvatarImage src={avatar} alt={name} />
 						<AvatarFallback>{initials}</AvatarFallback>
 					</Avatar>
-					<div className="hidden sm:block text-left">
+					<div className="hidden lg:block text-left">
 						<p className="text-sm font-medium">{name}</p>
 						<p className="text-xs text-muted-foreground">{role}</p>
 					</div>
@@ -62,6 +82,31 @@ export function UserMenu({
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
+					<DropdownMenuItem
+						onClick={() => {
+							if (mounted) {
+								setTheme(isDark ? "light" : "dark")
+							}
+						}}
+					>
+						{mounted && isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+						Theme
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Bell className="h-4 w-4" />
+						Notifications
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<MessageCircle className="h-4 w-4" />
+						Messages
+					</DropdownMenuItem>
+					<DropdownMenuItem>
+						<Settings className="h-4 w-4" />
+						Settings
+					</DropdownMenuItem>
+				</DropdownMenuGroup>
+				<DropdownMenuSeparator />
+				<DropdownMenuGroup>
 					<DropdownMenuItem>
 						<UserCircle />
 						Account
@@ -69,10 +114,6 @@ export function UserMenu({
 					<DropdownMenuItem>
 						<CreditCard />
 						Billing
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<Bell />
-						Notifications
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />

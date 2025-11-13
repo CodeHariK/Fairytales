@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Cell, Pie, PieChart } from "recharts"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/modified/card"
 import {
 	ChartConfig,
 	ChartContainer,

@@ -8,7 +8,7 @@ import { PanelLeftIcon } from "lucide-react"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/modified/input"
 import { Separator } from "@/components/ui/separator"
 import {
 	Sheet,
@@ -84,8 +84,20 @@ function SidebarProvider({
 	)
 
 	// Helper to toggle the sidebar.
+	// When collapsed, always expand to full mode
 	const toggleSidebar = React.useCallback(() => {
-		return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open)
+		if (isMobile) {
+			return setOpenMobile((open) => !open)
+		}
+		// If collapsed, expand to full. Otherwise toggle normally.
+		return setOpen((currentOpen) => {
+			// If currently collapsed, always expand
+			if (!currentOpen) {
+				return true
+			}
+			// If currently expanded, toggle
+			return !currentOpen
+		})
 	}, [isMobile, setOpen, setOpenMobile])
 
 	// Adds a keyboard shortcut to toggle the sidebar.
@@ -199,7 +211,7 @@ function Sidebar({
 
 	return (
 		<div
-			className="group peer text-sidebar-foreground hidden md:block"
+			className="group peer text-sidebar-foreground hidden lg:block"
 			data-state={state}
 			data-collapsible={state === "collapsed" ? collapsible : ""}
 			data-variant={variant}
@@ -221,7 +233,7 @@ function Sidebar({
 			<div
 				data-slot="sidebar-container"
 				className={cn(
-					"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
+					"fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear lg:flex",
 					side === "left"
 						? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
 						: "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -496,13 +508,7 @@ function SidebarMenuButton({
 			data-sidebar="menu-button"
 			data-size={size}
 			data-active={isActive}
-			className={cn(
-				sidebarMenuButtonVariants({
-					variant,
-					size,
-				}),
-				className
-			)}
+			className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
 			{...props}
 		/>
 	)
@@ -620,7 +626,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
 			data-slot="sidebar-menu-sub"
 			data-sidebar="menu-sub"
 			className={cn(
-				"border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
+				"border-sidebar-border flex min-w-0 translate-x-px flex-col gap-1 border-l py-0.5",
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}
@@ -634,7 +640,7 @@ function SidebarMenuSubItem({ className, ...props }: React.ComponentProps<"li">)
 		<li
 			data-slot="sidebar-menu-sub-item"
 			data-sidebar="menu-sub-item"
-			className={cn("group/menu-sub-item relative", className)}
+			className={cn("group/menu-sub-item relative ml-3.5", className)}
 			{...props}
 		/>
 	)

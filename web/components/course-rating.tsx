@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/modified/card"
 import {
 	ChartConfig,
 	ChartContainer,
@@ -54,28 +54,72 @@ export function CourseRating() {
 							dataKey="Design"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig.Design.color} rx={4} ry={4} />
+								const { x, y, width, height, ...rest } = props
+								return (
+									<rect
+										x={x}
+										y={y}
+										width={width}
+										height={height}
+										fill={chartConfig.Design.color}
+										rx={4}
+										ry={4}
+									/>
+								)
 							}}
 						/>
 						<Bar
 							dataKey="Marketing"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig.Marketing.color} rx={4} ry={4} />
+								const { x, y, width, height, ...rest } = props
+								return (
+									<rect
+										x={x}
+										y={y}
+										width={width}
+										height={height}
+										fill={chartConfig.Marketing.color}
+										rx={4}
+										ry={4}
+									/>
+								)
 							}}
 						/>
 						<Bar
 							dataKey="Web Dev"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig["Web Dev"].color} rx={4} ry={4} />
+								const { x, y, width, height, ...rest } = props
+								return (
+									<rect
+										x={x}
+										y={y}
+										width={width}
+										height={height}
+										fill={chartConfig["Web Dev"].color}
+										rx={4}
+										ry={4}
+									/>
+								)
 							}}
 						/>
 						<Bar
 							dataKey="Business"
 							stackId="rating"
 							shape={(props: any) => {
-								return <rect {...props} fill={chartConfig.Business.color} rx={4} ry={4} />
+								const { x, y, width, height, ...rest } = props
+								return (
+									<rect
+										x={x}
+										y={y}
+										width={width}
+										height={height}
+										fill={chartConfig.Business.color}
+										rx={4}
+										ry={4}
+									/>
+								)
 							}}
 						/>
 					</BarChart>

@@ -11,7 +11,7 @@ import {
 	type LucideIcon,
 } from "lucide-react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
@@ -28,7 +28,7 @@ import {
 	SidebarMenuSubItem,
 	SidebarMenuSubButton,
 	useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/modified/sidebar"
 
 import {
 	DropdownMenu,
@@ -52,6 +52,7 @@ export function NavMain({
 	}>
 }) {
 	const pathname = usePathname()
+	const router = useRouter()
 
 	return (
 		<SidebarGroup>
@@ -99,6 +100,10 @@ export function NavMain({
 												tooltip={item.title}
 												isActive={isActive || hasActiveSubItem}
 												className="group/collapsible"
+												onClick={() => {
+													// Navigate to the link when clicked
+													router.push(item.url)
+												}}
 											>
 												{item.icon && <item.icon />}
 												<span>{item.title}</span>

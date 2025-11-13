@@ -1,9 +1,10 @@
 "use client"
 
 import { Star } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent } from "@/components/modified/card"
+import { Progress } from "@/components/modified/progress"
 import { CardHeaderWithSelect } from "@/components/card-header-with-select"
+import { getSubtleColorFromHash } from "@/lib/utils"
 
 const courses = [
 	{
@@ -60,7 +61,9 @@ export function WebDevDetails() {
 								<Progress
 									value={course.progress}
 									className="h-2"
-									indicatorClassName="bg-[var(--secondary)]"
+									indicatorStyle={{
+										backgroundColor: getSubtleColorFromHash(course.name),
+									}}
 								/>
 							</div>
 						</div>

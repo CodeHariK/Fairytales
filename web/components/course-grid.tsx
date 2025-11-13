@@ -12,7 +12,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
-import { Pagination } from "@/components/pagination"
+import { Pagination } from "@/components/modified/pagination"
 import { CourseCard, type Course, type CourseLevelDisplay } from "@/components/course-card"
 import { uuidToHexString } from "@/utils/uuid"
 
@@ -62,15 +62,21 @@ export function CourseGrid() {
 			// Convert bytes to hex string
 			const id = course.id ? uuidToHexString(course.id) : ""
 
+			// Convert categoryIds to a string (use first category or default)
+			const category =
+				course.categoryIds && course.categoryIds.length > 0
+					? uuidToHexString(course.categoryIds[0])
+					: "Uncategorized"
+
 			return {
 				id,
 				title: course.title,
-				category: course.category,
-				lessons: course.lessons,
-				hours: course.hours,
-				students: course.students,
-				price: course.price,
-				image: course.image,
+				category,
+				lessons: Array.isArray(course.lessons) ? course.lessons.length : course.lessons || 0,
+				hours: 0, // Not available in proto, default to 0
+				students: 0, // Not available in proto, default to 0
+				price: course.price || 0,
+				image: course.image || "",
 				level: levelMap[course.level] || "Beginner",
 				status: statusMap[course.status] || "active",
 			}

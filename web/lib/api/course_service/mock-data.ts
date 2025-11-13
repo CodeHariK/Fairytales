@@ -1,8 +1,21 @@
 import { create } from "@bufbuild/protobuf"
-import { CourseSchema } from "@/gen/courses/v1/courses_pb"
+import { CourseSchema, LessonSchema } from "@/gen/courses/v1/courses_pb"
 import { CourseLevel, CourseStatus } from "@/gen/courses/v1/courses_pb"
 import { createUuidV7 } from "@/utils/uuid"
-import type { Course } from "@/gen/courses/v1/courses_pb"
+import type { Course, Lesson } from "@/gen/courses/v1/courses_pb"
+
+/**
+ * Helper function to create mock lessons
+ */
+function createMockLessons(count: number): Lesson[] {
+	return Array.from({ length: count }, (_, i) =>
+		create(LessonSchema, {
+			title: `Lesson ${i + 1}`,
+			description: `Description for lesson ${i + 1}`,
+			duration: 30 + i * 5, // 30-35 minutes per lesson
+		})
+	)
+}
 
 /**
  * In-memory mock data store for testing UI without database
@@ -10,6 +23,7 @@ import type { Course } from "@/gen/courses/v1/courses_pb"
  */
 class MockDataStore {
 	private courses: Course[] = []
+	private mockCreatorId = createUuidV7()
 
 	constructor() {
 		// Initialize with sample data
@@ -17,79 +31,79 @@ class MockDataStore {
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Graphic Design Fundamentals",
-				category: "Web Development",
+				description: "Learn the fundamentals of graphic design",
+				categoryIds: [createUuidV7()],
 				level: CourseLevel.BEGINNER,
-				lessons: 20,
-				hours: 40,
-				students: 317,
+				lessons: createMockLessons(20),
 				price: 99,
 				image:
 					"https://img.freepik.com/free-photo/beautiful-house-with-nature-elements_23-2151848749.jpg",
 				status: CourseStatus.ACTIVE,
+				creatorId: this.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Digital Marketing Mastery",
-				category: "Marketing",
+				description: "Master digital marketing strategies",
+				categoryIds: [createUuidV7()],
 				level: CourseLevel.INTERMEDIATE,
-				lessons: 18,
-				hours: 30,
-				students: 277,
+				lessons: createMockLessons(18),
 				price: 79,
 				image:
 					"https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg",
 				status: CourseStatus.ACTIVE,
+				creatorId: this.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Business Analytics with Excel",
-				category: "Business",
+				description: "Learn business analytics using Excel",
+				categoryIds: [createUuidV7()],
 				level: CourseLevel.INTERMEDIATE,
-				lessons: 22,
-				hours: 45,
-				students: 300,
+				lessons: createMockLessons(22),
 				price: 95,
 				image:
 					"https://img.freepik.com/free-vector/flat-woman-taking-care-plants-indoors_23-2148983751.jpg",
 				status: CourseStatus.DRAFT,
+				creatorId: this.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Python for Beginners",
-				category: "Web Development",
+				description: "Start your Python programming journey",
+				categoryIds: [createUuidV7()],
 				level: CourseLevel.BEGINNER,
-				lessons: 25,
-				hours: 50,
-				students: 342,
+				lessons: createMockLessons(25),
 				price: 89,
 				image: "https://img.freepik.com/free-vector/flat-adventure-background_23-2149031058.jpg",
 				status: CourseStatus.ACTIVE,
+				creatorId: this.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "UI/UX Design Basics",
-				category: "Web Development",
+				description: "Learn the basics of UI/UX design",
+				categoryIds: [createUuidV7()],
 				level: CourseLevel.BEGINNER,
-				lessons: 20,
-				hours: 35,
-				students: 290,
+				lessons: createMockLessons(20),
 				price: 89,
 				image:
 					"https://img.freepik.com/free-photo/anime-style-character-with-water_23-2151080214.jpg",
 				status: CourseStatus.ACTIVE,
+				creatorId: this.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Social Media Strategies",
-				category: "Marketing",
+				description: "Advanced social media marketing strategies",
+				categoryIds: [createUuidV7()],
 				level: CourseLevel.ADVANCED,
-				lessons: 24,
-				hours: 40,
-				students: 254,
+				lessons: createMockLessons(24),
 				price: 109,
 				image:
 					"https://img.freepik.com/free-vector/flat-background-autumn-season-celebration_23-2150696152.jpg",
 				status: CourseStatus.ARCHIVED,
+				creatorId: this.mockCreatorId,
 			}),
 		]
 	}

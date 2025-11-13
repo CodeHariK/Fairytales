@@ -10,7 +10,7 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card"
+} from "@/components/modified/card"
 
 export type CourseLevelDisplay = "Beginner" | "Intermediate" | "Advanced"
 

@@ -4,7 +4,7 @@ import { CourseRating } from "@/components/course-rating"
 import { WebDevDetails } from "@/components/web-dev-details"
 import { CourseGrid } from "@/components/course-grid"
 import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { SidebarInset, SidebarProvider } from "@/components/modified/sidebar"
 
 export default function Home() {
 	return (
