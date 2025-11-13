@@ -4,7 +4,7 @@ import { ApiReferenceReact } from "@scalar/api-reference-react"
 import "@scalar/api-reference-react/style.css"
 import { LayoutDashboard, FileText } from "lucide-react"
 import Link from "next/link"
-import { cn } from "@/utils/css"
+import { cn } from "@/lib/utils"
 
 const navItems = [
 	{

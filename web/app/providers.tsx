@@ -3,7 +3,6 @@
 import { AuthUIProvider } from "@daveyplate/better-auth-ui"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import type { ReactNode } from "react"
 import { authClient } from "@/utils/auth-client"
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -12,6 +11,12 @@ import { createConnectTransport } from "@connectrpc/connect-web"
 import { useState } from "react"
 
 import { ThemeProvider } from "next-themes"
+
+import { Toaster } from "@/components/ui/sonner"
+
+import { TanStackDevtools } from "@tanstack/react-devtools"
+import { FormDevtoolsPlugin } from "@tanstack/react-form-devtools"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 const transport = createConnectTransport({
 	baseUrl: "/api",
@@ -72,9 +77,24 @@ export function Providers({ children }: { children: React.ReactNode }) {
 				}}
 			>
 				<TransportProvider transport={transport}>
-					<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+					<QueryClientProvider client={queryClient}>
+						{children}
+
+						<TanStackDevtools
+							plugins={[
+								{
+									name: "TanStack Query",
+									render: <ReactQueryDevtools />,
+									defaultOpen: false,
+								},
+								FormDevtoolsPlugin(),
+							]}
+						/>
+					</QueryClientProvider>
 				</TransportProvider>
 			</AuthUIProvider>
+
+			<Toaster />
 		</ThemeProvider>
 	)
 }

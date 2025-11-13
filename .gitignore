@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+buf.lock
+
+**/*validate_pb.ts
+**/*.swagger.json
+**/openapi.json

@@ -44,6 +44,12 @@ const data = {
 			title: "Dashboard",
 			url: "/dashboard",
 			icon: LayoutDashboard,
+			items: [
+				{
+					title: "Create Course",
+					url: "/dashboard/create-course",
+				},
+			],
 		},
 		{
 			title: "Docs",

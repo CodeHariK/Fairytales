@@ -41,18 +41,25 @@ message GetUserCoursesResponse {
 	int32 total = 2;
 }
 
+// Lesson represents a lesson within a course.
+message Lesson {
+	string title = 1;
+	string description = 2;
+	int32 duration = 3; // Duration in minutes
+}
+
 // Course represents a course entity.
 message Course {
 	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	string title = 2;
-	string category = 3;
-	CourseLevel level = 4;
-	int32 lessons = 5;
-	int32 hours = 6;
-	int32 students = 7;
-	int32 price = 8;
-	string image = 9;
-	CourseStatus status = 10;
+	string description = 3;
+	repeated bytes category_ids = 4 [(buf.validate.field).repeated.items.bytes.len = 16]; // Multiple category IDs
+	CourseLevel level = 5;
+	repeated Lesson lessons = 6;
+	int32 price = 7;
+	string image = 8;
+	CourseStatus status = 9;
+	bytes creator_id = 10 [(buf.validate.field).bytes.len = 16];
 }
 
 // GetCoursesPaginatedRequest is the request for paginated courses.
@@ -73,14 +80,15 @@ message GetCoursesPaginatedResponse {
 
 // CreateCourseRequest is the request to create a new course.
 message CreateCourseRequest {
-	string title = 1;
-	string category = 2;
-	CourseLevel level = 3;
-	int32 lessons = 4;
-	int32 hours = 5;
-	int32 price = 6;
-	string image = 7;
-	CourseStatus status = 8;
+	string title = 1; // Required: Course title
+	optional string description = 2;
+	repeated bytes category_ids = 3 [(buf.validate.field).repeated.items.bytes.len = 16]; // Can be empty, categories can be added later
+	optional CourseLevel level = 4;
+	repeated Lesson lessons = 5; // Can be empty, lessons can be added later
+	optional int32 price = 6;
+	optional string image = 7;
+	optional CourseStatus status = 8; // Defaults to DRAFT if not provided
+	bytes creator_id = 9 [(buf.validate.field).bytes.len = 16]; // Required: Creator's user ID
 }
 
 // CreateCourseResponse contains the created course.
@@ -92,10 +100,10 @@ message CreateCourseResponse {
 message UpdateCourseRequest {
 	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	optional string title = 2;
-	optional string category = 3;
-	optional CourseLevel level = 4;
-	optional int32 lessons = 5;
-	optional int32 hours = 6;
+	optional string description = 3;
+	repeated bytes category_ids = 4 [(buf.validate.field).repeated.items.bytes.len = 16]; // If provided, replaces all categories
+	optional CourseLevel level = 5;
+	repeated Lesson lessons = 6; // If provided, replaces all lessons
 	optional int32 price = 7;
 	optional string image = 8;
 	optional CourseStatus status = 9;

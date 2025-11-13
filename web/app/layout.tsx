@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Geist_Mono } from "next/font/google"
 import { Providers } from "./providers"
-import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 
 const geistMono = Geist_Mono({
@@ -22,10 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${geistMono.variable} font-mono antialiased`}>
-				<Providers>
-					{children}
-					<Toaster />
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)

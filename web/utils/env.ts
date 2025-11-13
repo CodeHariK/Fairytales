@@ -7,7 +7,7 @@ const schema = z.object({
 		.min(1)
 		.refine((s) => s.startsWith("postgres"), "Must be a Postgres URL"),
 	BETTER_AUTH_SECRET: z.string().min(16),
-	NEXT_PUBLIC_APP_NAME: z.string().default("AuthManager"),
+	NEXT_PUBLIC_APP_NAME: z.string().default("Fairytales"),
 	REDIS_USERNAME: z.string().optional(),
 	REDIS_PASSWORD: z.string(),
 	REDIS_HOST: z.string(),
@@ -55,7 +55,7 @@ if (typeof window === "undefined") {
 		NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL!,
 		GOOSE_DBSTRING: "",
 		BETTER_AUTH_SECRET: "",
-		NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME ?? "AuthManager",
+		NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME ?? "Fairytales",
 		REDIS_USERNAME: undefined,
 		REDIS_PASSWORD: "",
 		REDIS_HOST: "",

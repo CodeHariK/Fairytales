@@ -7,17 +7,18 @@ import { getMockDataStore } from "./mock-data"
 
 export function createCourse(req: CreateCourseRequest): CreateCourseResponse {
 	// Create a new course with the provided data
+	// Optional fields can be omitted, defaults will be used
 	const newCourse = create(CourseSchema, {
 		id: createUuidV7(),
 		title: req.title,
-		category: req.category,
-		level: req.level,
-		lessons: req.lessons,
-		hours: req.hours,
-		students: 0, // New courses start with 0 students
-		price: req.price,
-		image: req.image,
-		status: req.status,
+		description: req.description ?? "",
+		categoryIds: req.categoryIds ?? [],
+		level: req.level ?? 0, // COURSE_LEVEL_UNSPECIFIED
+		lessons: req.lessons ?? [],
+		price: req.price ?? 0,
+		image: req.image ?? "",
+		status: req.status ?? 2, // COURSE_STATUS_DRAFT
+		creatorId: req.creatorId,
 	})
 
 	if (env.DEBUG_DATA) {
