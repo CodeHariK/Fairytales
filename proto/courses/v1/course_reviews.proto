@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package courses.v1;
+
+import "buf/validate/validate.proto";
+
+option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
+
+// CourseReviewService provides methods to manage course reviews.
+service CourseReviewService {
+	// GetCourseReviews returns all reviews for a specific course.
+	rpc GetCourseReviews(GetCourseReviewsRequest) returns (GetCourseReviewsResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetCourseReviewsPaginated returns paginated reviews for a specific course.
+	rpc GetCourseReviewsPaginated(GetCourseReviewsPaginatedRequest) returns (GetCourseReviewsPaginatedResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// CreateCourseReview creates a new review for a course.
+	rpc CreateCourseReview(CreateCourseReviewRequest) returns (CreateCourseReviewResponse);
+	
+	// UpdateCourseReview updates an existing review.
+	rpc UpdateCourseReview(UpdateCourseReviewRequest) returns (UpdateCourseReviewResponse);
+	
+	// DeleteCourseReview deletes a review.
+	rpc DeleteCourseReview(DeleteCourseReviewRequest) returns (DeleteCourseReviewResponse);
+	
+	// GetUserReview returns a user's review for a specific course.
+	rpc GetUserReview(GetUserReviewRequest) returns (GetUserReviewResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+}
+
+// CourseReview represents a review for a course.
+message CourseReview {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+	bytes course_id = 2 [(buf.validate.field).bytes.len = 16];
+	bytes user_id = 3 [(buf.validate.field).bytes.len = 16];
+	int32 rating = 4 [(buf.validate.field).int32.gte = 1, (buf.validate.field).int32.lte = 5]; // Rating from 1 to 5
+	string comment = 5; // Review comment
+	int64 created_at = 6; // Timestamp in Unix seconds
+	int64 updated_at = 7; // Timestamp in Unix seconds
+}
+
+// GetCourseReviewsRequest is the request to get reviews for a course.
+message GetCourseReviewsRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+	optional int32 min_rating = 2; // Optional filter by minimum rating (1-5)
+}
+
+// GetCourseReviewsResponse contains the list of course reviews.
+message GetCourseReviewsResponse {
+	repeated CourseReview reviews = 1;
+	int32 total = 2;
+	double average_rating = 3; // Average rating for the course
+}
+
+// GetCourseReviewsPaginatedRequest is the request for paginated reviews.
+message GetCourseReviewsPaginatedRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+	optional int32 min_rating = 2; // Optional filter by minimum rating (1-5)
+	int32 page = 3;
+	int32 page_size = 4;
+}
+
+// GetCourseReviewsPaginatedResponse contains paginated reviews.
+message GetCourseReviewsPaginatedResponse {
+	repeated CourseReview reviews = 1;
+	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
+	double average_rating = 6; // Average rating for the course
+}
+
+// CreateCourseReviewRequest is the request to create a new review.
+message CreateCourseReviewRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+	bytes user_id = 2 [(buf.validate.field).bytes.len = 16];
+	int32 rating = 3 [(buf.validate.field).int32.gte = 1, (buf.validate.field).int32.lte = 5];
+	string comment = 4; // Review comment
+}
+
+// CreateCourseReviewResponse contains the created review.
+message CreateCourseReviewResponse {
+	CourseReview review = 1;
+}
+
+// UpdateCourseReviewRequest is the request to update a review.
+message UpdateCourseReviewRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+	optional int32 rating = 2 [(buf.validate.field).int32.gte = 1, (buf.validate.field).int32.lte = 5];
+	optional string comment = 3;
+}
+
+// UpdateCourseReviewResponse contains the updated review.
+message UpdateCourseReviewResponse {
+	CourseReview review = 1;
+}
+
+// DeleteCourseReviewRequest is the request to delete a review.
+message DeleteCourseReviewRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+}
+
+// DeleteCourseReviewResponse confirms the deletion.
+message DeleteCourseReviewResponse {
+	bool success = 1;
+}
+
+// GetUserReviewRequest is the request to get a user's review for a course.
+message GetUserReviewRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+	bytes user_id = 2 [(buf.validate.field).bytes.len = 16];
+}
+
+// GetUserReviewResponse contains the user's review if it exists.
+message GetUserReviewResponse {
+	optional CourseReview review = 1; // Optional, null if user hasn't reviewed
+}
+

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/modified/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ArrowRight } from "lucide-react"
-import { getSubtleColorFromHash } from "@/lib/utils"
+import { getSubtleEquidistantColors } from "@/lib/utils"
 
 const leaderboardData = [
 	{
@@ -31,6 +31,9 @@ const leaderboardData = [
 ]
 
 export function Leaderboard() {
+	// Generate equidistant colors based on the number of students
+	const colors = getSubtleEquidistantColors(leaderboardData.length)
+
 	return (
 		<Card>
 			<CardHeader>
@@ -41,13 +44,13 @@ export function Leaderboard() {
 			</CardHeader>
 			<CardContent>
 				<div className="space-y-3">
-					{leaderboardData.map((student) => (
+					{leaderboardData.map((student, index) => (
 						<div key={student.rank} className="flex items-center gap-3">
 							<span className="text-sm font-medium w-6">{student.rank}.</span>
 							<Avatar className="h-8 w-8">
 								<AvatarFallback
 									style={{
-										backgroundColor: getSubtleColorFromHash(student.name),
+										backgroundColor: colors[index],
 									}}
 								>
 									{student.initials}

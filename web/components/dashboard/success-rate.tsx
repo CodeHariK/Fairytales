@@ -4,8 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/modified/
 import { Progress } from "@/components/modified/progress"
 import { Button } from "@/components/ui/button"
 import { TrendingUp, Users, CheckCircle2 } from "lucide-react"
+import { getSubtleEquidistantColors } from "@/lib/utils"
 
 export function SuccessRate() {
+	// Generate equidistant colors (need 2 colors for the two progress bars)
+	const colors = getSubtleEquidistantColors(2)
+
 	return (
 		<Card>
 			<CardHeader>
@@ -19,7 +23,7 @@ export function SuccessRate() {
 							<div
 								className="flex items-center gap-1 text-sm"
 								style={{
-									color: "var(--chart-2)",
+									color: colors[1],
 								}}
 							>
 								<TrendingUp className="h-4 w-4" />
@@ -27,7 +31,13 @@ export function SuccessRate() {
 							</div>
 						</div>
 						<div className="text-sm text-muted-foreground mb-2">Previous: 85% Target: 100%</div>
-						<Progress value={88} className="h-2" indicatorClassName="bg-[var(--chart-1)]" />
+						<Progress
+							value={88}
+							className="h-2"
+							indicatorStyle={{
+								backgroundColor: colors[0],
+							}}
+						/>
 					</div>
 					<div className="pt-4 border-t space-y-3">
 						<div className="flex items-center gap-4 w-full">
@@ -42,7 +52,7 @@ export function SuccessRate() {
 								<CheckCircle2
 									className="h-4 w-4"
 									style={{
-										color: "var(--chart-2)",
+										color: colors[1],
 									}}
 								/>
 								<div className="flex-1">
@@ -52,7 +62,13 @@ export function SuccessRate() {
 							</div>
 						</div>
 						<div className="text-xs text-muted-foreground">88.0% of total</div>
-						<Progress value={88} className="h-2" indicatorClassName="bg-[var(--chart-2)]" />
+						<Progress
+							value={88}
+							className="h-2"
+							indicatorStyle={{
+								backgroundColor: colors[1],
+							}}
+						/>
 						<Button variant="outline" className="w-full">
 							View Details
 						</Button>

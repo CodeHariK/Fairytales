@@ -2,9 +2,8 @@
 
 import { Search } from "lucide-react"
 import { Input } from "@/components/modified/input"
-import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/modified/sidebar"
-import { UserMenu } from "@/components/user-menu"
+import { UserMenu } from "@/components/nav/user-menu"
 
 export function SiteHeader() {
 	return (

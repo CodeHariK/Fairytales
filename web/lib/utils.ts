@@ -5,31 +5,30 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
-export function getColorFromHash(
-	str: string,
-	saturation: number = 70,
-	lightness: number = 50
-): string {
-	// Simple hash function to convert string to number
-	let hash = 1
-	for (let i = 0; i < str.length; i++) {
-		hash *= str.charCodeAt(i)
+export function getEquidistantColors(
+	count: number,
+	chroma: number = 0.12,
+	lightness: number = 0.5
+): string[] {
+	const colors: string[] = []
+	const hueStep = 360 / count
+
+	// Clamp chroma and lightness to valid ranges
+	const c = Math.max(0, Math.min(0.4, chroma))
+	const l = Math.max(0, Math.min(1, lightness))
+
+	for (let i = 0; i < count; i++) {
+		const hue = (i * hueStep) % 360
+		colors.push(`oklch(${l} ${c} ${hue})`)
 	}
 
-	// Map hash to hue range (0-360)
-	const hue = Math.abs(hash) % 360
-
-	// Clamp saturation and lightness to valid ranges
-	const sat = Math.max(0, Math.min(100, saturation))
-	const light = Math.max(0, Math.min(100, lightness))
-
-	return `hsl(${hue}, ${sat}%, ${light}%)`
+	return colors
 }
 
-export function getVibrantColorFromHash(str: string): string {
-	return getColorFromHash(str, 75, 55)
+export function getSubtleEquidistantColors(count: number): string[] {
+	return getEquidistantColors(count, 0.08, 0.75)
 }
 
-export function getSubtleColorFromHash(str: string): string {
-	return getColorFromHash(str, 64, 88)
+export function getVibrantEquidistantColors(count: number): string[] {
+	return getEquidistantColors(count, 0.18, 0.55)
 }

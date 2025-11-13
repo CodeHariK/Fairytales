@@ -6,7 +6,7 @@
 		"**/.next": true,
 		"**/out": true,
 		"**/build": true,
-		// "**/gen": true,
+		"**/gen": true,
 		"**/dist": true,
 		"**/coverage": true,
 		"**/*.min.js": true,
@@ -61,7 +61,7 @@
 		"**/build/**": true,
 		"**/dist/**": true,
 		"**/coverage/**": true,
-		// "**/gen/**": true,
+		"**/gen/**": true,
 		"**/bun.lock": true,
 		"**/package-lock.json": true
 	}

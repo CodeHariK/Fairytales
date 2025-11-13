@@ -11,7 +11,6 @@ function createMockLessons(count: number): Lesson[] {
 	return Array.from({ length: count }, (_, i) =>
 		create(LessonSchema, {
 			title: `Lesson ${i + 1}`,
-			description: `Description for lesson ${i + 1}`,
 			duration: 30 + i * 5, // 30-35 minutes per lesson
 		})
 	)
