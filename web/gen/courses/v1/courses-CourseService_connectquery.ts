@@ -5,18 +5,25 @@
 import { CourseService } from "./courses_pb";
 
 /**
- * GetUserCourses returns all courses for the current user.
+ * GetCoursesByUserId returns all courses for a specific user ID.
  *
- * @generated from rpc courses.v1.CourseService.GetUserCourses
+ * @generated from rpc courses.v1.CourseService.GetCoursesByUserId
  */
-export const getUserCourses = CourseService.method.getUserCourses;
+export const getCoursesByUserId = CourseService.method.getCoursesByUserId;
 
 /**
- * GetCoursesPaginated returns paginated courses for the current user.
+ * GetCoursesByCreatorId returns all courses created by a specific creator ID.
  *
- * @generated from rpc courses.v1.CourseService.GetCoursesPaginated
+ * @generated from rpc courses.v1.CourseService.GetCoursesByCreatorId
  */
-export const getCoursesPaginated = CourseService.method.getCoursesPaginated;
+export const getCoursesByCreatorId = CourseService.method.getCoursesByCreatorId;
+
+/**
+ * GetCourseById returns a course by its ID.
+ *
+ * @generated from rpc courses.v1.CourseService.GetCourseById
+ */
+export const getCourseById = CourseService.method.getCourseById;
 
 /**
  * CreateCourse creates a new course.
@@ -38,3 +45,10 @@ export const updateCourse = CourseService.method.updateCourse;
  * @generated from rpc courses.v1.CourseService.DeleteCourse
  */
 export const deleteCourse = CourseService.method.deleteCourse;
+
+/**
+ * HealthCheck verifies that all course service endpoints are accessible and working.
+ *
+ * @generated from rpc courses.v1.CourseService.HealthCheck
+ */
+export const healthCheck = CourseService.method.healthCheck;

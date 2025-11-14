@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package health.v1;
+
+option go_package = "github.com/codeharik/fairytales/health/v1;healthv1";
+
+// HealthCheckRequest is the request for health check.
+message HealthCheckRequest {
+	// Empty - no parameters needed
+}
+
+// RouteHealth represents the health status of a single route.
+message RouteHealth {
+	string name = 1;
+	bool ok = 2;
+	optional string error = 3;
+}
+
+// HealthCheckResponse contains the health status of all routes.
+message HealthCheckResponse {
+	bool ok = 1;
+	repeated RouteHealth routes = 2;
+}
+

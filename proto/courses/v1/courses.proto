@@ -3,18 +3,24 @@ syntax = "proto3";
 package courses.v1;
 
 import "buf/validate/validate.proto";
+import "health/v1/health.proto";
 
 option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
 
 // CourseService provides methods to manage user courses.
 service CourseService {
-	// GetUserCourses returns all courses for the current user.
-	rpc GetUserCourses(GetUserCoursesRequest) returns (GetUserCoursesResponse) {
+	// GetCoursesByUserId returns all courses for a specific user ID.
+	rpc GetCoursesByUserId(GetCoursesByUserIdRequest) returns (GetCoursesByUserIdResponse) {
 		option idempotency_level = NO_SIDE_EFFECTS;
 	}
 	
-	// GetCoursesPaginated returns paginated courses for the current user.
-	rpc GetCoursesPaginated(GetCoursesPaginatedRequest) returns (GetCoursesPaginatedResponse) {
+	// GetCoursesByCreatorId returns all courses created by a specific creator ID.
+	rpc GetCoursesByCreatorId(GetCoursesByCreatorIdRequest) returns (GetCoursesByCreatorIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetCourseById returns a course by its ID.
+	rpc GetCourseById(GetCourseByIdRequest) returns (GetCourseByIdResponse) {
 		option idempotency_level = NO_SIDE_EFFECTS;
 	}
 	
@@ -26,19 +32,50 @@ service CourseService {
 	
 	// DeleteCourse deletes a course.
 	rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
+	
+	// HealthCheck verifies that all course service endpoints are accessible and working.
+	rpc HealthCheck(health.v1.HealthCheckRequest) returns (health.v1.HealthCheckResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
 }
 
-// GetUserCoursesRequest is the request to get user courses.
-message GetUserCoursesRequest {
-	// Optional filter by status (all, active, draft, archived)
-	// If not provided, returns all courses.
-	optional string status_filter = 1;
+// GetCoursesByUserIdRequest is the request to get courses by user ID.
+message GetCoursesByUserIdRequest {
+	// Optional user ID. If not provided, uses the authenticated user's ID from session.
+	optional bytes user_id = 1 [(buf.validate.field).bytes.len = 16];
+	// Pagination: page number (1-indexed)
+	int32 page = 2;
+	// Pagination: number of items per page
+	int32 page_size = 3;
 }
 
-// GetUserCoursesResponse contains the list of user courses.
-message GetUserCoursesResponse {
+// GetCoursesByUserIdResponse contains the list of user courses.
+message GetCoursesByUserIdResponse {
 	repeated Course courses = 1;
 	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
+}
+
+// GetCoursesByCreatorIdRequest is the request to get courses by creator ID.
+message GetCoursesByCreatorIdRequest {
+	optional bytes creator_id = 1 [(buf.validate.field).bytes.len = 16];
+	// Optional filter by status. If not provided or COURSE_STATUS_UNSPECIFIED, returns all courses.
+	optional CourseStatus status_filter = 2;
+	// Pagination: page number (1-indexed)
+	int32 page = 3;
+	// Pagination: number of items per page
+	int32 page_size = 4;
+}
+
+// GetCoursesByCreatorIdResponse contains the list of creator courses.
+message GetCoursesByCreatorIdResponse {
+	repeated Course courses = 1;
+	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
 }
 
 // Lesson represents a lesson within a course.
@@ -63,20 +100,14 @@ message Course {
 	bytes creator_id = 10 [(buf.validate.field).bytes.len = 16];
 }
 
-// GetCoursesPaginatedRequest is the request for paginated courses.
-message GetCoursesPaginatedRequest {
-	optional string status_filter = 1;
-	int32 page = 2;
-	int32 page_size = 3;
+// GetCourseByIdRequest is the request to get a course by ID.
+message GetCourseByIdRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 }
 
-// GetCoursesPaginatedResponse contains paginated courses.
-message GetCoursesPaginatedResponse {
-	repeated Course courses = 1;
-	int32 total = 2;
-	int32 page = 3;
-	int32 page_size = 4;
-	int32 total_pages = 5;
+// GetCourseByIdResponse contains the course.
+message GetCourseByIdResponse {
+	Course course = 1;
 }
 
 // CreateCourseRequest is the request to create a new course.

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useQuery } from "@connectrpc/connect-query"
-import { getUserCourses } from "@/gen/courses/v1/courses-CourseService_connectquery"
+import { getCoursesByCreatorId } from "@/gen/courses/v1/courses-CourseService_connectquery"
 import { CourseLevel, CourseStatus } from "@/gen/courses/v1/courses_pb"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import {
@@ -38,7 +38,7 @@ const statusMap: Record<CourseStatus, CourseStatusDisplay> = {
 }
 
 export function CourseGrid() {
-	const [filter, setFilter] = React.useState("all")
+	const [filter, setFilter] = React.useState<CourseStatus | "all">("all")
 	const [currentPage, setCurrentPage] = React.useState(1)
 	const itemsPerPage = 12
 
@@ -47,9 +47,15 @@ export function CourseGrid() {
 		setCurrentPage(1)
 	}, [filter])
 
+	// 16-byte zero UUID (all zeros)
+	const zeroCreatorId = React.useMemo(() => new Uint8Array(16), [])
+
 	const { data, isLoading, error } = useQuery(
-		getUserCourses,
-		filter === "all" ? undefined : { statusFilter: filter },
+		getCoursesByCreatorId,
+		{
+			creatorId: zeroCreatorId,
+			...(filter !== "all" && { statusFilter: filter }),
+		},
 		{
 			enabled: true,
 		}
@@ -83,7 +89,7 @@ export function CourseGrid() {
 		})
 	}, [data])
 
-	const total = data?.total || 0
+	const total = courses.length
 	const totalPages = Math.ceil(total / itemsPerPage)
 	const startIndex = (currentPage - 1) * itemsPerPage
 	const endIndex = startIndex + itemsPerPage
@@ -94,15 +100,24 @@ export function CourseGrid() {
 			<div className="flex items-center justify-between px-4 lg:px-6">
 				<ToggleGroup
 					type="single"
-					value={filter}
-					onValueChange={(value) => value && setFilter(value)}
+					value={filter === "all" ? "all" : filter.toString()}
+					onValueChange={(value) => {
+						if (value === "all") {
+							setFilter("all")
+						} else {
+							const statusValue = parseInt(value, 10) as CourseStatus
+							if (Object.values(CourseStatus).includes(statusValue)) {
+								setFilter(statusValue)
+							}
+						}
+					}}
 					variant="outline"
 					spacing={0}
 				>
 					<ToggleGroupItem value="all">All</ToggleGroupItem>
-					<ToggleGroupItem value="active">Active</ToggleGroupItem>
-					<ToggleGroupItem value="draft">Draft</ToggleGroupItem>
-					<ToggleGroupItem value="archived">Archived</ToggleGroupItem>
+					<ToggleGroupItem value={CourseStatus.ACTIVE.toString()}>Active</ToggleGroupItem>
+					<ToggleGroupItem value={CourseStatus.DRAFT.toString()}>Draft</ToggleGroupItem>
+					<ToggleGroupItem value={CourseStatus.ARCHIVED.toString()}>Archived</ToggleGroupItem>
 				</ToggleGroup>
 
 				<Select defaultValue="all">

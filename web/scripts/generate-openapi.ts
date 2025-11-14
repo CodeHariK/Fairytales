@@ -83,6 +83,88 @@ async function scanApiRoutes(projectDir: string): Promise<string[]> {
 	return routes
 }
 
+// Base64-encoded 16-byte zero UUID: 16 bytes of zeros
+const ZERO_UUID_BASE64 = "PAAAAAAAAAAAAAAAAAAAAA=="
+
+/**
+ * Recursively processes an object to replace empty strings in bytes fields
+ * with a base64-encoded 16-byte zero UUID.
+ * For repeated bytes fields (arrays), sets example to empty array [].
+ */
+function replaceEmptyBytesFields(obj: any, parentSchema?: any): any {
+	if (obj === null || obj === undefined) {
+		return obj
+	}
+
+	if (Array.isArray(obj)) {
+		return obj.map((item) => replaceEmptyBytesFields(item, parentSchema))
+	}
+
+	if (typeof obj === "object") {
+		const result: any = {}
+		for (const [key, value] of Object.entries(obj)) {
+			// Check if this is an array of bytes (repeated bytes field)
+			const isRepeatedBytesField =
+				typeof value === "object" &&
+				value !== null &&
+				"type" in value &&
+				(value as any).type === "array" &&
+				"items" in value &&
+				(value as any).items &&
+				typeof (value as any).items === "object" &&
+				(value as any).items.type === "string" &&
+				(value as any).items.format === "byte"
+
+			// Check if this is a schema property with format: "byte" (single bytes field)
+			const isBytesField =
+				typeof value === "object" &&
+				value !== null &&
+				"type" in value &&
+				(value as any).type === "string" &&
+				(value as any).format === "byte"
+
+			// Check if this is an example value and the parent schema indicates bytes
+			const isBytesExample =
+				key === "example" &&
+				typeof value === "string" &&
+				value === "" &&
+				parentSchema?.format === "byte"
+
+			if (isRepeatedBytesField) {
+				// For repeated bytes fields, set array example to empty array
+				// Remove example from items since array example takes precedence
+				const items = (value as any).items
+				const { example: _, ...itemsWithoutExample } = items
+				result[key] = {
+					...value,
+					example: [],
+					items: itemsWithoutExample,
+				}
+			} else if (isBytesField) {
+				// If it's a single bytes field schema definition, add example with zero UUID
+				result[key] = {
+					...value,
+					example: ZERO_UUID_BASE64,
+				}
+			} else if (isBytesExample) {
+				// Replace empty example with zero UUID
+				result[key] = ZERO_UUID_BASE64
+			} else {
+				// Recursively process nested objects
+				result[key] = replaceEmptyBytesFields(value, isBytesField ? value : parentSchema)
+			}
+		}
+		return result
+	}
+
+	// For primitive values, check if it's an empty string in a bytes context
+	if (typeof obj === "string" && obj === "" && parentSchema?.format === "byte") {
+		return ZERO_UUID_BASE64
+	}
+
+	return obj
+}
+
 async function loadApidocsSwagger(projectDir: string): Promise<Partial<SwaggerSpec>> {
 	try {
 		// Generated files are in projectDir/gen (e.g., web/gen) per buf.gen.yaml
@@ -104,13 +186,16 @@ async function loadApidocsSwagger(projectDir: string): Promise<Partial<SwaggerSp
 			console.log(`   Found ${Object.keys(swagger.definitions).length} definitions`)
 		}
 
-		// Return swagger spec as-is (paths, definitions, tags, consumes, produces)
+		// Process the swagger spec to replace empty bytes fields
+		const processedSwagger = replaceEmptyBytesFields(swagger)
+
+		// Return swagger spec (paths, definitions, tags, consumes, produces)
 		return {
-			paths: swagger.paths,
-			definitions: swagger.definitions,
-			tags: swagger.tags,
-			consumes: swagger.consumes,
-			produces: swagger.produces,
+			paths: processedSwagger.paths,
+			definitions: processedSwagger.definitions,
+			tags: processedSwagger.tags,
+			consumes: processedSwagger.consumes,
+			produces: processedSwagger.produces,
 		}
 	} catch (error) {
 		console.warn(`⚠️  Could not load apidocs.swagger.json:`, error)

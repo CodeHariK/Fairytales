@@ -1,4 +1,4 @@
-import { parse, stringify, v7 as uuidv7 } from "uuid"
+import { parse, v7 as uuidv7 } from "uuid"
 
 /**
  * Converts a UUID Uint8Array (16 bytes) to a UUID string representation.
@@ -6,7 +6,15 @@ import { parse, stringify, v7 as uuidv7 } from "uuid"
  * @returns A UUID string representation (e.g., "6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b")
  */
 export function uuidToHexString(uuid: Uint8Array): string {
-	return stringify(uuid)
+	if (!uuid || uuid.length !== 16) {
+		throw new Error("Invalid UUID: must be 16 bytes")
+	}
+	// Manually format as UUID string since we're using raw bytes
+	// Format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+	const hex = Array.from(uuid)
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("")
+	return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20, 32)}`
 }
 
 /**

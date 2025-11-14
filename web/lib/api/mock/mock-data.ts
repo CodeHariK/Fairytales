@@ -20,9 +20,11 @@ function createMockLessons(count: number): Lesson[] {
  * In-memory mock data store for testing UI without database
  * Only used when DEBUG_DATA=true
  */
-class MockDataStore {
+export class MockDataStore {
 	private courses: Course[] = []
-	private mockCreatorId = createUuidV7()
+	public static mockCreatorId = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+	public static mockCategoryId1 = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+	public static mockCategoryId2 = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2])
 
 	constructor() {
 		// Initialize with sample data
@@ -31,78 +33,78 @@ class MockDataStore {
 				id: createUuidV7(),
 				title: "Graphic Design Fundamentals",
 				description: "Learn the fundamentals of graphic design",
-				categoryIds: [createUuidV7()],
+				categoryIds: [MockDataStore.mockCategoryId1],
 				level: CourseLevel.BEGINNER,
 				lessons: createMockLessons(20),
 				price: 99,
 				image:
 					"https://img.freepik.com/free-photo/beautiful-house-with-nature-elements_23-2151848749.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: this.mockCreatorId,
+				creatorId: MockDataStore.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Digital Marketing Mastery",
 				description: "Master digital marketing strategies",
-				categoryIds: [createUuidV7()],
+				categoryIds: [MockDataStore.mockCategoryId1],
 				level: CourseLevel.INTERMEDIATE,
 				lessons: createMockLessons(18),
 				price: 79,
 				image:
 					"https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: this.mockCreatorId,
+				creatorId: MockDataStore.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Business Analytics with Excel",
 				description: "Learn business analytics using Excel",
-				categoryIds: [createUuidV7()],
+				categoryIds: [MockDataStore.mockCategoryId2],
 				level: CourseLevel.INTERMEDIATE,
 				lessons: createMockLessons(22),
 				price: 95,
 				image:
 					"https://img.freepik.com/free-vector/flat-woman-taking-care-plants-indoors_23-2148983751.jpg",
 				status: CourseStatus.DRAFT,
-				creatorId: this.mockCreatorId,
+				creatorId: MockDataStore.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Python for Beginners",
 				description: "Start your Python programming journey",
-				categoryIds: [createUuidV7()],
+				categoryIds: [MockDataStore.mockCategoryId2],
 				level: CourseLevel.BEGINNER,
 				lessons: createMockLessons(25),
 				price: 89,
 				image: "https://img.freepik.com/free-vector/flat-adventure-background_23-2149031058.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: this.mockCreatorId,
+				creatorId: MockDataStore.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "UI/UX Design Basics",
 				description: "Learn the basics of UI/UX design",
-				categoryIds: [createUuidV7()],
+				categoryIds: [MockDataStore.mockCategoryId1, MockDataStore.mockCategoryId2],
 				level: CourseLevel.BEGINNER,
 				lessons: createMockLessons(20),
 				price: 89,
 				image:
 					"https://img.freepik.com/free-photo/anime-style-character-with-water_23-2151080214.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: this.mockCreatorId,
+				creatorId: MockDataStore.mockCreatorId,
 			}),
 			create(CourseSchema, {
 				id: createUuidV7(),
 				title: "Social Media Strategies",
 				description: "Advanced social media marketing strategies",
-				categoryIds: [createUuidV7()],
+				categoryIds: [MockDataStore.mockCategoryId1, MockDataStore.mockCategoryId2],
 				level: CourseLevel.ADVANCED,
 				lessons: createMockLessons(24),
 				price: 109,
 				image:
 					"https://img.freepik.com/free-vector/flat-background-autumn-season-celebration_23-2150696152.jpg",
 				status: CourseStatus.ARCHIVED,
-				creatorId: this.mockCreatorId,
+				creatorId: MockDataStore.mockCreatorId,
 			}),
 		]
 	}

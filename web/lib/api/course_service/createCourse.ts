@@ -3,7 +3,7 @@ import { CourseSchema, CreateCourseResponseSchema } from "@/gen/courses/v1/cours
 import type { CreateCourseRequest, CreateCourseResponse } from "@/gen/courses/v1/courses_pb"
 import { createUuidV7 } from "@/utils/uuid"
 import { env } from "@/utils/env"
-import { getMockDataStore } from "./mock-data"
+import { getMockDataStore } from "../mock/mock-data"
 
 export function createCourse(req: CreateCourseRequest): CreateCourseResponse {
 	// Create a new course with the provided data
