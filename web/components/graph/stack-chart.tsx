@@ -8,7 +8,7 @@ import {
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/graph/chart"
 import { Star } from "lucide-react"
 import { CardHeaderWithSelect } from "./card-header-with-select"
 import { getSubtleEquidistantColors } from "@/lib/utils"

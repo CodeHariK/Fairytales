@@ -41,6 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 buf.lock
+bun.lock
 
 **/*validate_pb.ts
 **/*.swagger.json

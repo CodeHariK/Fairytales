@@ -7,7 +7,7 @@ import {
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/graph/chart"
 import { Separator } from "@/components/ui/separator"
 
 const chartData = [

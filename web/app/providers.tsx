@@ -15,7 +15,7 @@ import { ThemeProvider } from "next-themes"
 import { Toaster } from "@/components/ui/sonner"
 
 import { TanStackDevtools } from "@tanstack/react-devtools"
-import { FormDevtoolsPlugin } from "@tanstack/react-form-devtools"
+import { formDevtoolsPlugin } from "@tanstack/react-form-devtools"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 const transport = createConnectTransport({
@@ -93,7 +93,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 									render: <ReactQueryDevtools />,
 									defaultOpen: false,
 								},
-								FormDevtoolsPlugin(),
+								formDevtoolsPlugin(),
 							]}
 						/>
 					</QueryClientProvider>

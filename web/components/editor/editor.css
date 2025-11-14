@@ -1,0 +1,186 @@
+/* TipTap Editor Styles */
+.ProseMirror {
+	outline: none;
+}
+
+.notion-editor p.is-editor-empty:first-child::before {
+	content: attr(data-placeholder);
+	float: left;
+	color: var(--muted-foreground);
+	pointer-events: none;
+	height: 0;
+}
+
+.notion-editor:focus {
+	outline: none;
+}
+
+/* List styles */
+.ProseMirror ul,
+.ProseMirror ol {
+	padding-left: 1.5rem;
+}
+
+.ProseMirror ul {
+	list-style-type: disc;
+}
+
+.ProseMirror ol {
+	list-style-type: decimal;
+}
+
+/* Heading styles */
+.ProseMirror h1 {
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.ProseMirror h2 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.3;
+	margin-top: 1.25rem;
+	margin-bottom: 0.75rem;
+}
+
+.ProseMirror h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	line-height: 1.4;
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+/* Text alignment */
+.ProseMirror [style*="text-align: center"] {
+	text-align: center;
+}
+
+.ProseMirror [style*="text-align: left"] {
+	text-align: left;
+}
+
+.ProseMirror [style*="text-align: right"] {
+	text-align: right;
+}
+
+.ProseMirror [style*="text-align: justify"] {
+	text-align: justify;
+}
+
+/* Code styling */
+.ProseMirror code {
+	background-color: var(--muted);
+	padding: 0.125rem 0.25rem;
+	border-radius: 0.25rem;
+	font-size: 0.875em;
+	font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.ProseMirror pre {
+	background-color: var(--muted);
+	padding: 1rem;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+	margin: 1rem 0;
+}
+
+.ProseMirror pre code {
+	background-color: transparent;
+	padding: 0;
+}
+
+/* Underline styling */
+.ProseMirror u {
+	text-decoration: underline;
+}
+
+/* Background color styling - uses span with inline style */
+.ProseMirror span[style*="background-color"] {
+	border-radius: 0.25rem;
+	padding: 0.125rem 0;
+}
+
+/* Link styling */
+.ProseMirror a {
+	color: var(--primary);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.ProseMirror a:hover {
+	text-decoration: underline;
+	opacity: 0.8;
+}
+
+/* Drag handle styling */
+.drag-handle {
+	align-items: center;
+	background: hsl(var(--muted));
+	border-radius: 0.25rem;
+	border: 1px solid hsl(var(--border));
+	cursor: grab;
+	display: flex;
+	height: 1.5rem;
+	justify-content: center;
+	width: 1.5rem;
+	transition: background-color 0.2s;
+}
+
+.drag-handle:hover {
+	background: hsl(var(--accent));
+}
+
+.drag-handle:active {
+	cursor: grabbing;
+}
+
+.drag-handle svg {
+	width: 1.25rem;
+	height: 1.25rem;
+	color: hsl(var(--muted-foreground));
+}
+
+/* Sketchfab embed styles */
+.sketchfab-embed-wrapper {
+	margin: 1.5rem 0;
+	border-radius: 8px;
+	overflow: hidden;
+	position: relative;
+}
+
+.sketchfab-embed-wrapper iframe {
+	width: 100%;
+	height: 480px;
+	border: none;
+	border-radius: 8px;
+	display: block;
+}
+
+/* Image styling */
+.ProseMirror img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.5rem;
+	margin: 1rem 0;
+	display: block;
+}
+
+.ProseMirror img[data-align="left"] {
+	float: left;
+	margin-right: 1rem;
+}
+
+.ProseMirror img[data-align="right"] {
+	float: right;
+	margin-left: 1rem;
+}
+
+.ProseMirror img[data-align="center"] {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

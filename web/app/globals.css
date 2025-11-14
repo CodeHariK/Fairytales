@@ -161,7 +161,7 @@ body {
 @layer base {
 	* {
 		border-color: var(--border);
-		outline-color: hsl(var(--ring) / 0.5);
+		outline-color: var(--ring);
 	}
 
 	body {
