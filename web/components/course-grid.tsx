@@ -71,7 +71,7 @@ export function CourseGrid() {
 			// Convert categoryIds to a string (use first category or default)
 			const category =
 				course.categoryIds && course.categoryIds.length > 0
-					? uuidToHexString(course.categoryIds[0])
+					? course.categoryIds[0].toString()
 					: "Uncategorized"
 
 			return {

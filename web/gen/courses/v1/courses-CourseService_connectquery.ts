@@ -19,6 +19,13 @@ export const getCoursesByUserId = CourseService.method.getCoursesByUserId;
 export const getCoursesByCreatorId = CourseService.method.getCoursesByCreatorId;
 
 /**
+ * GetCoursesByCategoryId returns all courses that belong to a specific category ID.
+ *
+ * @generated from rpc courses.v1.CourseService.GetCoursesByCategoryId
+ */
+export const getCoursesByCategoryId = CourseService.method.getCoursesByCategoryId;
+
+/**
  * GetCourseById returns a course by its ID.
  *
  * @generated from rpc courses.v1.CourseService.GetCourseById

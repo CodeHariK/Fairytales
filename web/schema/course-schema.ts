@@ -1,10 +1,10 @@
-import { pgTable, text, timestamp, integer } from "drizzle-orm/pg-core"
+import { pgTable, text, timestamp, integer, serial } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
 import { user } from "./auth-schema"
 
 // CourseCategory represents a course category
 export const courseCategory = pgTable("course_category", {
-	id: text("id").primaryKey(),
+	id: serial("id").primaryKey(),
 	name: text("name").notNull(),
 	description: text("description"),
 	createdAt: timestamp("created_at")
@@ -42,7 +42,7 @@ export const courseCategoryRelation = pgTable("course_category_relation", {
 	courseId: text("course_id")
 		.notNull()
 		.references(() => course.id, { onDelete: "cascade" }),
-	categoryId: text("category_id")
+	categoryId: integer("category_id")
 		.notNull()
 		.references(() => courseCategory.id, { onDelete: "cascade" }),
 	createdAt: timestamp("created_at")

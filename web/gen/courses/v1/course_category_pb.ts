@@ -4,7 +4,6 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Course } from "./courses_pb";
 import { file_courses_v1_courses } from "./courses_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -13,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file courses/v1/course_category.proto.
  */
 export const file_courses_v1_course_category: GenFile = /*@__PURE__*/
-  fileDesc("CiBjb3Vyc2VzL3YxL2NvdXJzZV9jYXRlZ29yeS5wcm90bxIKY291cnNlcy52MSJCCghDYXRlZ29yeRITCgJpZBgBIAEoDEIHukgEegJoEBIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJIk8KFUNyZWF0ZUNhdGVnb3J5UmVxdWVzdBIMCgRuYW1lGAEgASgJEhgKC2Rlc2NyaXB0aW9uGAIgASgJSACIAQFCDgoMX2Rlc2NyaXB0aW9uIkAKFkNyZWF0ZUNhdGVnb3J5UmVzcG9uc2USJgoIY2F0ZWdvcnkYASABKAsyFC5jb3Vyc2VzLnYxLkNhdGVnb3J5InIKFVVwZGF0ZUNhdGVnb3J5UmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoEBIRCgRuYW1lGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBAUIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb24iQAoWVXBkYXRlQ2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiLAoVRGVsZXRlQ2F0ZWdvcnlSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQIikKFkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCIpChJHZXRDYXRlZ29yeVJlcXVlc3QSEwoCaWQYASABKAxCB7pIBHoCaBAiPQoTR2V0Q2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiNwoVTGlzdENhdGVnb3JpZXNSZXF1ZXN0EhMKBnNlYXJjaBgBIAEoCUgAiAEBQgkKB19zZWFyY2giUQoWTGlzdENhdGVnb3JpZXNSZXNwb25zZRIoCgpjYXRlZ29yaWVzGAEgAygLMhQuY291cnNlcy52MS5DYXRlZ29yeRINCgV0b3RhbBgCIAEoBSJpChtHZXRDb3Vyc2VzQnlDYXRlZ29yeVJlcXVlc3QSHAoLY2F0ZWdvcnlfaWQYASABKAxCB7pIBHoCaBASGgoNc3RhdHVzX2ZpbHRlchgCIAEoCUgAiAEBQhAKDl9zdGF0dXNfZmlsdGVyIlIKHEdldENvdXJzZXNCeUNhdGVnb3J5UmVzcG9uc2USIwoHY291cnNlcxgBIAMoCzISLmNvdXJzZXMudjEuQ291cnNlEg0KBXRvdGFsGAIgASgFMr8ECg9DYXRlZ29yeVNlcnZpY2USVwoOQ3JlYXRlQ2F0ZWdvcnkSIS5jb3Vyc2VzLnYxLkNyZWF0ZUNhdGVnb3J5UmVxdWVzdBoiLmNvdXJzZXMudjEuQ3JlYXRlQ2F0ZWdvcnlSZXNwb25zZRJXCg5VcGRhdGVDYXRlZ29yeRIhLmNvdXJzZXMudjEuVXBkYXRlQ2F0ZWdvcnlSZXF1ZXN0GiIuY291cnNlcy52MS5VcGRhdGVDYXRlZ29yeVJlc3BvbnNlElcKDkRlbGV0ZUNhdGVnb3J5EiEuY291cnNlcy52MS5EZWxldGVDYXRlZ29yeVJlcXVlc3QaIi5jb3Vyc2VzLnYxLkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USUwoLR2V0Q2F0ZWdvcnkSHi5jb3Vyc2VzLnYxLkdldENhdGVnb3J5UmVxdWVzdBofLmNvdXJzZXMudjEuR2V0Q2F0ZWdvcnlSZXNwb25zZSIDkAIBElwKDkxpc3RDYXRlZ29yaWVzEiEuY291cnNlcy52MS5MaXN0Q2F0ZWdvcmllc1JlcXVlc3QaIi5jb3Vyc2VzLnYxLkxpc3RDYXRlZ29yaWVzUmVzcG9uc2UiA5ACARJuChRHZXRDb3Vyc2VzQnlDYXRlZ29yeRInLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q2F0ZWdvcnlSZXF1ZXN0GiguY291cnNlcy52MS5HZXRDb3Vyc2VzQnlDYXRlZ29yeVJlc3BvbnNlIgOQAgFCNlo0Z2l0aHViLmNvbS9jb2RlaGFyaWsvZmFpcnl0YWxlcy9jb3Vyc2VzL3YxO2NvdXJzZXN2MWIGcHJvdG8z", [file_buf_validate_validate, file_courses_v1_courses]);
+  fileDesc("CiBjb3Vyc2VzL3YxL2NvdXJzZV9jYXRlZ29yeS5wcm90bxIKY291cnNlcy52MSI5CghDYXRlZ29yeRIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJIk8KFUNyZWF0ZUNhdGVnb3J5UmVxdWVzdBIMCgRuYW1lGAEgASgJEhgKC2Rlc2NyaXB0aW9uGAIgASgJSACIAQFCDgoMX2Rlc2NyaXB0aW9uIkAKFkNyZWF0ZUNhdGVnb3J5UmVzcG9uc2USJgoIY2F0ZWdvcnkYASABKAsyFC5jb3Vyc2VzLnYxLkNhdGVnb3J5ImkKFVVwZGF0ZUNhdGVnb3J5UmVxdWVzdBIKCgJpZBgBIAEoBRIRCgRuYW1lGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBAUIHCgVfbmFtZUIOCgxfZGVzY3JpcHRpb24iQAoWVXBkYXRlQ2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiIwoVRGVsZXRlQ2F0ZWdvcnlSZXF1ZXN0EgoKAmlkGAEgASgFIikKFkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCIgChJHZXRDYXRlZ29yeVJlcXVlc3QSCgoCaWQYASABKAUiPQoTR2V0Q2F0ZWdvcnlSZXNwb25zZRImCghjYXRlZ29yeRgBIAEoCzIULmNvdXJzZXMudjEuQ2F0ZWdvcnkiNwoVTGlzdENhdGVnb3JpZXNSZXF1ZXN0EhMKBnNlYXJjaBgBIAEoCUgAiAEBQgkKB19zZWFyY2giUQoWTGlzdENhdGVnb3JpZXNSZXNwb25zZRIoCgpjYXRlZ29yaWVzGAEgAygLMhQuY291cnNlcy52MS5DYXRlZ29yeRINCgV0b3RhbBgCIAEoBSJgChtHZXRDb3Vyc2VzQnlDYXRlZ29yeVJlcXVlc3QSEwoLY2F0ZWdvcnlfaWQYASABKAUSGgoNc3RhdHVzX2ZpbHRlchgCIAEoCUgAiAEBQhAKDl9zdGF0dXNfZmlsdGVyIlIKHEdldENvdXJzZXNCeUNhdGVnb3J5UmVzcG9uc2USIwoHY291cnNlcxgBIAMoCzISLmNvdXJzZXMudjEuQ291cnNlEg0KBXRvdGFsGAIgASgFMr8ECg9DYXRlZ29yeVNlcnZpY2USVwoOQ3JlYXRlQ2F0ZWdvcnkSIS5jb3Vyc2VzLnYxLkNyZWF0ZUNhdGVnb3J5UmVxdWVzdBoiLmNvdXJzZXMudjEuQ3JlYXRlQ2F0ZWdvcnlSZXNwb25zZRJXCg5VcGRhdGVDYXRlZ29yeRIhLmNvdXJzZXMudjEuVXBkYXRlQ2F0ZWdvcnlSZXF1ZXN0GiIuY291cnNlcy52MS5VcGRhdGVDYXRlZ29yeVJlc3BvbnNlElcKDkRlbGV0ZUNhdGVnb3J5EiEuY291cnNlcy52MS5EZWxldGVDYXRlZ29yeVJlcXVlc3QaIi5jb3Vyc2VzLnYxLkRlbGV0ZUNhdGVnb3J5UmVzcG9uc2USUwoLR2V0Q2F0ZWdvcnkSHi5jb3Vyc2VzLnYxLkdldENhdGVnb3J5UmVxdWVzdBofLmNvdXJzZXMudjEuR2V0Q2F0ZWdvcnlSZXNwb25zZSIDkAIBElwKDkxpc3RDYXRlZ29yaWVzEiEuY291cnNlcy52MS5MaXN0Q2F0ZWdvcmllc1JlcXVlc3QaIi5jb3Vyc2VzLnYxLkxpc3RDYXRlZ29yaWVzUmVzcG9uc2UiA5ACARJuChRHZXRDb3Vyc2VzQnlDYXRlZ29yeRInLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q2F0ZWdvcnlSZXF1ZXN0GiguY291cnNlcy52MS5HZXRDb3Vyc2VzQnlDYXRlZ29yeVJlc3BvbnNlIgOQAgFCNlo0Z2l0aHViLmNvbS9jb2RlaGFyaWsvZmFpcnl0YWxlcy9jb3Vyc2VzL3YxO2NvdXJzZXN2MWIGcHJvdG8z", [file_courses_v1_courses]);
 
 /**
  * Category represents a course category entity.
@@ -22,9 +21,9 @@ export const file_courses_v1_course_category: GenFile = /*@__PURE__*/
  */
 export type Category = Message<"courses.v1.Category"> & {
   /**
-   * @generated from field: bytes id = 1;
+   * @generated from field: int32 id = 1;
    */
-  id: Uint8Array;
+  id: number;
 
   /**
    * @generated from field: string name = 2;
@@ -94,9 +93,9 @@ export const CreateCategoryResponseSchema: GenMessage<CreateCategoryResponse> = 
  */
 export type UpdateCategoryRequest = Message<"courses.v1.UpdateCategoryRequest"> & {
   /**
-   * @generated from field: bytes id = 1;
+   * @generated from field: int32 id = 1;
    */
-  id: Uint8Array;
+  id: number;
 
   /**
    * @generated from field: optional string name = 2;
@@ -142,9 +141,9 @@ export const UpdateCategoryResponseSchema: GenMessage<UpdateCategoryResponse> = 
  */
 export type DeleteCategoryRequest = Message<"courses.v1.DeleteCategoryRequest"> & {
   /**
-   * @generated from field: bytes id = 1;
+   * @generated from field: int32 id = 1;
    */
-  id: Uint8Array;
+  id: number;
 };
 
 /**
@@ -180,9 +179,9 @@ export const DeleteCategoryResponseSchema: GenMessage<DeleteCategoryResponse> = 
  */
 export type GetCategoryRequest = Message<"courses.v1.GetCategoryRequest"> & {
   /**
-   * @generated from field: bytes id = 1;
+   * @generated from field: int32 id = 1;
    */
-  id: Uint8Array;
+  id: number;
 };
 
 /**
@@ -263,9 +262,9 @@ export const ListCategoriesResponseSchema: GenMessage<ListCategoriesResponse> = 
  */
 export type GetCoursesByCategoryRequest = Message<"courses.v1.GetCoursesByCategoryRequest"> & {
   /**
-   * @generated from field: bytes category_id = 1;
+   * @generated from field: int32 category_id = 1;
    */
-  categoryId: Uint8Array;
+  categoryId: number;
 
   /**
    * @generated from field: optional string status_filter = 2;

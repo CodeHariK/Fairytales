@@ -29,6 +29,7 @@ export async function healthCheck(req: HealthCheckRequest): Promise<HealthCheckR
 		const createResponse = await client.createCourse({
 			title: "health-check-test",
 			creatorId: MockDataStore.mockCreatorId,
+			categoryIds: [MockDataStore.mockCategoryId1],
 		})
 		if (createResponse.course?.id) {
 			createdCourseId = createResponse.course.id
@@ -65,6 +66,34 @@ export async function healthCheck(req: HealthCheckRequest): Promise<HealthCheckR
 		routes.push(
 			create(RouteHealthSchema, {
 				name: "getCoursesByUserId",
+				ok: false,
+				error: (error as Error).message,
+			})
+		)
+	}
+
+	// Test getCoursesByCategoryId - verify the created course appears in the list
+
+	try {
+		const response = await client.getCoursesByCategoryId({
+			categoryId: MockDataStore.mockCategoryId1,
+		})
+		const courseFound = response.courses.some(
+			(course) =>
+				course.id.length === createdCourseId!.length &&
+				course.id.every((byte, i) => byte === createdCourseId![i])
+		)
+		routes.push(
+			create(RouteHealthSchema, {
+				name: "getCoursesByCategoryId",
+				ok: courseFound,
+				error: courseFound ? undefined : "Created course not found in list",
+			})
+		)
+	} catch (error) {
+		routes.push(
+			create(RouteHealthSchema, {
+				name: "getCoursesByCategoryId",
 				ok: false,
 				error: (error as Error).message,
 			})

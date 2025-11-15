@@ -23,8 +23,8 @@ function createMockLessons(count: number): Lesson[] {
 export class MockDataStore {
 	private courses: Course[] = []
 	public static mockCreatorId = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-	public static mockCategoryId1 = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
-	public static mockCategoryId2 = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2])
+	public static mockCategoryId1 = 1
+	public static mockCategoryId2 = 2
 
 	constructor() {
 		// Initialize with sample data

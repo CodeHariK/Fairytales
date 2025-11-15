@@ -19,6 +19,11 @@ service CourseService {
 		option idempotency_level = NO_SIDE_EFFECTS;
 	}
 	
+	// GetCoursesByCategoryId returns all courses that belong to a specific category ID.
+	rpc GetCoursesByCategoryId(GetCoursesByCategoryIdRequest) returns (GetCoursesByCategoryIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
 	// GetCourseById returns a course by its ID.
 	rpc GetCourseById(GetCourseByIdRequest) returns (GetCourseByIdResponse) {
 		option idempotency_level = NO_SIDE_EFFECTS;
@@ -78,6 +83,26 @@ message GetCoursesByCreatorIdResponse {
 	int32 total_pages = 5;
 }
 
+// GetCoursesByCategoryIdRequest is the request to get courses by category ID.
+message GetCoursesByCategoryIdRequest {
+	int32 category_id = 1;
+	// Optional filter by status. If not provided or COURSE_STATUS_UNSPECIFIED, returns all courses.
+	optional CourseStatus status_filter = 2;
+	// Pagination: page number (1-indexed)
+	int32 page = 3;
+	// Pagination: number of items per page
+	int32 page_size = 4;
+}
+
+// GetCoursesByCategoryIdResponse contains the list of courses for the category.
+message GetCoursesByCategoryIdResponse {
+	repeated Course courses = 1;
+	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
+}
+
 // Lesson represents a lesson within a course.
 message Lesson {
 	string title = 1;
@@ -91,7 +116,7 @@ message Course {
 	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	string title = 2;
 	string description = 3;
-	repeated bytes category_ids = 4 [(buf.validate.field).repeated.items.bytes.len = 16]; // Multiple category IDs
+	repeated int32 category_ids = 4; // Multiple category IDs
 	CourseLevel level = 5;
 	repeated Lesson lessons = 6;
 	int32 price = 7;
@@ -114,7 +139,7 @@ message GetCourseByIdResponse {
 message CreateCourseRequest {
 	string title = 1; // Required: Course title
 	optional string description = 2;
-	repeated bytes category_ids = 3 [(buf.validate.field).repeated.items.bytes.len = 16]; // Can be empty, categories can be added later
+	repeated int32 category_ids = 3; // Can be empty, categories can be added later
 	optional CourseLevel level = 4;
 	repeated Lesson lessons = 5; // Can be empty, lessons can be added later
 	optional int32 price = 6;
@@ -133,7 +158,7 @@ message UpdateCourseRequest {
 	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	optional string title = 2;
 	optional string description = 3;
-	repeated bytes category_ids = 4 [(buf.validate.field).repeated.items.bytes.len = 16]; // If provided, replaces all categories
+	repeated int32 category_ids = 4; // If provided, replaces all categories
 	optional CourseLevel level = 5;
 	repeated Lesson lessons = 6; // If provided, replaces all lessons
 	optional int32 price = 7;
