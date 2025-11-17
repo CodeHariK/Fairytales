@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, Clock, Users } from "lucide-react"
+import { BookOpen, Clock, Users, Loader2, Check } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,6 +11,13 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/modified/card"
+import { authClient } from "@/utils/auth-client"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+import { useMutation } from "@connectrpc/connect-query"
+import { createEnrollment } from "@/gen/courses/v1/enrollments-EnrollmentService_connectquery"
+import { hexStringToUuid } from "@/utils/uuid"
 
 export type CourseLevelDisplay = "Beginner" | "Intermediate" | "Advanced"
 
@@ -24,6 +31,7 @@ export interface Course {
 	students: number
 	price: number
 	image: string
+	isEnrolled?: boolean
 }
 
 const levelColors: Record<CourseLevelDisplay, string> = {
@@ -37,6 +45,44 @@ interface CourseCardProps {
 }
 
 export function CourseCard({ course }: CourseCardProps) {
+	const [isLoading, setIsLoading] = useState(false)
+	const router = useRouter()
+	const { data: session } = authClient.useSession()
+
+	const { mutate: enroll, isPending: isEnrolling } = useMutation(createEnrollment, {
+		onSuccess: (response) => {
+			if (response.checkoutUrl) {
+				window.location.href = response.checkoutUrl
+			} else {
+				toast.error("No checkout URL returned")
+				setIsLoading(false)
+			}
+		},
+		onError: (error) => {
+			console.error("Enrollment error:", error)
+			toast.error(error instanceof Error ? error.message : "Failed to start enrollment process")
+			setIsLoading(false)
+		},
+	})
+
+	const handleEnroll = async () => {
+		if (!session?.user) {
+			toast.error("Please sign in to enroll")
+			router.push("/auth/sign-in")
+			return
+		}
+
+		if (course.isEnrolled) {
+			router.push(`/courses/${course.id}`)
+			return
+		}
+
+		setIsLoading(true)
+		enroll({
+			courseId: hexStringToUuid(course.id),
+		})
+	}
+
 	return (
 		<Card
 			className="relative flex flex-col overflow-hidden bg-cover bg-center bg-no-repeat"
@@ -82,7 +128,26 @@ export function CourseCard({ course }: CourseCardProps) {
 				</CardContent>
 				<CardFooter className="flex items-center justify-between">
 					<span className="text-lg font-semibold text-white">${course.price}</span>
-					<Button size="sm">Enroll</Button>
+					<Button
+						size="sm"
+						onClick={handleEnroll}
+						disabled={isLoading || isEnrolling}
+						variant={course.isEnrolled ? "secondary" : "default"}
+					>
+						{isLoading || isEnrolling ? (
+							<>
+								<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+								Processing...
+							</>
+						) : course.isEnrolled ? (
+							<>
+								<Check className="mr-2 h-4 w-4" />
+								Enrolled
+							</>
+						) : (
+							"Enroll"
+						)}
+					</Button>
 				</CardFooter>
 			</div>
 		</Card>

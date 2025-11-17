@@ -1,5 +1,6 @@
 import { OrganizationView } from "@daveyplate/better-auth-ui"
 import { organizationViewPaths } from "@daveyplate/better-auth-ui/server"
+import { SimpleHeader } from "@/components/nav/simple-header"
 
 export const dynamicParams = false
 
@@ -11,8 +12,11 @@ export default async function OrganizationPage({ params }: { params: Promise<{ p
 	const { path } = await params
 
 	return (
-		<main className="container p-4 md:p-6">
-			<OrganizationView path={path} />
-		</main>
+		<>
+			<SimpleHeader />
+			<main className="container p-4 md:p-6">
+				<OrganizationView path={path} />
+			</main>
+		</>
 	)
 }

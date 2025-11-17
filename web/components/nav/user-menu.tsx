@@ -32,9 +32,9 @@ interface UserMenuProps {
 }
 
 export function UserMenu({
-	name = "Phillip Stanton",
-	email = "phillip@coursify.com",
-	avatar = "/avatars/phillip.jpg",
+	name = "Stella Luna",
+	email = "stella@fairytales.com",
+	avatar = "https://avatar.vercel.sh/fairytales?size=64",
 	role = "Admin",
 }: UserMenuProps) {
 	const { theme, setTheme, resolvedTheme } = useTheme()

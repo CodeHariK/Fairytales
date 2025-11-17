@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package courses.v1;
+
+import "buf/validate/validate.proto";
+import "health/v1/health.proto";
+
+option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
+
+// EnrollmentService provides methods to manage course enrollments.
+service EnrollmentService {
+	// GetEnrollmentById returns an enrollment by its ID.
+	rpc GetEnrollmentById(GetEnrollmentByIdRequest) returns (GetEnrollmentByIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetEnrollmentsByUserId returns all enrollments for a specific user ID.
+	rpc GetEnrollmentsByUserId(GetEnrollmentsByUserIdRequest) returns (GetEnrollmentsByUserIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetEnrollmentsByCourseId returns all enrollments for a specific course ID.
+	rpc GetEnrollmentsByCourseId(GetEnrollmentsByCourseIdRequest) returns (GetEnrollmentsByCourseIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// CreateEnrollment creates a new enrollment (initiates payment).
+	rpc CreateEnrollment(CreateEnrollmentRequest) returns (CreateEnrollmentResponse);
+	
+	// UpdateEnrollmentStatus updates the status of an enrollment.
+	rpc UpdateEnrollmentStatus(UpdateEnrollmentStatusRequest) returns (UpdateEnrollmentStatusResponse);
+	
+	// HealthCheck verifies that all enrollment service endpoints are accessible and working.
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+	rpc HealthCheck(health.v1.HealthCheckRequest) returns (health.v1.HealthCheckResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+}
+
+// GetEnrollmentByIdRequest is the request to get an enrollment by ID.
+message GetEnrollmentByIdRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+}
+
+// GetEnrollmentByIdResponse contains the enrollment.
+message GetEnrollmentByIdResponse {
+	Enrollment enrollment = 1;
+}
+
+// GetEnrollmentsByUserIdRequest is the request to get enrollments by user ID.
+message GetEnrollmentsByUserIdRequest {
+	// Optional user ID. If not provided, uses the authenticated user's ID from session.
+	optional bytes user_id = 1 [(buf.validate.field).bytes.len = 16];
+	// Optional filter by status. If not provided or ENROLLMENT_STATUS_UNSPECIFIED, returns all enrollments.
+	optional EnrollmentStatus status_filter = 2;
+	// Pagination: page number (1-indexed)
+	int32 page = 3;
+	// Pagination: number of items per page
+	int32 page_size = 4;
+}
+
+// GetEnrollmentsByUserIdResponse contains the list of user enrollments.
+message GetEnrollmentsByUserIdResponse {
+	repeated Enrollment enrollments = 1;
+	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
+}
+
+// GetEnrollmentsByCourseIdRequest is the request to get enrollments by course ID.
+message GetEnrollmentsByCourseIdRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+	// Optional filter by status. If not provided or ENROLLMENT_STATUS_UNSPECIFIED, returns all enrollments.
+	optional EnrollmentStatus status_filter = 2;
+	// Pagination: page number (1-indexed)
+	int32 page = 3;
+	// Pagination: number of items per page
+	int32 page_size = 4;
+}
+
+// GetEnrollmentsByCourseIdResponse contains the list of course enrollments.
+message GetEnrollmentsByCourseIdResponse {
+	repeated Enrollment enrollments = 1;
+	int32 total = 2;
+	int32 page = 3;
+	int32 page_size = 4;
+	int32 total_pages = 5;
+}
+
+// Enrollment represents a user's enrollment in a course.
+message Enrollment {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+	bytes user_id = 2 [(buf.validate.field).bytes.len = 16];
+	bytes course_id = 3 [(buf.validate.field).bytes.len = 16];
+	optional string stripe_payment_intent_id = 4;
+	optional string stripe_checkout_session_id = 5;
+	EnrollmentStatus status = 6;
+	string created_at = 7; // ISO 8601 timestamp
+	string updated_at = 8; // ISO 8601 timestamp
+}
+
+// CreateEnrollmentRequest is the request to create a new enrollment.
+message CreateEnrollmentRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16]; // Required: Course ID to enroll in
+}
+
+// CreateEnrollmentResponse contains the created enrollment and checkout URL.
+message CreateEnrollmentResponse {
+	Enrollment enrollment = 1;
+	string checkout_url = 2; // Stripe Checkout Session URL for payment
+}
+
+// UpdateEnrollmentStatusRequest is the request to update an enrollment status.
+message UpdateEnrollmentStatusRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+	EnrollmentStatus status = 2;
+	optional string stripe_payment_intent_id = 3; // Optional: Update payment intent ID
+	optional string stripe_checkout_session_id = 4; // Optional: Update checkout session ID
+}
+
+// UpdateEnrollmentStatusResponse contains the updated enrollment.
+message UpdateEnrollmentStatusResponse {
+	Enrollment enrollment = 1;
+}
+
+// EnrollmentStatus represents the status of an enrollment.
+enum EnrollmentStatus {
+	ENROLLMENT_STATUS_UNSPECIFIED = 0;
+	ENROLLMENT_STATUS_PENDING = 1; // Payment pending
+	ENROLLMENT_STATUS_COMPLETED = 2; // Payment completed, enrollment active
+	ENROLLMENT_STATUS_FAILED = 3; // Payment failed
+}
+

@@ -69,6 +69,27 @@ export const lesson = pgTable("lesson", {
 		.notNull(),
 })
 
+// Enrollment represents a user's enrollment in a course
+export const enrollment = pgTable("enrollment", {
+	id: text("id").primaryKey(),
+	userId: text("user_id")
+		.notNull()
+		.references(() => user.id, { onDelete: "cascade" }),
+	courseId: text("course_id")
+		.notNull()
+		.references(() => course.id, { onDelete: "cascade" }),
+	stripePaymentIntentId: text("stripe_payment_intent_id"),
+	stripeCheckoutSessionId: text("stripe_checkout_session_id"),
+	status: text("status").notNull().default("pending"), // pending, completed, failed
+	createdAt: timestamp("created_at")
+		.$defaultFn(() => new Date())
+		.notNull(),
+	updatedAt: timestamp("updated_at")
+		.$defaultFn(() => new Date())
+		.$onUpdate(() => new Date())
+		.notNull(),
+})
+
 // Relations
 export const courseCategoryRelations = relations(courseCategory, ({ many }) => ({
 	courseRelations: many(courseCategoryRelation),
@@ -97,6 +118,17 @@ export const courseCategoryRelationRelations = relations(courseCategoryRelation,
 export const lessonRelations = relations(lesson, ({ one }) => ({
 	course: one(course, {
 		fields: [lesson.courseId],
+		references: [course.id],
+	}),
+}))
+
+export const enrollmentRelations = relations(enrollment, ({ one }) => ({
+	user: one(user, {
+		fields: [enrollment.userId],
+		references: [user.id],
+	}),
+	course: one(course, {
+		fields: [enrollment.courseId],
 		references: [course.id],
 	}),
 }))

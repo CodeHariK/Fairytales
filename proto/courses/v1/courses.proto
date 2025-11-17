@@ -39,6 +39,7 @@ service CourseService {
 	rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
 	
 	// HealthCheck verifies that all course service endpoints are accessible and working.
+	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
 	rpc HealthCheck(health.v1.HealthCheckRequest) returns (health.v1.HealthCheckResponse) {
 		option idempotency_level = NO_SIDE_EFFECTS;
 	}

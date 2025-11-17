@@ -1,7 +1,18 @@
 import { AccountView } from "@daveyplate/better-auth-ui"
 import { accountViewPaths } from "@daveyplate/better-auth-ui/server"
+import { SimpleHeader } from "@/components/nav/simple-header"
 
-export const dynamicParams = false
+import {
+	UpdateAvatarCard,
+	UpdateNameCard,
+	UpdateUsernameCard,
+	ChangeEmailCard,
+	ChangePasswordCard,
+	ProvidersCard,
+	SessionsCard,
+	DeleteAccountCard,
+	UpdateFieldCard,
+} from "@daveyplate/better-auth-ui"
 
 export function generateStaticParams() {
 	return Object.values(accountViewPaths).map((path) => ({ path }))
@@ -11,8 +22,11 @@ export default async function AccountPage({ params }: { params: Promise<{ path: 
 	const { path } = await params
 
 	return (
-		<main className="container p-4 md:p-6">
-			<AccountView path={path} />
-		</main>
+		<>
+			<SimpleHeader />
+			<main className="container p-4 md:p-6">
+				<AccountView path={path} />
+			</main>
+		</>
 	)
 }

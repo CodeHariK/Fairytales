@@ -4,12 +4,14 @@ import { createValidateInterceptor } from "@connectrpc/validate"
 import { createAuthInterceptor } from "@/utils/connect-auth-interceptor"
 import courseConnect from "@/lib/api/services/course_service"
 import elizaConnect from "@/lib/api/services/eliza_service"
+import enrollmentConnect from "@/lib/api/services/enrollment_service"
 
 const { handler } = nextJsApiRouter({
 	interceptors: [createValidateInterceptor(), createAuthInterceptor()],
 	routes: (router: ConnectRouter) => {
 		courseConnect(router)
 		elizaConnect(router)
+		enrollmentConnect(router)
 	},
 })
 

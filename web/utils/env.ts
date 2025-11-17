@@ -22,17 +22,8 @@ const schema = z.object({
 	RESEND_TEST_EMAIL: z.string().email().optional(),
 
 	// Stripe
+	STRIPE_SECRET_KEY: z.string().optional(),
 	STRIPE_WEBHOOK_SECRET: z.string().optional(),
-
-	// Debug
-	DEBUG_AUTH: z
-		.union([z.string(), z.undefined()])
-		.transform((val) => val === "true" || val === "1" || false)
-		.default(false),
-	DEBUG_DATA: z
-		.union([z.string(), z.undefined()])
-		.transform((val) => val === "true" || val === "1" || false)
-		.default(false),
 })
 
 // Only parse on server side and only once at startup
@@ -65,9 +56,8 @@ if (typeof window === "undefined") {
 		RESEND_API_KEY: undefined,
 		RESEND_FROM_EMAIL: undefined,
 		RESEND_TEST_EMAIL: undefined,
+		STRIPE_SECRET_KEY: undefined,
 		STRIPE_WEBHOOK_SECRET: undefined,
-		DEBUG_AUTH: false,
-		DEBUG_DATA: false,
 	} as z.infer<typeof schema>
 }
 

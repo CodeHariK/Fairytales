@@ -9,3 +9,5 @@ breaking:
 lint:
   use:
     - STANDARD
+  except:
+    - RPC_REQUEST_RESPONSE_UNIQUE

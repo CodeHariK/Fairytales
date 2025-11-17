@@ -18,7 +18,6 @@ function createMockLessons(count: number): Lesson[] {
 
 /**
  * In-memory mock data store for testing UI without database
- * Only used when DEBUG_DATA=true
  */
 export class MockDataStore {
 	private courses: Course[] = []

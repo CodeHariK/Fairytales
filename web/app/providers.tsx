@@ -1,6 +1,7 @@
 "use client"
 
-import { AuthUIProvider } from "@daveyplate/better-auth-ui"
+import { AuthUIProviderTanstack } from "@daveyplate/better-auth-ui/tanstack"
+import { AuthQueryProvider } from "@daveyplate/better-auth-tanstack"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { authClient } from "@/utils/auth-client"
@@ -37,70 +38,72 @@ export function Providers({ children }: { children: React.ReactNode }) {
 	)
 
 	return (
-		<ThemeProvider
-			attribute="class"
-			defaultTheme="system"
-			enableSystem
-			disableTransitionOnChange
-			storageKey="theme"
-		>
-			<AuthUIProvider
-				authClient={authClient}
-				navigate={router.push}
-				replace={router.replace}
-				onSessionChange={() => {
-					// Clear router cache (protected routes)
-					router.refresh()
-				}}
-				Link={Link}
-				social={{
-					providers: ["google"],
-				}}
-				magicLink
-				passkey
-				apiKey={{}}
-				viewPaths={{}}
-				account={{}}
-				organization={{
-					logo: {
-						// upload: async (file) => {
-						//     // Your upload logic
-						//     return uploadedUrl
-						// },
-						size: 256,
-						extension: "png",
-					},
-					customRoles: [
-						{
-							role: "developer",
-							label: "Developer",
-						},
-						{
-							role: "viewer",
-							label: "Viewer",
-						},
-					],
-				}}
-			>
-				<TransportProvider transport={transport}>
-					<QueryClientProvider client={queryClient}>
-						{children}
-
-						<TanStackDevtools
-							plugins={[
-								{
-									name: "TanStack Query",
-									render: <ReactQueryDevtools />,
-									defaultOpen: false,
+		<TransportProvider transport={transport}>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+					storageKey="theme"
+				>
+					<AuthQueryProvider>
+						<AuthUIProviderTanstack
+							authClient={authClient}
+							navigate={router.push}
+							persistClient={false}
+							replace={router.replace}
+							onSessionChange={() => {
+								// Clear router cache (protected routes)
+								router.refresh()
+							}}
+							Link={Link}
+							social={{
+								providers: ["google"],
+							}}
+							magicLink
+							passkey
+							viewPaths={{}}
+							account={{}}
+							organization={{
+								logo: {
+									// upload: async (file) => {
+									//     // Your upload logic
+									//     return uploadedUrl
+									// },
+									size: 256,
+									extension: "png",
 								},
-								formDevtoolsPlugin(),
-							]}
-						/>
-					</QueryClientProvider>
-				</TransportProvider>
-			</AuthUIProvider>
+								customRoles: [
+									{
+										role: "developer",
+										label: "Developer",
+									},
+									{
+										role: "viewer",
+										label: "Viewer",
+									},
+								],
+							}}
+						>
+							{children}
 
-			<Toaster />
-		</ThemeProvider>
+							<TanStackDevtools
+								plugins={[
+									{
+										name: "TanStack Query",
+										render: <ReactQueryDevtools />,
+										defaultOpen: false,
+									},
+									formDevtoolsPlugin(),
+								]}
+							/>
+						</AuthUIProviderTanstack>
+					</AuthQueryProvider>
+
+					<Toaster />
+				</ThemeProvider>
+			</QueryClientProvider>
+		</TransportProvider>
 	)
 }

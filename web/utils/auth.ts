@@ -4,7 +4,7 @@ import { nextCookies } from "better-auth/next-js"
 import { createAuthMiddleware } from "@better-auth/core/middleware"
 import { and, desc, eq } from "drizzle-orm"
 import { db } from "./pg"
-import { member } from "@/schema/schema"
+import { member, user } from "@/schema/schema"
 
 import { sendPasswordResetEmail } from "./emails/password-reset-email"
 import { sendEmailVerificationEmail } from "./emails/email-verification"
@@ -13,26 +13,29 @@ import { sendDeleteAccountVerificationEmail } from "./emails/delete-account-veri
 import { sendOrganizationInviteEmail } from "./emails/organization-invite-email"
 import { sendMagicLinkEmail } from "./emails/magic-link-email"
 
-import { openAPI, magicLink } from "better-auth/plugins"
+import { openAPI, magicLink, organization, customSession } from "better-auth/plugins"
 import { twoFactor } from "better-auth/plugins/two-factor"
 import { passkey } from "better-auth/plugins/passkey"
-import { admin as adminPlugin } from "better-auth/plugins/admin"
-import { organization } from "better-auth/plugins/organization"
 
-import { ac, admin, user } from "./permissions"
 import { stripe } from "@better-auth/stripe"
 import Stripe from "stripe"
-import { STRIPE_PLANS } from "./stripe"
 
 import { secondaryStorage } from "./redis"
 import { env } from "./env"
+import { handleStripeEvent } from "./stripe-events"
+import { v7 as uuidv7 } from "uuid"
 
 const stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 	apiVersion: "2025-10-29.clover",
 })
 
 export const auth = betterAuth({
-	appName: "Better Auth Demo",
+	appName: "Fairytales",
+	advanced: {
+		database: {
+			generateId: () => uuidv7(),
+		},
+	},
 	user: {
 		changeEmail: {
 			enabled: true,
@@ -71,11 +74,6 @@ export const auth = betterAuth({
 				required: false,
 				defaultValue: "user",
 				input: false, // don't allow user to set role
-			},
-			lang: {
-				type: "string",
-				required: false,
-				defaultValue: "en",
 			},
 		},
 	},
@@ -161,7 +159,6 @@ export const auth = betterAuth({
 
 	plugins: [
 		openAPI(),
-		nextCookies(),
 		twoFactor(),
 		passkey(),
 		magicLink({
@@ -171,13 +168,6 @@ export const auth = betterAuth({
 					token,
 					url,
 				})
-			},
-		}),
-		adminPlugin({
-			ac,
-			roles: {
-				admin,
-				user,
 			},
 		}),
 		organization({
@@ -196,28 +186,31 @@ export const auth = betterAuth({
 						stripeClient,
 						stripeWebhookSecret: env.STRIPE_WEBHOOK_SECRET,
 						createCustomerOnSignUp: true,
-						subscription: {
-							authorizeReference: async ({ user, referenceId, action }) => {
-								const memberItem = await db.query.member.findFirst({
-									where: and(eq(member.organizationId, referenceId), eq(member.userId, user.id)),
-								})
-
-								if (
-									action === "upgrade-subscription" ||
-									action === "cancel-subscription" ||
-									action === "restore-subscription"
-								) {
-									return memberItem?.role === "owner"
-								}
-
-								return memberItem != null
-							},
-							enabled: true,
-							plans: STRIPE_PLANS,
+						onEvent: handleStripeEvent,
+						onCustomerCreate: async (data) => {
+							console.log("Stripe customer created:", data)
 						},
 					}),
 				]
 			: []),
+		customSession(async ({ user: authUser, session }) => {
+			// Fetch stripeCustomerId from database
+			const userData = await db.query.user.findFirst({
+				where: eq(user.id, authUser.id),
+				columns: {
+					stripeCustomerId: true,
+				},
+			})
+
+			return {
+				user: {
+					...authUser,
+					stripeCustomerId: userData?.stripeCustomerId || null,
+				},
+				session,
+			}
+		}),
+		nextCookies(), // make sure this is the last plugin in the array
 	],
 
 	hooks: {
@@ -239,6 +232,10 @@ export const auth = betterAuth({
 	},
 	databaseHooks: {
 		session: {
+			cookieCache: {
+				enabled: true,
+				maxAge: 5 * 60, // Cache duration in seconds
+			},
 			create: {
 				before: async (userSession) => {
 					const membership = await db.query.member.findFirst({

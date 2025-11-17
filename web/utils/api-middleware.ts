@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { headers } from "next/headers"
 import { auth } from "@/utils/auth"
-import { env } from "./env"
 
 type Session = NonNullable<Awaited<ReturnType<typeof auth.api.getSession>>>
 
@@ -11,15 +10,13 @@ type RouteContext = {
 
 type AuthenticatedRouteHandler = (
 	request: NextRequest,
-	session: Session | null,
+	session: Session,
 	context: RouteContext
 ) => Promise<NextResponse>
 
 /**
  * Middleware to protect API routes with authentication
  * Returns 401 Unauthorized if user is not authenticated
- *
- * Set DEBUG_AUTH=true in .env to bypass authentication (development only)
  *
  * @example
  * ```ts
@@ -36,11 +33,6 @@ type AuthenticatedRouteHandler = (
  */
 export function withAuth(handler: AuthenticatedRouteHandler) {
 	return async (request: NextRequest, context: RouteContext = {}): Promise<NextResponse> => {
-		// Bypass auth if DEBUG_AUTH is enabled
-		if (env.DEBUG_AUTH) {
-			return handler(request, null, context)
-		}
-
 		const session = await auth.api.getSession({
 			headers: await headers(),
 		})

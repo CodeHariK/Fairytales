@@ -184,7 +184,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					<SidebarMenuItem>
 						<SidebarMenuButton
 							asChild
-							tooltip="Coursify"
+							tooltip="Fairytales"
 							className="data-[slot=sidebar-menu-button]:!p-1.5"
 						>
 							<Link href="/">
@@ -192,7 +192,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 									<div className="flex size-6 items-center justify-center rounded bg-gradient-to-br from-pink-500 via-yellow-400 to-blue-400 text-white font-bold text-xs">
 										C
 									</div>
-									<span className="text-base font-semibold">Coursify</span>
+									<span className="text-base font-semibold">Fairytales</span>
 									{/* Debug: Screen size indicator */}
 									<span className="text-xs text-muted-foreground ml-auto">
 										<span className="block sm:hidden">xs</span>

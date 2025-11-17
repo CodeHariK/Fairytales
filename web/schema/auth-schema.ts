@@ -14,13 +14,9 @@ export const user = pgTable("user", {
 		.$onUpdate(() => new Date())
 		.notNull(),
 	twoFactorEnabled: boolean("two_factor_enabled").default(false),
-	role: text("role").default("user"),
-	banned: boolean("banned").default(false),
-	banReason: text("ban_reason"),
-	banExpires: timestamp("ban_expires"),
 	stripeCustomerId: text("stripe_customer_id"),
-	favoriteNumber: integer("favorite_number").notNull(),
-	lang: text("lang").default("en"),
+	favoriteNumber: integer("favorite_number").default(0),
+	role: text("role").default("user"),
 })
 
 export const account = pgTable("account", {
@@ -117,19 +113,4 @@ export const invitation = pgTable("invitation", {
 	inviterId: text("inviter_id")
 		.notNull()
 		.references(() => user.id, { onDelete: "cascade" }),
-})
-
-export const subscription = pgTable("subscription", {
-	id: text("id").primaryKey(),
-	plan: text("plan").notNull(),
-	referenceId: text("reference_id").notNull(),
-	stripeCustomerId: text("stripe_customer_id"),
-	stripeSubscriptionId: text("stripe_subscription_id"),
-	status: text("status").default("incomplete"),
-	periodStart: timestamp("period_start"),
-	periodEnd: timestamp("period_end"),
-	trialStart: timestamp("trial_start"),
-	trialEnd: timestamp("trial_end"),
-	cancelAtPeriodEnd: boolean("cancel_at_period_end").default(false),
-	seats: integer("seats"),
 })

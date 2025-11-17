@@ -55,6 +55,7 @@ export const deleteCourse = CourseService.method.deleteCourse;
 
 /**
  * HealthCheck verifies that all course service endpoints are accessible and working.
+ * buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
  *
  * @generated from rpc courses.v1.CourseService.HealthCheck
  */

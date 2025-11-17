@@ -10,7 +10,7 @@ import type {
 import { create } from "@bufbuild/protobuf"
 import { HealthCheckResponseSchema, RouteHealthSchema } from "@/gen/health/v1/health_pb"
 import { BASE_URL } from "@/utils/constants"
-import { MockDataStore } from "../mock/mock-data"
+import { MockDataStore } from "../../../scripts/mock-data"
 
 export async function healthCheck(req: HealthCheckRequest): Promise<HealthCheckResponse> {
 	// Create a client to test all routes

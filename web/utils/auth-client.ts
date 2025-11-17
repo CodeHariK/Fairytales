@@ -4,11 +4,10 @@ import {
 	inferAdditionalFields,
 	passkeyClient,
 	twoFactorClient,
-	adminClient,
 	organizationClient,
+	customSessionClient,
 } from "better-auth/client/plugins"
 
-import { ac, admin, user } from "./permissions"
 import { stripeClient } from "@better-auth/stripe/client"
 import { magicLinkClient } from "better-auth/client/plugins"
 
@@ -18,6 +17,7 @@ export const authClient = createAuthClient({
 	baseURL: BASE_URL,
 	plugins: [
 		inferAdditionalFields<typeof auth>(),
+		customSessionClient<typeof auth>(),
 		twoFactorClient({
 			onTwoFactorRedirect: () => {
 				window.location.href = "/auth/2fa"
@@ -25,13 +25,6 @@ export const authClient = createAuthClient({
 		}),
 		passkeyClient(),
 		magicLinkClient(),
-		adminClient({
-			ac,
-			roles: {
-				admin,
-				user,
-			},
-		}),
 		organizationClient(),
 		stripeClient({
 			subscription: true,

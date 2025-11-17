@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getCookieCache } from "better-auth/cookies"
-import { env } from "./utils/env"
 /**
  * Protected routes that require authentication
  */
@@ -35,7 +34,7 @@ export async function proxy(request: NextRequest) {
 	}
 
 	// Check authentication for protected routes
-	if (!env.DEBUG_AUTH && isProtectedRoute) {
+	if (isProtectedRoute) {
 		// Use cookie cache for faster checks in proxy
 		// This avoids full session validation but is sufficient for route protection
 		// Uses default cookie name and prefix from Better Auth
