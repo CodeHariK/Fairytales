@@ -12,12 +12,16 @@ import { ConnectError, Code } from "@connectrpc/connect"
 import { db } from "@/utils/pg"
 import { enrollment } from "@/schema/schema"
 import { eq } from "drizzle-orm"
+import { requireAuth } from "@/utils/connect-auth-interceptor"
 import { hexStringToUuid, uuidToHexString } from "@/utils/uuid"
 
 export async function updateEnrollmentStatus(
 	req: UpdateEnrollmentStatusRequest,
 	context: HandlerContext
 ): Promise<UpdateEnrollmentStatusResponse> {
+	// Require authentication
+	await requireAuth(context)
+
 	const enrollmentId = uuidToHexString(req.id)
 
 	// Check if enrollment exists

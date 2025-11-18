@@ -89,6 +89,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
 							{children}
 
 							<TanStackDevtools
+								config={{
+									openHotkey: ["shift", "ctrl", "q"],
+								}}
 								plugins={[
 									{
 										name: "TanStack Query",

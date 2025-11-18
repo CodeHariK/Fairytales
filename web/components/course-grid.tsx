@@ -74,17 +74,28 @@ export function CourseGrid() {
 					? course.categoryIds[0].toString()
 					: "Uncategorized"
 
+			// Use duration and numLesson from proto (or calculate from lessons as fallback)
+			const lessonsArray = Array.isArray(course.lessons) ? course.lessons : []
+			const courseDuration = course.duration || 0
+			const courseNumLesson = course.numLesson || 0
+			const totalDurationMinutes =
+				courseDuration || lessonsArray.reduce((sum, lesson) => sum + (lesson.duration || 0), 0)
+			const numLessons = courseNumLesson || lessonsArray.length
+
 			return {
 				id,
 				title: course.title,
 				category,
-				lessons: Array.isArray(course.lessons) ? course.lessons.length : course.lessons || 0,
-				hours: 0, // Not available in proto, default to 0
-				students: 0, // Not available in proto, default to 0
+				lessons: numLessons,
+				hours: Math.round(totalDurationMinutes / 60), // For backward compatibility
+				students: course.totalCustomer || 0,
 				price: course.price || 0,
 				image: course.image || "",
 				level: levelMap[course.level] || "Beginner",
 				status: statusMap[course.status] || "active",
+				averageRating: course.averageRating || 0,
+				totalReview: course.totalReview || 0,
+				duration: totalDurationMinutes, // Duration in minutes
 			}
 		})
 	}, [data])

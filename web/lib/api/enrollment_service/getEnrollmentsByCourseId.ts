@@ -12,12 +12,16 @@ import { ConnectError, Code } from "@connectrpc/connect"
 import { db } from "@/utils/pg"
 import { enrollment } from "@/schema/schema"
 import { and, eq } from "drizzle-orm"
+import { requireAuth } from "@/utils/connect-auth-interceptor"
 import { hexStringToUuid, uuidToHexString } from "@/utils/uuid"
 
 export async function getEnrollmentsByCourseId(
 	req: GetEnrollmentsByCourseIdRequest,
 	context: HandlerContext
 ): Promise<GetEnrollmentsByCourseIdResponse> {
+	// Require authentication
+	await requireAuth(context)
+
 	const courseId = uuidToHexString(req.courseId)
 
 	// Build where clause

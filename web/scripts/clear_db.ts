@@ -3,19 +3,28 @@ import { env } from "../utils/env"
 import { pool } from "../utils/pg"
 
 async function clear_db() {
-	console.warn("DROPPING SCHEMA public CASCADE ...")
+	console.warn(
+		"🗑️  Dropping everything in database (tables, foreign keys, sequences, constraints, types)..."
+	)
+
+	// Drop the entire schema and recreate (most thorough approach - CASCADE drops everything)
+	console.warn(
+		"   Dropping schema public CASCADE (drops all tables, foreign keys, sequences, types, etc.)..."
+	)
 	await pool.query("DROP SCHEMA IF EXISTS public CASCADE;")
-	console.warn("RECREATING SCHEMA public ...")
+	console.warn("   Recreating schema public...")
 	await pool.query("CREATE SCHEMA public;")
 	await pool.query("GRANT ALL ON SCHEMA public TO public;")
 
-	console.warn("DROPPING SCHEMA drizzle CASCADE (if exists)...")
+	console.warn("   Dropping schema drizzle CASCADE (if exists)...")
 	await pool.query("DROP SCHEMA IF EXISTS drizzle CASCADE;")
-	console.warn("RECREATING SCHEMA drizzle ...")
+	console.warn("   Recreating schema drizzle...")
 	await pool.query("CREATE SCHEMA drizzle;")
 	await pool.query("GRANT ALL ON SCHEMA drizzle TO public;")
 
-	console.log("Done.")
+	console.log(
+		"✅ Database cleared completely! All tables, foreign keys, sequences, and constraints have been dropped."
+	)
 	await pool.end()
 }
 

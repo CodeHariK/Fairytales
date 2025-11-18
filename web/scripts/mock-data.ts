@@ -1,8 +1,9 @@
 import { create } from "@bufbuild/protobuf"
-import { CourseSchema, LessonSchema } from "@/gen/courses/v1/courses_pb"
+import { CourseSchema } from "@/gen/courses/v1/courses_pb"
 import { CourseLevel, CourseStatus } from "@/gen/courses/v1/courses_pb"
 import { createUuidV7 } from "@/utils/uuid"
-import type { Course, Lesson } from "@/gen/courses/v1/courses_pb"
+import type { Course } from "@/gen/courses/v1/courses_pb"
+import { Lesson, LessonSchema } from "@/gen/courses/v1/course_lessons_pb"
 
 /**
  * Helper function to create mock lessons
@@ -22,90 +23,100 @@ function createMockLessons(count: number): Lesson[] {
 export class MockDataStore {
 	private courses: Course[] = []
 	public static mockCreatorId = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-	public static mockCategoryId1 = 1
-	public static mockCategoryId2 = 2
+	public static mockCategoryId1 = "design"
+	public static mockCategoryId2 = "technology"
 
 	constructor() {
 		// Initialize with sample data
-		this.courses = [
-			create(CourseSchema, {
-				id: createUuidV7(),
+		const courseData = [
+			{
 				title: "Graphic Design Fundamentals",
 				description: "Learn the fundamentals of graphic design",
 				categoryIds: [MockDataStore.mockCategoryId1],
 				level: CourseLevel.BEGINNER,
-				lessons: createMockLessons(20),
+				lessonCount: 20,
 				price: 99,
 				image:
 					"https://img.freepik.com/free-photo/beautiful-house-with-nature-elements_23-2151848749.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: MockDataStore.mockCreatorId,
-			}),
-			create(CourseSchema, {
-				id: createUuidV7(),
+			},
+			{
 				title: "Digital Marketing Mastery",
 				description: "Master digital marketing strategies",
 				categoryIds: [MockDataStore.mockCategoryId1],
 				level: CourseLevel.INTERMEDIATE,
-				lessons: createMockLessons(18),
+				lessonCount: 18,
 				price: 79,
 				image:
 					"https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: MockDataStore.mockCreatorId,
-			}),
-			create(CourseSchema, {
-				id: createUuidV7(),
+			},
+			{
 				title: "Business Analytics with Excel",
 				description: "Learn business analytics using Excel",
 				categoryIds: [MockDataStore.mockCategoryId2],
 				level: CourseLevel.INTERMEDIATE,
-				lessons: createMockLessons(22),
+				lessonCount: 22,
 				price: 95,
 				image:
 					"https://img.freepik.com/free-vector/flat-woman-taking-care-plants-indoors_23-2148983751.jpg",
 				status: CourseStatus.DRAFT,
-				creatorId: MockDataStore.mockCreatorId,
-			}),
-			create(CourseSchema, {
-				id: createUuidV7(),
+			},
+			{
 				title: "Python for Beginners",
 				description: "Start your Python programming journey",
 				categoryIds: [MockDataStore.mockCategoryId2],
 				level: CourseLevel.BEGINNER,
-				lessons: createMockLessons(25),
+				lessonCount: 25,
 				price: 89,
 				image: "https://img.freepik.com/free-vector/flat-adventure-background_23-2149031058.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: MockDataStore.mockCreatorId,
-			}),
-			create(CourseSchema, {
-				id: createUuidV7(),
+			},
+			{
 				title: "UI/UX Design Basics",
 				description: "Learn the basics of UI/UX design",
 				categoryIds: [MockDataStore.mockCategoryId1, MockDataStore.mockCategoryId2],
 				level: CourseLevel.BEGINNER,
-				lessons: createMockLessons(20),
+				lessonCount: 20,
 				price: 89,
 				image:
 					"https://img.freepik.com/free-photo/anime-style-character-with-water_23-2151080214.jpg",
 				status: CourseStatus.ACTIVE,
-				creatorId: MockDataStore.mockCreatorId,
-			}),
-			create(CourseSchema, {
-				id: createUuidV7(),
+			},
+			{
 				title: "Social Media Strategies",
 				description: "Advanced social media marketing strategies",
 				categoryIds: [MockDataStore.mockCategoryId1, MockDataStore.mockCategoryId2],
 				level: CourseLevel.ADVANCED,
-				lessons: createMockLessons(24),
+				lessonCount: 24,
 				price: 109,
 				image:
 					"https://img.freepik.com/free-vector/flat-background-autumn-season-celebration_23-2150696152.jpg",
 				status: CourseStatus.ARCHIVED,
-				creatorId: MockDataStore.mockCreatorId,
-			}),
+			},
 		]
+
+		this.courses = courseData.map((data) => {
+			const lessons = createMockLessons(data.lessonCount)
+			// Calculate total duration from lessons (sum of all lesson durations)
+			const duration = lessons.reduce((sum, lesson) => sum + (lesson.duration || 0), 0)
+			const numLesson = lessons.length
+
+			return create(CourseSchema, {
+				id: createUuidV7(),
+				title: data.title,
+				description: data.description,
+				categoryIds: data.categoryIds,
+				level: data.level,
+				lessons,
+				price: data.price,
+				image: data.image,
+				status: data.status,
+				creatorId: MockDataStore.mockCreatorId,
+				duration,
+				numLesson,
+			})
+		})
 	}
 
 	getAllCourses(): Course[] {

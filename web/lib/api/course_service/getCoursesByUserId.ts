@@ -5,7 +5,7 @@ import type {
 	GetCoursesByUserIdRequest,
 	GetCoursesByUserIdResponse,
 } from "@/gen/courses/v1/courses_pb"
-import { kSession } from "@/utils/session-context"
+import { requireAuth } from "@/utils/connect-auth-interceptor"
 import { ConnectError, Code } from "@connectrpc/connect"
 
 // TODO: Implement database query
@@ -15,14 +15,12 @@ import { ConnectError, Code } from "@connectrpc/connect"
 //   ...
 // });
 
-export function getCoursesByUserId(
+export async function getCoursesByUserId(
 	req: GetCoursesByUserIdRequest,
 	context: HandlerContext
-): GetCoursesByUserIdResponse {
-	const session = context.values.get(kSession)
-
-	// console.log("session", session)
-	// console.log("req", req)
+): Promise<GetCoursesByUserIdResponse> {
+	// Require authentication
+	await requireAuth(context)
 
 	throw new ConnectError("Database queries not implemented yet", Code.Unimplemented)
 }

@@ -7,13 +7,15 @@ import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { HealthCheckRequestSchema, HealthCheckResponseSchema } from "../../health/v1/health_pb";
 import { file_health_v1_health } from "../../health/v1/health_pb";
+import type { Lesson } from "./course_lessons_pb";
+import { file_courses_v1_course_lessons } from "./course_lessons_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file courses/v1/courses.proto.
  */
 export const file_courses_v1_courses: GenFile = /*@__PURE__*/
-  fileDesc("Chhjb3Vyc2VzL3YxL2NvdXJzZXMucHJvdG8SCmNvdXJzZXMudjEiZwoZR2V0Q291cnNlc0J5VXNlcklkUmVxdWVzdBIdCgd1c2VyX2lkGAEgASgMQge6SAR6AmgQSACIAQESDAoEcGFnZRgCIAEoBRIRCglwYWdlX3NpemUYAyABKAVCCgoIX3VzZXJfaWQihgEKGkdldENvdXJzZXNCeVVzZXJJZFJlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBRIMCgRwYWdlGAMgASgFEhEKCXBhZ2Vfc2l6ZRgEIAEoBRITCgt0b3RhbF9wYWdlcxgFIAEoBSK4AQocR2V0Q291cnNlc0J5Q3JlYXRvcklkUmVxdWVzdBIgCgpjcmVhdG9yX2lkGAEgASgMQge6SAR6AmgQSACIAQESNAoNc3RhdHVzX2ZpbHRlchgCIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzSAGIAQESDAoEcGFnZRgDIAEoBRIRCglwYWdlX3NpemUYBCABKAVCDQoLX2NyZWF0b3JfaWRCEAoOX3N0YXR1c19maWx0ZXIiiQEKHUdldENvdXJzZXNCeUNyZWF0b3JJZFJlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBRIMCgRwYWdlGAMgASgFEhEKCXBhZ2Vfc2l6ZRgEIAEoBRITCgt0b3RhbF9wYWdlcxgFIAEoBSKdAQodR2V0Q291cnNlc0J5Q2F0ZWdvcnlJZFJlcXVlc3QSEwoLY2F0ZWdvcnlfaWQYASABKAUSNAoNc3RhdHVzX2ZpbHRlchgCIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzSACIAQESDAoEcGFnZRgDIAEoBRIRCglwYWdlX3NpemUYBCABKAVCEAoOX3N0YXR1c19maWx0ZXIiigEKHkdldENvdXJzZXNCeUNhdGVnb3J5SWRSZXNwb25zZRIjCgdjb3Vyc2VzGAEgAygLMhIuY291cnNlcy52MS5Db3Vyc2USDQoFdG90YWwYAiABKAUSDAoEcGFnZRgDIAEoBRIRCglwYWdlX3NpemUYBCABKAUSEwoLdG90YWxfcGFnZXMYBSABKAUicwoGTGVzc29uEg0KBXRpdGxlGAEgASgJEhAKCGR1cmF0aW9uGAIgASgFEhcKCnZpZGVvX2xpbmsYAyABKAlIAIgBARIUCgdjb2RlX21kGAQgASgJSAGIAQFCDQoLX3ZpZGVvX2xpbmtCCgoIX2NvZGVfbWQiiQIKBkNvdXJzZRITCgJpZBgBIAEoDEIHukgEegJoEBINCgV0aXRsZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIUCgxjYXRlZ29yeV9pZHMYBCADKAUSJgoFbGV2ZWwYBSABKA4yFy5jb3Vyc2VzLnYxLkNvdXJzZUxldmVsEiMKB2xlc3NvbnMYBiADKAsyEi5jb3Vyc2VzLnYxLkxlc3NvbhINCgVwcmljZRgHIAEoBRINCgVpbWFnZRgIIAEoCRIoCgZzdGF0dXMYCSABKA4yGC5jb3Vyc2VzLnYxLkNvdXJzZVN0YXR1cxIbCgpjcmVhdG9yX2lkGAogASgMQge6SAR6AmgQIisKFEdldENvdXJzZUJ5SWRSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQIjsKFUdldENvdXJzZUJ5SWRSZXNwb25zZRIiCgZjb3Vyc2UYASABKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZSLTAgoTQ3JlYXRlQ291cnNlUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIYCgtkZXNjcmlwdGlvbhgCIAEoCUgAiAEBEhQKDGNhdGVnb3J5X2lkcxgDIAMoBRIrCgVsZXZlbBgEIAEoDjIXLmNvdXJzZXMudjEuQ291cnNlTGV2ZWxIAYgBARIjCgdsZXNzb25zGAUgAygLMhIuY291cnNlcy52MS5MZXNzb24SEgoFcHJpY2UYBiABKAVIAogBARISCgVpbWFnZRgHIAEoCUgDiAEBEi0KBnN0YXR1cxgIIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzSASIAQESGwoKY3JlYXRvcl9pZBgJIAEoDEIHukgEegJoEEIOCgxfZGVzY3JpcHRpb25CCAoGX2xldmVsQggKBl9wcmljZUIICgZfaW1hZ2VCCQoHX3N0YXR1cyI6ChRDcmVhdGVDb3Vyc2VSZXNwb25zZRIiCgZjb3Vyc2UYASABKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZSLaAgoTVXBkYXRlQ291cnNlUmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoEBISCgV0aXRsZRgCIAEoCUgAiAEBEhgKC2Rlc2NyaXB0aW9uGAMgASgJSAGIAQESFAoMY2F0ZWdvcnlfaWRzGAQgAygFEisKBWxldmVsGAUgASgOMhcuY291cnNlcy52MS5Db3Vyc2VMZXZlbEgCiAEBEiMKB2xlc3NvbnMYBiADKAsyEi5jb3Vyc2VzLnYxLkxlc3NvbhISCgVwcmljZRgHIAEoBUgDiAEBEhIKBWltYWdlGAggASgJSASIAQESLQoGc3RhdHVzGAkgASgOMhguY291cnNlcy52MS5Db3Vyc2VTdGF0dXNIBYgBAUIICgZfdGl0bGVCDgoMX2Rlc2NyaXB0aW9uQggKBl9sZXZlbEIICgZfcHJpY2VCCAoGX2ltYWdlQgkKB19zdGF0dXMiOgoUVXBkYXRlQ291cnNlUmVzcG9uc2USIgoGY291cnNlGAEgASgLMhIuY291cnNlcy52MS5Db3Vyc2UiKgoTRGVsZXRlQ291cnNlUmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoECInChREZWxldGVDb3Vyc2VSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIKoABCgtDb3Vyc2VMZXZlbBIcChhDT1VSU0VfTEVWRUxfVU5TUEVDSUZJRUQQABIZChVDT1VSU0VfTEVWRUxfQkVHSU5ORVIQARIdChlDT1VSU0VfTEVWRUxfSU5URVJNRURJQVRFEAISGQoVQ09VUlNFX0xFVkVMX0FEVkFOQ0VEEAMqfAoMQ291cnNlU3RhdHVzEh0KGUNPVVJTRV9TVEFUVVNfVU5TUEVDSUZJRUQQABIYChRDT1VSU0VfU1RBVFVTX0FDVElWRRABEhcKE0NPVVJTRV9TVEFUVVNfRFJBRlQQAhIaChZDT1VSU0VfU1RBVFVTX0FSQ0hJVkVEEAMyiQYKDUNvdXJzZVNlcnZpY2USaAoSR2V0Q291cnNlc0J5VXNlcklkEiUuY291cnNlcy52MS5HZXRDb3Vyc2VzQnlVc2VySWRSZXF1ZXN0GiYuY291cnNlcy52MS5HZXRDb3Vyc2VzQnlVc2VySWRSZXNwb25zZSIDkAIBEnEKFUdldENvdXJzZXNCeUNyZWF0b3JJZBIoLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q3JlYXRvcklkUmVxdWVzdBopLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q3JlYXRvcklkUmVzcG9uc2UiA5ACARJ0ChZHZXRDb3Vyc2VzQnlDYXRlZ29yeUlkEikuY291cnNlcy52MS5HZXRDb3Vyc2VzQnlDYXRlZ29yeUlkUmVxdWVzdBoqLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q2F0ZWdvcnlJZFJlc3BvbnNlIgOQAgESWQoNR2V0Q291cnNlQnlJZBIgLmNvdXJzZXMudjEuR2V0Q291cnNlQnlJZFJlcXVlc3QaIS5jb3Vyc2VzLnYxLkdldENvdXJzZUJ5SWRSZXNwb25zZSIDkAIBElEKDENyZWF0ZUNvdXJzZRIfLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVxdWVzdBogLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVzcG9uc2USUQoMVXBkYXRlQ291cnNlEh8uY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXF1ZXN0GiAuY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXNwb25zZRJRCgxEZWxldGVDb3Vyc2USHy5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlcXVlc3QaIC5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlc3BvbnNlElEKC0hlYWx0aENoZWNrEh0uaGVhbHRoLnYxLkhlYWx0aENoZWNrUmVxdWVzdBoeLmhlYWx0aC52MS5IZWFsdGhDaGVja1Jlc3BvbnNlIgOQAgFCNlo0Z2l0aHViLmNvbS9jb2RlaGFyaWsvZmFpcnl0YWxlcy9jb3Vyc2VzL3YxO2NvdXJzZXN2MWIGcHJvdG8z", [file_buf_validate_validate, file_health_v1_health]);
+  fileDesc("Chhjb3Vyc2VzL3YxL2NvdXJzZXMucHJvdG8SCmNvdXJzZXMudjEiZwoZR2V0Q291cnNlc0J5VXNlcklkUmVxdWVzdBIdCgd1c2VyX2lkGAEgASgMQge6SAR6AmgQSACIAQESDAoEcGFnZRgCIAEoBRIRCglwYWdlX3NpemUYAyABKAVCCgoIX3VzZXJfaWQihgEKGkdldENvdXJzZXNCeVVzZXJJZFJlc3BvbnNlEiMKB2NvdXJzZXMYASADKAsyEi5jb3Vyc2VzLnYxLkNvdXJzZRINCgV0b3RhbBgCIAEoBRIMCgRwYWdlGAMgASgFEhEKCXBhZ2Vfc2l6ZRgEIAEoBRITCgt0b3RhbF9wYWdlcxgFIAEoBSKkAQocR2V0Q291cnNlc0J5Q3JlYXRvcklkUmVxdWVzdBIbCgpjcmVhdG9yX2lkGAEgASgMQge6SAR6AmgQEjQKDXN0YXR1c19maWx0ZXIYAiABKA4yGC5jb3Vyc2VzLnYxLkNvdXJzZVN0YXR1c0gAiAEBEgwKBHBhZ2UYAyABKAUSEQoJcGFnZV9zaXplGAQgASgFQhAKDl9zdGF0dXNfZmlsdGVyIokBCh1HZXRDb3Vyc2VzQnlDcmVhdG9ySWRSZXNwb25zZRIjCgdjb3Vyc2VzGAEgAygLMhIuY291cnNlcy52MS5Db3Vyc2USDQoFdG90YWwYAiABKAUSDAoEcGFnZRgDIAEoBRIRCglwYWdlX3NpemUYBCABKAUSEwoLdG90YWxfcGFnZXMYBSABKAUiqAEKHUdldENvdXJzZXNCeUNhdGVnb3J5SWRSZXF1ZXN0Eh4KC2NhdGVnb3J5X2lkGAEgASgJQgm6SAZyBBAEGAwSNAoNc3RhdHVzX2ZpbHRlchgCIAEoDjIYLmNvdXJzZXMudjEuQ291cnNlU3RhdHVzSACIAQESDAoEcGFnZRgDIAEoBRIRCglwYWdlX3NpemUYBCABKAVCEAoOX3N0YXR1c19maWx0ZXIiigEKHkdldENvdXJzZXNCeUNhdGVnb3J5SWRSZXNwb25zZRIjCgdjb3Vyc2VzGAEgAygLMhIuY291cnNlcy52MS5Db3Vyc2USDQoFdG90YWwYAiABKAUSDAoEcGFnZRgDIAEoBRIRCglwYWdlX3NpemUYBCABKAUSEwoLdG90YWxfcGFnZXMYBSABKAUihQMKBkNvdXJzZRITCgJpZBgBIAEoDEIHukgEegJoEBINCgV0aXRsZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIkCgxjYXRlZ29yeV9pZHMYBCADKAlCDrpIC5IBCCIGcgQQBBgMEiYKBWxldmVsGAUgASgOMhcuY291cnNlcy52MS5Db3Vyc2VMZXZlbBIjCgdsZXNzb25zGAYgAygLMhIuY291cnNlcy52MS5MZXNzb24SDQoFcHJpY2UYByABKAUSDQoFaW1hZ2UYCCABKAkSKAoGc3RhdHVzGAkgASgOMhguY291cnNlcy52MS5Db3Vyc2VTdGF0dXMSGwoKY3JlYXRvcl9pZBgKIAEoDEIHukgEegJoEBIWCg5hdmVyYWdlX3JhdGluZxgLIAEoARIUCgx0b3RhbF9yZXZpZXcYDCABKAUSFgoOdG90YWxfY3VzdG9tZXIYDSABKAUSEAoIZHVyYXRpb24YDiABKAUSEgoKbnVtX2xlc3NvbhgPIAEoBSIrChRHZXRDb3Vyc2VCeUlkUmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoECI7ChVHZXRDb3Vyc2VCeUlkUmVzcG9uc2USIgoGY291cnNlGAEgASgLMhIuY291cnNlcy52MS5Db3Vyc2Ui4wIKE0NyZWF0ZUNvdXJzZVJlcXVlc3QSDQoFdGl0bGUYASABKAkSGAoLZGVzY3JpcHRpb24YAiABKAlIAIgBARIkCgxjYXRlZ29yeV9pZHMYAyADKAlCDrpIC5IBCCIGcgQQBBgMEisKBWxldmVsGAQgASgOMhcuY291cnNlcy52MS5Db3Vyc2VMZXZlbEgBiAEBEiMKB2xlc3NvbnMYBSADKAsyEi5jb3Vyc2VzLnYxLkxlc3NvbhISCgVwcmljZRgGIAEoBUgCiAEBEhIKBWltYWdlGAcgASgJSAOIAQESLQoGc3RhdHVzGAggASgOMhguY291cnNlcy52MS5Db3Vyc2VTdGF0dXNIBIgBARIbCgpjcmVhdG9yX2lkGAkgASgMQge6SAR6AmgQQg4KDF9kZXNjcmlwdGlvbkIICgZfbGV2ZWxCCAoGX3ByaWNlQggKBl9pbWFnZUIJCgdfc3RhdHVzIjoKFENyZWF0ZUNvdXJzZVJlc3BvbnNlEiIKBmNvdXJzZRgBIAEoCzISLmNvdXJzZXMudjEuQ291cnNlIuoCChNVcGRhdGVDb3Vyc2VSZXF1ZXN0EhMKAmlkGAEgASgMQge6SAR6AmgQEhIKBXRpdGxlGAIgASgJSACIAQESGAoLZGVzY3JpcHRpb24YAyABKAlIAYgBARIkCgxjYXRlZ29yeV9pZHMYBCADKAlCDrpIC5IBCCIGcgQQBBgMEisKBWxldmVsGAUgASgOMhcuY291cnNlcy52MS5Db3Vyc2VMZXZlbEgCiAEBEiMKB2xlc3NvbnMYBiADKAsyEi5jb3Vyc2VzLnYxLkxlc3NvbhISCgVwcmljZRgHIAEoBUgDiAEBEhIKBWltYWdlGAggASgJSASIAQESLQoGc3RhdHVzGAkgASgOMhguY291cnNlcy52MS5Db3Vyc2VTdGF0dXNIBYgBAUIICgZfdGl0bGVCDgoMX2Rlc2NyaXB0aW9uQggKBl9sZXZlbEIICgZfcHJpY2VCCAoGX2ltYWdlQgkKB19zdGF0dXMiOgoUVXBkYXRlQ291cnNlUmVzcG9uc2USIgoGY291cnNlGAEgASgLMhIuY291cnNlcy52MS5Db3Vyc2UiKgoTRGVsZXRlQ291cnNlUmVxdWVzdBITCgJpZBgBIAEoDEIHukgEegJoECInChREZWxldGVDb3Vyc2VSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIKoABCgtDb3Vyc2VMZXZlbBIcChhDT1VSU0VfTEVWRUxfVU5TUEVDSUZJRUQQABIZChVDT1VSU0VfTEVWRUxfQkVHSU5ORVIQARIdChlDT1VSU0VfTEVWRUxfSU5URVJNRURJQVRFEAISGQoVQ09VUlNFX0xFVkVMX0FEVkFOQ0VEEAMqfAoMQ291cnNlU3RhdHVzEh0KGUNPVVJTRV9TVEFUVVNfVU5TUEVDSUZJRUQQABIYChRDT1VSU0VfU1RBVFVTX0FDVElWRRABEhcKE0NPVVJTRV9TVEFUVVNfRFJBRlQQAhIaChZDT1VSU0VfU1RBVFVTX0FSQ0hJVkVEEAMyiQYKDUNvdXJzZVNlcnZpY2USaAoSR2V0Q291cnNlc0J5VXNlcklkEiUuY291cnNlcy52MS5HZXRDb3Vyc2VzQnlVc2VySWRSZXF1ZXN0GiYuY291cnNlcy52MS5HZXRDb3Vyc2VzQnlVc2VySWRSZXNwb25zZSIDkAIBEnEKFUdldENvdXJzZXNCeUNyZWF0b3JJZBIoLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q3JlYXRvcklkUmVxdWVzdBopLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q3JlYXRvcklkUmVzcG9uc2UiA5ACARJ0ChZHZXRDb3Vyc2VzQnlDYXRlZ29yeUlkEikuY291cnNlcy52MS5HZXRDb3Vyc2VzQnlDYXRlZ29yeUlkUmVxdWVzdBoqLmNvdXJzZXMudjEuR2V0Q291cnNlc0J5Q2F0ZWdvcnlJZFJlc3BvbnNlIgOQAgESWQoNR2V0Q291cnNlQnlJZBIgLmNvdXJzZXMudjEuR2V0Q291cnNlQnlJZFJlcXVlc3QaIS5jb3Vyc2VzLnYxLkdldENvdXJzZUJ5SWRSZXNwb25zZSIDkAIBElEKDENyZWF0ZUNvdXJzZRIfLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVxdWVzdBogLmNvdXJzZXMudjEuQ3JlYXRlQ291cnNlUmVzcG9uc2USUQoMVXBkYXRlQ291cnNlEh8uY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXF1ZXN0GiAuY291cnNlcy52MS5VcGRhdGVDb3Vyc2VSZXNwb25zZRJRCgxEZWxldGVDb3Vyc2USHy5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlcXVlc3QaIC5jb3Vyc2VzLnYxLkRlbGV0ZUNvdXJzZVJlc3BvbnNlElEKC0hlYWx0aENoZWNrEh0uaGVhbHRoLnYxLkhlYWx0aENoZWNrUmVxdWVzdBoeLmhlYWx0aC52MS5IZWFsdGhDaGVja1Jlc3BvbnNlIgOQAgFCNlo0Z2l0aHViLmNvbS9jb2RlaGFyaWsvZmFpcnl0YWxlcy9jb3Vyc2VzL3YxO2NvdXJzZXN2MWIGcHJvdG8z", [file_buf_validate_validate, file_health_v1_health, file_courses_v1_course_lessons]);
 
 /**
  * GetCoursesByUserIdRequest is the request to get courses by user ID.
@@ -96,9 +98,9 @@ export const GetCoursesByUserIdResponseSchema: GenMessage<GetCoursesByUserIdResp
  */
 export type GetCoursesByCreatorIdRequest = Message<"courses.v1.GetCoursesByCreatorIdRequest"> & {
   /**
-   * @generated from field: optional bytes creator_id = 1;
+   * @generated from field: bytes creator_id = 1;
    */
-  creatorId?: Uint8Array;
+  creatorId: Uint8Array;
 
   /**
    * Optional filter by status. If not provided or COURSE_STATUS_UNSPECIFIED, returns all courses.
@@ -175,9 +177,9 @@ export const GetCoursesByCreatorIdResponseSchema: GenMessage<GetCoursesByCreator
  */
 export type GetCoursesByCategoryIdRequest = Message<"courses.v1.GetCoursesByCategoryIdRequest"> & {
   /**
-   * @generated from field: int32 category_id = 1;
+   * @generated from field: string category_id = 1;
    */
-  categoryId: number;
+  categoryId: string;
 
   /**
    * Optional filter by status. If not provided or COURSE_STATUS_UNSPECIFIED, returns all courses.
@@ -248,46 +250,6 @@ export const GetCoursesByCategoryIdResponseSchema: GenMessage<GetCoursesByCatego
   messageDesc(file_courses_v1_courses, 5);
 
 /**
- * Lesson represents a lesson within a course.
- *
- * @generated from message courses.v1.Lesson
- */
-export type Lesson = Message<"courses.v1.Lesson"> & {
-  /**
-   * @generated from field: string title = 1;
-   */
-  title: string;
-
-  /**
-   * Duration in minutes
-   *
-   * @generated from field: int32 duration = 2;
-   */
-  duration: number;
-
-  /**
-   * Optional video URL
-   *
-   * @generated from field: optional string video_link = 3;
-   */
-  videoLink?: string;
-
-  /**
-   * Optional markdown code content
-   *
-   * @generated from field: optional string code_md = 4;
-   */
-  codeMd?: string;
-};
-
-/**
- * Describes the message courses.v1.Lesson.
- * Use `create(LessonSchema)` to create a new message.
- */
-export const LessonSchema: GenMessage<Lesson> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 6);
-
-/**
  * Course represents a course entity.
  *
  * @generated from message courses.v1.Course
@@ -309,11 +271,11 @@ export type Course = Message<"courses.v1.Course"> & {
   description: string;
 
   /**
-   * Multiple category IDs
+   * Multiple category slugs (e.g., ["design", "technology"])
    *
-   * @generated from field: repeated int32 category_ids = 4;
+   * @generated from field: repeated string category_ids = 4;
    */
-  categoryIds: number[];
+  categoryIds: string[];
 
   /**
    * @generated from field: courses.v1.CourseLevel level = 5;
@@ -344,6 +306,41 @@ export type Course = Message<"courses.v1.Course"> & {
    * @generated from field: bytes creator_id = 10;
    */
   creatorId: Uint8Array;
+
+  /**
+   * Average rating from reviews (0-5)
+   *
+   * @generated from field: double average_rating = 11;
+   */
+  averageRating: number;
+
+  /**
+   * Total number of reviews
+   *
+   * @generated from field: int32 total_review = 12;
+   */
+  totalReview: number;
+
+  /**
+   * Total number of customers (enrollments)
+   *
+   * @generated from field: int32 total_customer = 13;
+   */
+  totalCustomer: number;
+
+  /**
+   * Total duration in minutes (sum of all lesson durations)
+   *
+   * @generated from field: int32 duration = 14;
+   */
+  duration: number;
+
+  /**
+   * Total number of lessons
+   *
+   * @generated from field: int32 num_lesson = 15;
+   */
+  numLesson: number;
 };
 
 /**
@@ -351,7 +348,7 @@ export type Course = Message<"courses.v1.Course"> & {
  * Use `create(CourseSchema)` to create a new message.
  */
 export const CourseSchema: GenMessage<Course> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 7);
+  messageDesc(file_courses_v1_courses, 6);
 
 /**
  * GetCourseByIdRequest is the request to get a course by ID.
@@ -370,7 +367,7 @@ export type GetCourseByIdRequest = Message<"courses.v1.GetCourseByIdRequest"> & 
  * Use `create(GetCourseByIdRequestSchema)` to create a new message.
  */
 export const GetCourseByIdRequestSchema: GenMessage<GetCourseByIdRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 8);
+  messageDesc(file_courses_v1_courses, 7);
 
 /**
  * GetCourseByIdResponse contains the course.
@@ -389,7 +386,7 @@ export type GetCourseByIdResponse = Message<"courses.v1.GetCourseByIdResponse"> 
  * Use `create(GetCourseByIdResponseSchema)` to create a new message.
  */
 export const GetCourseByIdResponseSchema: GenMessage<GetCourseByIdResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 9);
+  messageDesc(file_courses_v1_courses, 8);
 
 /**
  * CreateCourseRequest is the request to create a new course.
@@ -412,9 +409,9 @@ export type CreateCourseRequest = Message<"courses.v1.CreateCourseRequest"> & {
   /**
    * Can be empty, categories can be added later
    *
-   * @generated from field: repeated int32 category_ids = 3;
+   * @generated from field: repeated string category_ids = 3;
    */
-  categoryIds: number[];
+  categoryIds: string[];
 
   /**
    * @generated from field: optional courses.v1.CourseLevel level = 4;
@@ -458,7 +455,7 @@ export type CreateCourseRequest = Message<"courses.v1.CreateCourseRequest"> & {
  * Use `create(CreateCourseRequestSchema)` to create a new message.
  */
 export const CreateCourseRequestSchema: GenMessage<CreateCourseRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 10);
+  messageDesc(file_courses_v1_courses, 9);
 
 /**
  * CreateCourseResponse contains the created course.
@@ -477,7 +474,7 @@ export type CreateCourseResponse = Message<"courses.v1.CreateCourseResponse"> & 
  * Use `create(CreateCourseResponseSchema)` to create a new message.
  */
 export const CreateCourseResponseSchema: GenMessage<CreateCourseResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 11);
+  messageDesc(file_courses_v1_courses, 10);
 
 /**
  * UpdateCourseRequest is the request to update a course.
@@ -503,9 +500,9 @@ export type UpdateCourseRequest = Message<"courses.v1.UpdateCourseRequest"> & {
   /**
    * If provided, replaces all categories
    *
-   * @generated from field: repeated int32 category_ids = 4;
+   * @generated from field: repeated string category_ids = 4;
    */
-  categoryIds: number[];
+  categoryIds: string[];
 
   /**
    * @generated from field: optional courses.v1.CourseLevel level = 5;
@@ -540,7 +537,7 @@ export type UpdateCourseRequest = Message<"courses.v1.UpdateCourseRequest"> & {
  * Use `create(UpdateCourseRequestSchema)` to create a new message.
  */
 export const UpdateCourseRequestSchema: GenMessage<UpdateCourseRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 12);
+  messageDesc(file_courses_v1_courses, 11);
 
 /**
  * UpdateCourseResponse contains the updated course.
@@ -559,7 +556,7 @@ export type UpdateCourseResponse = Message<"courses.v1.UpdateCourseResponse"> & 
  * Use `create(UpdateCourseResponseSchema)` to create a new message.
  */
 export const UpdateCourseResponseSchema: GenMessage<UpdateCourseResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 13);
+  messageDesc(file_courses_v1_courses, 12);
 
 /**
  * DeleteCourseRequest is the request to delete a course.
@@ -578,7 +575,7 @@ export type DeleteCourseRequest = Message<"courses.v1.DeleteCourseRequest"> & {
  * Use `create(DeleteCourseRequestSchema)` to create a new message.
  */
 export const DeleteCourseRequestSchema: GenMessage<DeleteCourseRequest> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 14);
+  messageDesc(file_courses_v1_courses, 13);
 
 /**
  * DeleteCourseResponse confirms the deletion.
@@ -597,7 +594,7 @@ export type DeleteCourseResponse = Message<"courses.v1.DeleteCourseResponse"> & 
  * Use `create(DeleteCourseResponseSchema)` to create a new message.
  */
 export const DeleteCourseResponseSchema: GenMessage<DeleteCourseResponse> = /*@__PURE__*/
-  messageDesc(file_courses_v1_courses, 15);
+  messageDesc(file_courses_v1_courses, 14);
 
 /**
  * CourseLevel represents the difficulty level of a course.

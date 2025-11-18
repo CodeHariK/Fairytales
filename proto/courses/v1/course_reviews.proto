@@ -8,11 +8,6 @@ option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
 
 // CourseReviewService provides methods to manage course reviews.
 service CourseReviewService {
-	// GetCourseReviews returns all reviews for a specific course.
-	rpc GetCourseReviews(GetCourseReviewsRequest) returns (GetCourseReviewsResponse) {
-		option idempotency_level = NO_SIDE_EFFECTS;
-	}
-	
 	// GetCourseReviewsPaginated returns paginated reviews for a specific course.
 	rpc GetCourseReviewsPaginated(GetCourseReviewsPaginatedRequest) returns (GetCourseReviewsPaginatedResponse) {
 		option idempotency_level = NO_SIDE_EFFECTS;

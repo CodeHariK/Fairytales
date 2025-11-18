@@ -5,13 +5,6 @@
 import { CourseReviewService } from "./course_reviews_pb";
 
 /**
- * GetCourseReviews returns all reviews for a specific course.
- *
- * @generated from rpc courses.v1.CourseReviewService.GetCourseReviews
- */
-export const getCourseReviews = CourseReviewService.method.getCourseReviews;
-
-/**
  * GetCourseReviewsPaginated returns paginated reviews for a specific course.
  *
  * @generated from rpc courses.v1.CourseReviewService.GetCourseReviewsPaginated

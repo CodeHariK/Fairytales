@@ -68,7 +68,7 @@ const data = {
 		},
 		{
 			title: "Enrollments",
-			url: "#",
+			url: "/dashboard/enrollments",
 			icon: FileWord,
 		},
 		{

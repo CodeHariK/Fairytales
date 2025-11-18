@@ -12,7 +12,7 @@ import { eq } from "drizzle-orm"
 import Stripe from "stripe"
 import { env } from "@/utils/env"
 import { v7 as uuidv7 } from "uuid"
-import { kSession } from "@/utils/session-context"
+import { requireAuth } from "@/utils/connect-auth-interceptor"
 import { hexStringToUuid, uuidToHexString } from "@/utils/uuid"
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY || "", {
@@ -23,12 +23,8 @@ export async function createEnrollment(
 	req: CreateEnrollmentRequest,
 	context: HandlerContext
 ): Promise<CreateEnrollmentResponse> {
-	// Get session from context
-	const session = context.values.get(kSession)
-
-	if (!session?.user) {
-		throw new ConnectError("Unauthorized", Code.Unauthenticated)
-	}
+	// Require authentication
+	const session = await requireAuth(context)
 
 	// Always use the authenticated user from session for security
 	const userId = session.user.id

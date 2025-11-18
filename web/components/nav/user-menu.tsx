@@ -1,123 +1,87 @@
 "use client"
 
-import {
-	CreditCard,
-	LogOut,
-	Bell,
-	UserCircle,
-	MessageCircle,
-	Settings,
-	Moon,
-	Sun,
-} from "lucide-react"
+import { LogOut, UserCircle, Moon, Sun } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuGroup,
 	DropdownMenuItem,
-	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { authClient } from "@/utils/auth-client"
 
-interface UserMenuProps {
-	name?: string
-	email?: string
-	avatar?: string
-	role?: string
-}
-
-export function UserMenu({
-	name = "Stella Luna",
-	email = "stella@fairytales.com",
-	avatar = "https://avatar.vercel.sh/fairytales?size=64",
-	role = "Admin",
-}: UserMenuProps) {
-	const { theme, setTheme, resolvedTheme } = useTheme()
+export function UserMenu() {
 	const [mounted, setMounted] = useState(false)
+	const { data: session } = authClient.useSession()
+	const router = useRouter()
 
 	useEffect(() => {
 		setMounted(true)
 	}, [])
 
-	const initials = name
+	if (!session?.user) {
+		return (
+			<Button
+				variant="ghost"
+				className="flex items-center gap-2 h-auto p-1.5 ml-2"
+				onClick={() => {
+					router.push("/auth/sign-in")
+				}}
+			>
+				Sign In
+			</Button>
+		)
+	}
+
+	const initials = session.user.name
 		.split(" ")
 		.map((n) => n[0])
 		.join("")
 		.toUpperCase()
 
-	const isDark = mounted && (resolvedTheme === "dark" || theme === "dark")
+	console.log(session)
 
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button variant="ghost" className="flex items-center gap-2 h-auto p-1.5 ml-2">
-					<Avatar className="h-9 w-9">
-						<AvatarImage src={avatar} alt={name} />
-						<AvatarFallback>{initials}</AvatarFallback>
-					</Avatar>
-					<div className="hidden lg:block text-left">
-						<p className="text-sm font-medium">{name}</p>
-						<p className="text-xs text-muted-foreground">{role}</p>
+					<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+						<Avatar className="h-8 w-8 rounded-lg">
+							<AvatarImage
+								src={session.user.image || "https://avatar.vercel.sh/fairytales?size=64"}
+								alt={session.user.name}
+							/>
+							<AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+						</Avatar>
+						<div className="grid flex-1 text-left text-sm leading-tight">
+							<span className="truncate font-medium">{session.user.name}</span>
+							<span className="text-muted-foreground truncate text-xs">{session.user.email}</span>
+						</div>
 					</div>
 				</Button>
 			</DropdownMenuTrigger>
 
 			<DropdownMenuContent className="w-56 rounded-lg" align="end" sideOffset={4}>
-				<DropdownMenuLabel className="p-0 font-normal">
-					<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-						<Avatar className="h-8 w-8 rounded-lg">
-							<AvatarImage src={avatar} alt={name} />
-							<AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
-						</Avatar>
-						<div className="grid flex-1 text-left text-sm leading-tight">
-							<span className="truncate font-medium">{name}</span>
-							<span className="text-muted-foreground truncate text-xs">{email}</span>
-						</div>
-					</div>
-				</DropdownMenuLabel>
+				<DropdownMenuItem
+					onClick={() => {
+						router.push("/account/settings")
+					}}
+				>
+					<UserCircle />
+					Account
+				</DropdownMenuItem>
+
 				<DropdownMenuSeparator />
-				<DropdownMenuGroup>
-					<DropdownMenuItem
-						onClick={() => {
-							if (mounted) {
-								setTheme(isDark ? "light" : "dark")
-							}
-						}}
-					>
-						{mounted && isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-						Theme
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<Bell className="h-4 w-4" />
-						Notifications
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<MessageCircle className="h-4 w-4" />
-						Messages
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<Settings className="h-4 w-4" />
-						Settings
-					</DropdownMenuItem>
-				</DropdownMenuGroup>
-				<DropdownMenuSeparator />
-				<DropdownMenuGroup>
-					<DropdownMenuItem>
-						<UserCircle />
-						Account
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<CreditCard />
-						Billing
-					</DropdownMenuItem>
-				</DropdownMenuGroup>
-				<DropdownMenuSeparator />
-				<DropdownMenuItem>
+
+				<DropdownMenuItem
+					onClick={async () => {
+						await authClient.signOut()
+					}}
+				>
 					<LogOut />
 					Sign Out
 				</DropdownMenuItem>

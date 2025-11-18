@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package courses.v1;
 
+import "buf/validate/validate.proto";
 import "courses/v1/courses.proto";
 
 option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
@@ -35,7 +36,7 @@ service CategoryService {
 
 // Category represents a course category entity.
 message Category {
-	int32 id = 1;
+	string id = 1 [(buf.validate.field).string.min_len = 4, (buf.validate.field).string.max_len = 12]; // Unique string (e.g., "design", "technology")
 	string name = 2;
 	string description = 3;
 }
@@ -53,7 +54,7 @@ message CreateCategoryResponse {
 
 // UpdateCategoryRequest is the request to update a category.
 message UpdateCategoryRequest {
-	int32 id = 1;
+	string id = 1 [(buf.validate.field).string.min_len = 4, (buf.validate.field).string.max_len = 12]; // Category string
 	optional string name = 2;
 	optional string description = 3;
 }
@@ -65,7 +66,7 @@ message UpdateCategoryResponse {
 
 // DeleteCategoryRequest is the request to delete a category.
 message DeleteCategoryRequest {
-	int32 id = 1;
+	string id = 1 [(buf.validate.field).string.min_len = 4, (buf.validate.field).string.max_len = 12]; // Category string
 }
 
 // DeleteCategoryResponse confirms the deletion.
@@ -75,7 +76,7 @@ message DeleteCategoryResponse {
 
 // GetCategoryRequest is the request to get a category by ID.
 message GetCategoryRequest {
-	int32 id = 1;
+	string id = 1 [(buf.validate.field).string.min_len = 4, (buf.validate.field).string.max_len = 12]; // Category string
 }
 
 // GetCategoryResponse contains the category.
@@ -97,7 +98,7 @@ message ListCategoriesResponse {
 
 // GetCoursesByCategoryRequest is the request to get courses by category.
 message GetCoursesByCategoryRequest {
-	int32 category_id = 1;
+	string category_id = 1 [(buf.validate.field).string.min_len = 4, (buf.validate.field).string.max_len = 12]; // Category string
 	optional string status_filter = 2;
 }
 

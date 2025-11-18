@@ -1,7 +1,6 @@
 import { createClient } from "@connectrpc/connect"
 import { createConnectTransport } from "@connectrpc/connect-web"
 import { CourseService } from "@/gen/courses/v1/courses_pb"
-import { uuidToHexString } from "@/utils/uuid"
 import type {
 	HealthCheckRequest,
 	HealthCheckResponse,

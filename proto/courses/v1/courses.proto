@@ -4,6 +4,7 @@ package courses.v1;
 
 import "buf/validate/validate.proto";
 import "health/v1/health.proto";
+import "courses/v1/course_lessons.proto";
 
 option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
 
@@ -66,7 +67,7 @@ message GetCoursesByUserIdResponse {
 
 // GetCoursesByCreatorIdRequest is the request to get courses by creator ID.
 message GetCoursesByCreatorIdRequest {
-	optional bytes creator_id = 1 [(buf.validate.field).bytes.len = 16];
+	bytes creator_id = 1 [(buf.validate.field).bytes.len = 16];
 	// Optional filter by status. If not provided or COURSE_STATUS_UNSPECIFIED, returns all courses.
 	optional CourseStatus status_filter = 2;
 	// Pagination: page number (1-indexed)
@@ -86,7 +87,7 @@ message GetCoursesByCreatorIdResponse {
 
 // GetCoursesByCategoryIdRequest is the request to get courses by category ID.
 message GetCoursesByCategoryIdRequest {
-	int32 category_id = 1;
+	string category_id = 1 [(buf.validate.field).string.min_len = 4, (buf.validate.field).string.max_len = 12];
 	// Optional filter by status. If not provided or COURSE_STATUS_UNSPECIFIED, returns all courses.
 	optional CourseStatus status_filter = 2;
 	// Pagination: page number (1-indexed)
@@ -104,26 +105,23 @@ message GetCoursesByCategoryIdResponse {
 	int32 total_pages = 5;
 }
 
-// Lesson represents a lesson within a course.
-message Lesson {
-	string title = 1;
-	int32 duration = 2; // Duration in minutes
-	optional string video_link = 3; // Optional video URL
-	optional string code_md = 4; // Optional markdown code content
-}
-
 // Course represents a course entity.
 message Course {
 	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	string title = 2;
 	string description = 3;
-	repeated int32 category_ids = 4; // Multiple category IDs
+	repeated string category_ids = 4 [(buf.validate.field).repeated.items.string.min_len = 4, (buf.validate.field).repeated.items.string.max_len = 12]; // Multiple category slugs (e.g., ["design", "technology"])
 	CourseLevel level = 5;
-	repeated Lesson lessons = 6;
+	repeated courses.v1.Lesson lessons = 6;
 	int32 price = 7;
 	string image = 8;
 	CourseStatus status = 9;
 	bytes creator_id = 10 [(buf.validate.field).bytes.len = 16];
+	double average_rating = 11; // Average rating from reviews (0-5)
+	int32 total_review = 12; // Total number of reviews
+	int32 total_customer = 13; // Total number of customers (enrollments)
+	int32 duration = 14; // Total duration in minutes (sum of all lesson durations)
+	int32 num_lesson = 15; // Total number of lessons
 }
 
 // GetCourseByIdRequest is the request to get a course by ID.
@@ -140,7 +138,7 @@ message GetCourseByIdResponse {
 message CreateCourseRequest {
 	string title = 1; // Required: Course title
 	optional string description = 2;
-	repeated int32 category_ids = 3; // Can be empty, categories can be added later
+	repeated string category_ids = 3 [(buf.validate.field).repeated.items.string.min_len = 4, (buf.validate.field).repeated.items.string.max_len = 12]; // Can be empty, categories can be added later
 	optional CourseLevel level = 4;
 	repeated Lesson lessons = 5; // Can be empty, lessons can be added later
 	optional int32 price = 6;
@@ -159,7 +157,7 @@ message UpdateCourseRequest {
 	bytes id = 1 [(buf.validate.field).bytes.len = 16];
 	optional string title = 2;
 	optional string description = 3;
-	repeated int32 category_ids = 4; // If provided, replaces all categories
+	repeated string category_ids = 4 [(buf.validate.field).repeated.items.string.min_len = 4, (buf.validate.field).repeated.items.string.max_len = 12]; // If provided, replaces all categories
 	optional CourseLevel level = 5;
 	repeated Lesson lessons = 6; // If provided, replaces all lessons
 	optional int32 price = 7;

@@ -1,7 +1,9 @@
 import { create } from "@bufbuild/protobuf"
+import { HandlerContext } from "@connectrpc/connect"
 import { CourseSchema, CreateCourseResponseSchema } from "@/gen/courses/v1/courses_pb"
 import type { CreateCourseRequest, CreateCourseResponse } from "@/gen/courses/v1/courses_pb"
 import { createUuidV7 } from "@/utils/uuid"
+import { requireAuth } from "@/utils/connect-auth-interceptor"
 import { ConnectError, Code } from "@connectrpc/connect"
 
 // TODO: Implement database insert
@@ -12,7 +14,12 @@ import { ConnectError, Code } from "@connectrpc/connect"
 //   ...
 // }).returning();
 
-export function createCourse(req: CreateCourseRequest): CreateCourseResponse {
+export async function createCourse(
+	req: CreateCourseRequest,
+	context: HandlerContext
+): Promise<CreateCourseResponse> {
+	// Require authentication
+	await requireAuth(context)
 	// Create a new course with the provided data
 	// Optional fields can be omitted, defaults will be used
 	const newCourse = create(CourseSchema, {

@@ -12,18 +12,15 @@ import { ConnectError, Code } from "@connectrpc/connect"
 import { db } from "@/utils/pg"
 import { enrollment } from "@/schema/schema"
 import { and, eq } from "drizzle-orm"
-import { kSession } from "@/utils/session-context"
+import { requireAuth } from "@/utils/connect-auth-interceptor"
 import { hexStringToUuid, uuidToHexString } from "@/utils/uuid"
 
 export async function getEnrollmentsByUserId(
 	req: GetEnrollmentsByUserIdRequest,
 	context: HandlerContext
 ): Promise<GetEnrollmentsByUserIdResponse> {
-	const session = context.values.get(kSession)
-
-	if (!session?.user) {
-		throw new ConnectError("Unauthorized", Code.Unauthenticated)
-	}
+	// Require authentication
+	const session = await requireAuth(context)
 
 	// Use provided user_id or default to session user
 	const userId = req.userId ? uuidToHexString(req.userId) : session.user.id

@@ -1,6 +1,6 @@
 {
-	"id": "070e9f8c-ff4b-463c-9317-63793c432d12",
-	"prevId": "00000000-0000-0000-0000-000000000000",
+	"id": "8f549fdb-0af5-428b-8ed2-664ae425aa09",
+	"prevId": "070e9f8c-ff4b-463c-9317-63793c432d12",
 	"version": "7",
 	"dialect": "postgresql",
 	"tables": {
@@ -643,6 +643,20 @@
 				},
 				"total_customer": {
 					"name": "total_customer",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"duration": {
+					"name": "duration",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"num_lesson": {
+					"name": "num_lesson",
 					"type": "integer",
 					"primaryKey": false,
 					"notNull": true,

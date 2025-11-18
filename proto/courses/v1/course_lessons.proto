@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package courses.v1;
+
+import "buf/validate/validate.proto";
+
+option go_package = "github.com/codeharik/fairytales/courses/v1;coursesv1";
+
+// LessonService provides methods to manage course lessons.
+service LessonService {
+	// GetLessonById returns a lesson by its ID.
+	rpc GetLessonById(GetLessonByIdRequest) returns (GetLessonByIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// GetLessonsByCourseId returns all lessons for a specific course ID.
+	rpc GetLessonsByCourseId(GetLessonsByCourseIdRequest) returns (GetLessonsByCourseIdResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// CreateLesson creates a new lesson for a course.
+	rpc CreateLesson(CreateLessonRequest) returns (CreateLessonResponse);
+	
+	// UpdateLesson updates an existing lesson.
+	rpc UpdateLesson(UpdateLessonRequest) returns (UpdateLessonResponse);
+	
+	// DeleteLesson deletes a lesson.
+	rpc DeleteLesson(DeleteLessonRequest) returns (DeleteLessonResponse);
+	
+	// GetLessonContent returns the content (code_md, video_link) for a lesson.
+	rpc GetLessonContent(GetLessonContentRequest) returns (GetLessonContentResponse) {
+		option idempotency_level = NO_SIDE_EFFECTS;
+	}
+	
+	// UpdateLessonContent updates the content (code_md, video_link) for a lesson.
+	rpc UpdateLessonContent(UpdateLessonContentRequest) returns (UpdateLessonContentResponse);
+}
+
+// Lesson represents a lesson within a course.
+message Lesson {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+	bytes course_id = 2 [(buf.validate.field).bytes.len = 16];
+	string title = 3;
+	optional string description = 4;
+	int32 duration = 5; // Duration in minutes
+	int32 order = 6; // Order/position within the course
+	int64 created_at = 7; // Timestamp in Unix seconds
+	int64 updated_at = 8; // Timestamp in Unix seconds
+}
+
+// LessonContent represents the large content for a lesson (stored separately).
+message LessonContent {
+	bytes lesson_id = 1 [(buf.validate.field).bytes.len = 16];
+	optional string video_link = 2; // Optional video URL
+	optional string code_md = 3; // Optional markdown code content (large string)
+	int64 updated_at = 4; // Timestamp in Unix seconds
+}
+
+// GetLessonByIdRequest is the request to get a lesson by ID.
+message GetLessonByIdRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+}
+
+// GetLessonByIdResponse contains the lesson.
+message GetLessonByIdResponse {
+	Lesson lesson = 1;
+}
+
+// GetLessonsByCourseIdRequest is the request to get lessons by course ID.
+message GetLessonsByCourseIdRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+}
+
+// GetLessonsByCourseIdResponse contains the list of lessons.
+message GetLessonsByCourseIdResponse {
+	repeated Lesson lessons = 1;
+	int32 total = 2;
+}
+
+// CreateLessonRequest is the request to create a new lesson.
+message CreateLessonRequest {
+	bytes course_id = 1 [(buf.validate.field).bytes.len = 16];
+	string title = 2;
+	optional string description = 3;
+	int32 duration = 4; // Duration in minutes
+	optional int32 order = 5; // Order/position within the course (defaults to last)
+}
+
+// CreateLessonResponse contains the created lesson.
+message CreateLessonResponse {
+	Lesson lesson = 1;
+}
+
+// UpdateLessonRequest is the request to update a lesson.
+message UpdateLessonRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+	optional string title = 2;
+	optional string description = 3;
+	optional int32 duration = 4; // Duration in minutes
+	optional int32 order = 5; // Order/position within the course
+}
+
+// UpdateLessonResponse contains the updated lesson.
+message UpdateLessonResponse {
+	Lesson lesson = 1;
+}
+
+// DeleteLessonRequest is the request to delete a lesson.
+message DeleteLessonRequest {
+	bytes id = 1 [(buf.validate.field).bytes.len = 16];
+}
+
+// DeleteLessonResponse confirms the deletion.
+message DeleteLessonResponse {
+	bool success = 1;
+}
+
+// GetLessonContentRequest is the request to get lesson content.
+message GetLessonContentRequest {
+	bytes lesson_id = 1 [(buf.validate.field).bytes.len = 16];
+}
+
+// GetLessonContentResponse contains the lesson content.
+message GetLessonContentResponse {
+	LessonContent content = 1;
+}
+
+// UpdateLessonContentRequest is the request to update lesson content.
+message UpdateLessonContentRequest {
+	bytes lesson_id = 1 [(buf.validate.field).bytes.len = 16];
+	optional string video_link = 2; // Optional video URL
+	optional string code_md = 3; // Optional markdown code content (large string)
+}
+
+// UpdateLessonContentResponse contains the updated lesson content.
+message UpdateLessonContentResponse {
+	LessonContent content = 1;
+}
+

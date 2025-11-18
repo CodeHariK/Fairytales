@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, Clock, Users, Loader2, Check } from "lucide-react"
+import { BookOpen, Clock, Users, Loader2, Check, Star } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -31,6 +31,9 @@ export interface Course {
 	students: number
 	price: number
 	image: string
+	averageRating?: number
+	totalReview?: number
+	duration?: number // Duration in minutes
 	isEnrolled?: boolean
 }
 
@@ -83,73 +86,112 @@ export function CourseCard({ course }: CourseCardProps) {
 		})
 	}
 
+	// Calculate duration display
+	const durationHours = course.duration ? Math.round(course.duration / 60) : course.hours || 0
+	const durationMinutes = course.duration ? course.duration % 60 : 0
+	const durationDisplay =
+		durationHours > 0
+			? durationMinutes > 0
+				? `${durationHours}h ${durationMinutes}m`
+				: `${durationHours}h`
+			: durationMinutes > 0
+				? `${durationMinutes}m`
+				: ""
+
+	// Format rating
+	const rating = course.averageRating ?? 0
+	const ratingDisplay = rating > 0 ? rating.toFixed(1) : "No ratings"
+
+	const handleCardClick = () => {
+		router.push(`/course/${course.id}`)
+	}
+
 	return (
 		<Card
-			className="relative flex flex-col overflow-hidden bg-cover bg-center bg-no-repeat"
-			style={{
-				backgroundImage: course.image ? `url(${course.image})` : undefined,
-			}}
+			className="flex flex-col overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
+			onClick={handleCardClick}
 		>
-			{/* Dark overlay covering entire card */}
-			<div className="absolute inset-0 bg-black/60" />
-
-			{/* Content with z-index above overlay */}
-			<div className="relative z-10 flex flex-col flex-1">
-				<CardHeader>
-					<div className="mb-2 flex items-center justify-between">
-						<Badge
-							variant="outline"
-							className={levelColors[course.level as keyof typeof levelColors]}
-						>
-							{course.level}
-						</Badge>
-					</div>
-					<CardDescription className="text-white/90">{course.category}</CardDescription>
-
-					<CardTitle className="text-lg text-white">{course.title}</CardTitle>
-
-					<p className="text-xs text-white/70 font-mono my-2">{course.id}</p>
-				</CardHeader>
-				<CardContent className="flex-1 space-y-2">
-					<div className="flex items-center gap-4 text-sm text-white/90">
-						<div className="flex items-center gap-1">
-							<BookOpen className="h-4 w-4" />
-							<span>{course.lessons} lessons</span>
-						</div>
-						<div className="flex items-center gap-1">
-							<Clock className="h-4 w-4" />
-							<span>{course.hours} hours</span>
-						</div>
-					</div>
-					<div className="flex items-center gap-2">
-						<Users className="h-4 w-4 text-white/90" />
-						<span className="text-sm text-white/90">{course.students}+ students</span>
-					</div>
-				</CardContent>
-				<CardFooter className="flex items-center justify-between">
-					<span className="text-lg font-semibold text-white">${course.price}</span>
-					<Button
-						size="sm"
-						onClick={handleEnroll}
-						disabled={isLoading || isEnrolling}
-						variant={course.isEnrolled ? "secondary" : "default"}
+			<CardHeader>
+				<div className="mb-2 flex items-center justify-between">
+					<Badge
+						variant="outline"
+						className={levelColors[course.level as keyof typeof levelColors]}
 					>
-						{isLoading || isEnrolling ? (
-							<>
-								<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-								Processing...
-							</>
-						) : course.isEnrolled ? (
-							<>
-								<Check className="mr-2 h-4 w-4" />
-								Enrolled
-							</>
-						) : (
-							"Enroll"
-						)}
-					</Button>
-				</CardFooter>
-			</div>
+						{course.level}
+					</Badge>
+				</div>
+				<CardDescription className="text-muted-foreground">{course.category}</CardDescription>
+				<CardTitle className="text-lg">{course.title}</CardTitle>
+			</CardHeader>
+
+			{/* Image section - separate between title and info */}
+			{course.image && (
+				<div className="relative w-full h-48 overflow-hidden">
+					<img src={course.image} alt={course.title} className="w-full h-full object-cover" />
+				</div>
+			)}
+
+			<CardContent className="flex-1 space-y-3">
+				{/* Rating and Duration */}
+				<div className="flex items-center gap-4 text-sm">
+					{rating > 0 && (
+						<div className="flex items-center gap-1">
+							<Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+							<span className="font-medium">{ratingDisplay}</span>
+							{course.totalReview && course.totalReview > 0 && (
+								<span className="text-muted-foreground">({course.totalReview})</span>
+							)}
+						</div>
+					)}
+					{durationDisplay && (
+						<div className="flex items-center gap-1 text-muted-foreground">
+							<Clock className="h-4 w-4" />
+							<span>{durationDisplay}</span>
+						</div>
+					)}
+				</div>
+
+				{/* Other info */}
+				<div className="flex items-center gap-4 text-sm text-muted-foreground">
+					<div className="flex items-center gap-1">
+						<BookOpen className="h-4 w-4" />
+						<span>{course.lessons} lessons</span>
+					</div>
+					{course.students > 0 && (
+						<div className="flex items-center gap-1">
+							<Users className="h-4 w-4" />
+							<span>{course.students}+ students</span>
+						</div>
+					)}
+				</div>
+			</CardContent>
+
+			<CardFooter className="flex items-center justify-between">
+				<span className="text-lg font-semibold">${course.price}</span>
+				<Button
+					size="sm"
+					onClick={(e) => {
+						e.stopPropagation() // Prevent card click when clicking button
+						handleEnroll()
+					}}
+					disabled={isLoading || isEnrolling}
+					variant={course.isEnrolled ? "secondary" : "default"}
+				>
+					{isLoading || isEnrolling ? (
+						<>
+							<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+							Processing...
+						</>
+					) : course.isEnrolled ? (
+						<>
+							<Check className="mr-2 h-4 w-4" />
+							Enrolled
+						</>
+					) : (
+						"Enroll"
+					)}
+				</Button>
+			</CardFooter>
 		</Card>
 	)
 }
